@@ -32,6 +32,8 @@ public class Compte implements Serializable {
 	@Column
 	private String typeCompte;
 	@Column
+	private double solde;
+	@Column
 	private double decouvert;
 	@Column
 	private float tauxRemuneration;
@@ -52,37 +54,43 @@ public class Compte implements Serializable {
 
 	/**
 	 * 2.2_Constructeur sans Id
-	 * 
+	 *
 	 * @param numero
 	 * @param typeCompte
+	 * @param solde
 	 * @param decouvert
 	 * @param tauxRemuneration
 	 */
-	public Compte(String numero, String typeCompte, double decouvert, float tauxRemuneration) {
+	public Compte(String numero, String typeCompte, double solde, double decouvert, float tauxRemuneration) {
 		super();
 		this.numero = numero;
 		this.typeCompte = typeCompte;
+		this.solde = solde;
 		this.decouvert = decouvert;
 		this.tauxRemuneration = tauxRemuneration;
 	}
 
 	/**
 	 * 2.3_Constructeur avec Id
-	 * 
+	 *
 	 * @param id_compte
 	 * @param numero
 	 * @param typeCompte
+	 * @param solde
 	 * @param decouvert
 	 * @param tauxRemuneration
 	 */
-	public Compte(int id_compte, String numero, String typeCompte, double decouvert, float tauxRemuneration) {
+	public Compte(int id_compte, String numero, String typeCompte, double solde, double decouvert,
+			float tauxRemuneration) {
 		super();
 		this.id_compte = id_compte;
 		this.numero = numero;
 		this.typeCompte = typeCompte;
+		this.solde = solde;
 		this.decouvert = decouvert;
 		this.tauxRemuneration = tauxRemuneration;
 	}
+	
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------3_Les Getters et
@@ -135,17 +143,24 @@ public class Compte implements Serializable {
 		return serialVersionUID;
 	}
 
+	public double getSolde() {
+		return solde;
+	}
+
+	public void setSolde(double solde) {
+		this.solde = solde;
+	}
+
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
 	 * 4_Méthodes
 	 */
-	
 	@Override
 	public String toString() {
-		return "Compte [id_compte=" + id_compte + ", numero=" + numero + ", typeCompte=" + typeCompte + ", decouvert="
-				+ decouvert + ", tauxRemuneration=" + tauxRemuneration + "]";
+		return "Compte [id_compte=" + id_compte + ", numero=" + numero + ", typeCompte=" + typeCompte + ", solde="
+				+ solde + ", decouvert=" + decouvert + ", tauxRemuneration=" + tauxRemuneration + "]";
 	}
 	// ----------------------------------------------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------------------------------------------
