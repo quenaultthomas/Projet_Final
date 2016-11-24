@@ -23,4 +23,6 @@ public interface ICompteService {
 
 	void depot(double montant, int id_compteC);
 	
+	public List<Compte> getCompteByIdCLient(int id_client);
+	
 }

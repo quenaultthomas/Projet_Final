@@ -57,6 +57,7 @@ public class CompteDaoImpl implements ICompteDao {
 	public Compte getCompteById(int id_compte) {
 				
 		Query query = em.createNamedQuery("getCompteById");
+		query.setParameter("id",id_compte);
 		
 		return (Compte) query.getSingleResult();
 	}
@@ -120,5 +121,14 @@ public class CompteDaoImpl implements ICompteDao {
 		credit.setSolde(compteSoldeCredit);
 		this.ModifierCompte(credit);
 		}
+	}
+
+	@Override
+	public List<Compte> getCompteByIdCLient(int id_client) {
+		
+		Query query = em.createNamedQuery("getAllCompte");
+		query.setParameter("id",id_client);
+		
+		return query.getResultList();
 	}
 }

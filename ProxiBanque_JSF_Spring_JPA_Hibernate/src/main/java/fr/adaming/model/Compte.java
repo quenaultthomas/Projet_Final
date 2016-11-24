@@ -20,7 +20,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comptes")
 @NamedQueries({ @NamedQuery(name = "getAllCompte", query = "SELECT c FROM Compte as c"),
-		@NamedQuery(name = "getCompteById", query = "SELECT c FROM Compte as c WHERE c.id_compte =:id"), })
+		@NamedQuery(name = "getCompteById", query = "SELECT c FROM Compte as c WHERE c.id_compte =:id"),
+		@NamedQuery(name = "getCompteByIdClient", query = "SELECT c FROM Compte as c WHERE c.client.id_client =:id"),})
 public class Compte implements Serializable {
 
 	/**
