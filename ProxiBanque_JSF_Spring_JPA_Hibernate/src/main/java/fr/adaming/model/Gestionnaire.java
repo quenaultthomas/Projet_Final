@@ -1,11 +1,13 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +30,8 @@ public class Gestionnaire implements Serializable{
 	private String prenom;
 	private String login;
 	private String password;
+	
+	@Lob
 	private byte[] photo;
 	
 	
@@ -145,6 +149,7 @@ public class Gestionnaire implements Serializable{
 		public void setPhoto(byte[] photo) {
 			this.photo = photo;
 		}
+
 		
 		
 		//----------------------------------------------------------------------------------------------------------------
@@ -154,4 +159,11 @@ public class Gestionnaire implements Serializable{
 			 */
 		//----------------------------------------------------------------------------------------------------------------
 		//----------------------------------------------------------------------------------------------------------------
+		
+		@Override
+		public String toString() {
+			return "Gestionnaire [id_gestionnaire=" + id_gestionnaire + ", nom=" + nom + ", prenom=" + prenom
+					+ ", login=" + login + ", password=" + password + ", photo=" + Arrays.toString(photo) + "]";
+		}
+		
 }
