@@ -9,10 +9,14 @@ package fr.adaming.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
 
+@Service
+@Transactional
 public class ClientServiceImpl implements IClientService {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
@@ -31,6 +35,13 @@ public class ClientServiceImpl implements IClientService {
 	/**
 	 * 3_Les Getters et Setters
 	 */
+
+	/**
+	 * @param clientDao the clientDao to set
+	 */
+	public void setClientDao(IClientDao clientDao) {
+		this.clientDao = clientDao;
+	}
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
@@ -68,8 +79,15 @@ public class ClientServiceImpl implements IClientService {
 	public int isExistClientService(String mail, String password) {
 		return clientDao.isExistClientDao(mail, password);
 	}
+	
+	@Override
+	public List<Client> getClientsByIdGestionnaireService(int id_client) {
+		return clientDao.getClientsByIdGestionnaireDao(id_client);
+	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+
+
 
 
 

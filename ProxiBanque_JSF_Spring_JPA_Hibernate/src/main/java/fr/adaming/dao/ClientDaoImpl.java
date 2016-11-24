@@ -14,9 +14,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import fr.adaming.model.Client;
 
-
+@Repository
 public class ClientDaoImpl implements IClientDao {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
@@ -157,6 +159,7 @@ public class ClientDaoImpl implements IClientDao {
 		
 		return client;
 	}
+	
 	@Override
 	public int isExistClientDao(String mail, String password) {
 		//Créer l'entityManageFactory
@@ -174,6 +177,20 @@ public class ClientDaoImpl implements IClientDao {
 		List<Client> listeClient = query.getResultList();
 				
 		return listeClient.size();
+	}
+	
+	public List<Client> getClientsByIdGestionnaireDao(int id_gest){
+		//Créer l'entityManageFactory
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxiBanque");
+		//Créer un entityManager
+		EntityManager em = emf.createEntityManager();
+		
+		String req="SELECT c FROM client c WHERE c.id_gestionnaire=:id_gest";
+		
+		Query query =em.createNamedQuery(req);
+		query.setParameter("id_gest", id_gest);
+		
+		return query.getResultList();
 	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
