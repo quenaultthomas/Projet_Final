@@ -12,17 +12,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Client;
 
-
+@Repository
 public class ClientDaoImpl implements IClientDao {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
 	/**
 	 * 1_Les propriétés (champs, attributs)
 	 */
+	@PersistenceContext
+	EntityManager em;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	
 	/**
@@ -39,93 +45,36 @@ public class ClientDaoImpl implements IClientDao {
 	 * 4_Méthodes
 	 */
 	@Override
-	public void addClientDao(Client client) {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("ProxiBanque");
-		
-		//Créer un entityManager
-		EntityManager em=emf.createEntityManager();
-		
-		//Créer une transaction à partir de l'entityManager
-		EntityTransaction tx = em.getTransaction();
-		
-		//Ouvrir la transaction
-		tx.begin();
-		
+	public void addClientDao(Client client) {		
+
 		//Instanciation d'un objet utilisation
 		em.persist(client);
 		
-		//Commit
-		tx.commit();
-		
-		//Fermer les les entitysmannager
-		em.close();
-		emf.close();
+
 	}
 
 	@Override
 	public void updateClientDao(Client client) {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("ProxiBanque");
-		
-		//Créer un entityManager
-		EntityManager em=emf.createEntityManager();
-		
-		//Créer une transaction à partir de l'entityManager
-		EntityTransaction tx = em.getTransaction();
-		
-		//Ouvrir la transaction
-		tx.begin();
-		
 		//Instanciation d'un objet utilisation
 		em.merge(client);
-		
-		//Commit
-		tx.commit();
-		
-		//Fermer les les entitysmannager
-		em.close();
-		emf.close();
 
 	}
 
 	@Override
 	public void deleteClientDao(int id_client) {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("ProxiBanque");
-		
-		//Créer un entityManager
-		EntityManager em=emf.createEntityManager();
-		
-		//Créer une transaction à partir de l'entityManager
-		EntityTransaction tx = em.getTransaction();
-		
-		//Ouvrir la transaction
-		tx.begin();
-		
 		//Récupérer un utilisateur par sont ID
 		Client client = em.find(Client.class, id_client);
 		
 		//Supprimer l'objet user
 		em.remove(client);
 		
-		//Commiter la transaction
-		tx.commit();
-		
-		//fermer les flux 
-		em.close();
-		emf.close();
 	}
 
 	@Override
 	public List<Client> getAllClientDao() {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("PU");
-		
-		//Créer un entityManager
-		EntityManager em=emf.createEntityManager();
-		
-		Query query1 = em.createNamedQuery("req1");
+
+		String req = "SELECT c FROM Client c";
+		Query query1 = em.createNamedQuery("req");
 		List<Client> liste = query1.getResultList();
 		
 		return liste;
@@ -133,37 +82,14 @@ public class ClientDaoImpl implements IClientDao {
 
 	@Override
 	public Client getClientByIdDao(int id_client) {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf =Persistence.createEntityManagerFactory("ProxiBanque");
-		
-		//Créer un entityManager
-		EntityManager em=emf.createEntityManager();
-		
-		//Créer une transaction à partir de l'entityManager
-		EntityTransaction tx = em.getTransaction();
-		
-		//Ouvrir la transaction
-		tx.begin();
-		
 		//Récupérer un utilisateur par sont ID
 		Client client = em.find(Client.class, id_client);
-		
-		//Commiter la transaction
-		tx.commit();
-		
-		//fermer les flux 
-		em.close();
-		emf.close();
-		
+
 		return client;
 	}
+	
 	@Override
 	public int isExistClientDao(String mail, String password) {
-		//Créer l'entityManageFactory
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxiBanque");
-		//Créer un entityManager
-		EntityManager em = emf.createEntityManager();
-		
 		String req="SELECT c FROM client c WHERE c.mail=:mail and c.password=:password";
 		
 		Query query =em.createNamedQuery(req);
@@ -174,6 +100,15 @@ public class ClientDaoImpl implements IClientDao {
 		List<Client> listeClient = query.getResultList();
 				
 		return listeClient.size();
+	}
+	
+	public List<Client> getClientsByIdGestionnaireDao(int id_gest){
+		String req="SELECT c FROM client c WHERE c.id_gestionnaire=:id_gest";
+		
+		Query query =em.createNamedQuery(req);
+		query.setParameter("id_gest", id_gest);
+		
+		return query.getResultList();
 	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------

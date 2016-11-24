@@ -15,7 +15,7 @@ import fr.adaming.model.Compte;
 @Repository
 public class CarteDaoImpl implements ICarteDao {
 
-	@Autowired
+	@PersistenceContext
 	EntityManager em;
 	
 	@Override

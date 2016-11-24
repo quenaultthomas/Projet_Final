@@ -37,6 +37,7 @@ public interface IClientDao {
 	public void deleteClientDao(int id_client);
 	public List<Client> getAllClientDao();
 	public Client getClientByIdDao(int id_client);
+	public List<Client> getClientsByIdGestionnaireDao(int id_client);
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
 }
