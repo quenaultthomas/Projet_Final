@@ -3,9 +3,6 @@ package fr.adaming.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -33,7 +30,12 @@ public class CarteDaoImpl implements ICarteDao {
 		
 		Carte mergeCarte = em.find(Carte.class, carte.getId_carte());
 		
-		
+		//Modification des parametres de la table 
+				mergeCarte.setNumCarte(carte.getNumCarte());
+				mergeCarte.setNomtitulaire(carte.getNomtitulaire());
+				mergeCarte.setTypeCarte(carte.getTypeCarte());
+				mergeCarte.setPlafond(carte.getPlafond());
+				em.merge(mergeCarte);
 		
 	}
 
@@ -56,6 +58,7 @@ Query query = em.createNamedQuery("getCompteById");
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Carte> getAllCarte() {
 Query query = em.createNamedQuery("getAllCompte");

@@ -44,7 +44,7 @@ public class Carte implements Serializable {
 	private long numCarte;
 	private String typeCarte;
 	private String Nomtitulaire;
-	private int Number;
+	private int plafond;
 	
 	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(name="id_compte")
@@ -59,21 +59,21 @@ public class Carte implements Serializable {
 			super();
 		}
 		
-		public Carte(int id_carte, long numCarte, String typeCarte, String nomtitulaire, int number) {
+		public Carte(int id_carte, long numCarte, String typeCarte, String nomtitulaire, int plafond) {
 			super();
 			this.id_carte = id_carte;
 			this.numCarte = numCarte;
 			this.typeCarte = typeCarte;
-			Nomtitulaire = nomtitulaire;
-			Number = number;
+			this.Nomtitulaire = nomtitulaire;
+			this.plafond = plafond;
 		}
 
-		public Carte(long numCarte, String typeCarte, String nomtitulaire, int number) {
+		public Carte(long numCarte, String typeCarte, String nomtitulaire, int plafond) {
 			super();
 			this.numCarte = numCarte;
 			this.typeCarte = typeCarte;
-			Nomtitulaire = nomtitulaire;
-			Number = number;
+			this.Nomtitulaire = nomtitulaire;
+			this.plafond = plafond;
 		}
 
 		
@@ -116,12 +116,12 @@ public class Carte implements Serializable {
 			Nomtitulaire = nomtitulaire;
 		}
 
-		public int getNumber() {
-			return Number;
+		public int getPlafond() {
+			return plafond;
 		}
 
-		public void setNumber(int number) {
-			Number = number;
+		public void setPlafond(int plafond) {
+			this.plafond = plafond;
 		}
 
 		public Compte getCompte() {
@@ -147,7 +147,7 @@ public class Carte implements Serializable {
 		@Override
 		public String toString() {
 			return "Carte [id_carte=" + id_carte + ", numCarte=" + numCarte + ", typeCarte=" + typeCarte
-					+ ", Nomtitulaire=" + Nomtitulaire + ", Number=" + Number + "]";
+					+ ", Nomtitulaire=" + Nomtitulaire + ", Plafond=" + plafond + "]";
 		}	
 	
 	//----------------------------------------------------------------------------------------------------------------
