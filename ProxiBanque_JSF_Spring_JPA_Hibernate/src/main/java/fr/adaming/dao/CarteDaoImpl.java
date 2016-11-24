@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Carte;
@@ -14,7 +15,7 @@ import fr.adaming.model.Compte;
 @Repository
 public class CarteDaoImpl implements ICarteDao {
 
-	@PersistenceContext(unitName="ProxyBanque")
+	@Autowired
 	EntityManager em;
 	
 	@Override
