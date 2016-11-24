@@ -3,20 +3,21 @@ package fr.adaming.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Compte;
 
+@Repository
 public class CompteDaoImpl implements ICompteDao {
 
+	@PersistenceContext(unitName="ProxyBanque")
+	EntityManager em;
+	
 	@Override
 	public void AjouterCompte(Compte compte) {
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxyBanque");
-	EntityManager em = emf.createEntityManager();
-	EntityTransaction tx = em.getTransaction();
-	tx.begin();
 	
 	em.persist(compte);
 	
@@ -24,10 +25,7 @@ public class CompteDaoImpl implements ICompteDao {
 
 	@Override
 	public void ModifierCompte(Compte compte) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxyBanque");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		
 		
 		Compte mergeCompte = em.find(Compte.class, compte.getId_compte());
 		
@@ -40,17 +38,10 @@ public class CompteDaoImpl implements ICompteDao {
 		
 		em.merge(mergeCompte);
 		
-		tx.commit();
-		em.close();
-		emf.close();
 	}
 
 	@Override
 	public void SupprimerCompte(Compte compte) {
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxyBanque");
-			EntityManager em = emf.createEntityManager();
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
 
 			// Récupérer un user de l'id 6
 			Compte delCompte = em.find(Compte.class, compte.getId_compte());
@@ -58,23 +49,24 @@ public class CompteDaoImpl implements ICompteDao {
 			// supprimer l'objet u
 			em.remove(delCompte);
 
-			tx.commit();
-			em.close();
-			emf.close();
 		}
 		
 	
 
 	@Override
 	public Compte getCompteById(int id_compte) {
-		// TODO Auto-generated method stub
-		return null;
+				
+		Query query = em.createNamedQuery("getCompteById");
+		
+		return (Compte) query.getSingleResult();
 	}
 
 	@Override
 	public List<Compte> getAllCompte() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Query query = em.createNamedQuery("getAllCompte");
+		
+		return query.getResultList();
 	}	
 	
 	

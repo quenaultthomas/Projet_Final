@@ -7,10 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "comptes")
+@NamedQueries({
+	@NamedQuery(name="getAllCompte", query="SELECT c FROM Compte as c"),
+	@NamedQuery(name="getCompteById", query="SELECT c FROM Compte as c WHERE c.id_compte =:id"),
+	})
 public class Compte implements Serializable {
 
 	/**
