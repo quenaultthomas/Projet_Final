@@ -4,18 +4,23 @@
  * Date :24/11/2016
  * 
  */
-package fr.adaming.dao;
+package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
 
-public interface IClientDao {
+public class ClientServiceImpl implements IClientService {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
 	/**
 	 * 1_Les propriétés (champs, attributs)
 	 */
+	@Autowired
+	IClientDao clientDao;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	
 	/**
@@ -31,12 +36,41 @@ public interface IClientDao {
 	/**
 	 * 4_Méthodes
 	 */
-	public int isExistClientDao(String mail,String password);
-	public void addClientDao(Client client);
-	public void updateClientDao(Client client);
-	public void deleteClientDao(int id_client);
-	public List<Client> getAllClientDao();
-	public Client getClientByIdDao(int id_client);
+	@Override
+	public void addClientService(Client client) {
+		clientDao.addClientDao(client);
+
+	}
+
+	@Override
+	public void updateClientService(Client client) {
+		clientDao.updateClientDao(client);
+
+	}
+
+	@Override
+	public void deleteClientService(int id_client) {
+		clientDao.deleteClientDao(id_client);
+
+	}
+
+	@Override
+	public List<Client> getAllClientService() {
+		return clientDao.getAllClientDao();
+	}
+
+	@Override
+	public Client getClientByIdService(int id_client) {
+		return clientDao.getClientByIdDao(id_client);
+	}
+	
+	@Override
+	public int isExistClientService(String mail, String password) {
+		return clientDao.isExistClientDao(mail, password);
+	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+
+
+
 }

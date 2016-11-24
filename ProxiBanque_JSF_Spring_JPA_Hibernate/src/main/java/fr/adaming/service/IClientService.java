@@ -1,16 +1,16 @@
 /**
  * 
  * @author CLAIN Fabien
- * Date :24/11/2016
+ * Date :27/10/2016
  * 
  */
-package fr.adaming.dao;
+package fr.adaming.service;
 
 import java.util.List;
 
 import fr.adaming.model.Client;
 
-public interface IClientDao {
+public interface IClientService {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
 	/**
@@ -31,12 +31,12 @@ public interface IClientDao {
 	/**
 	 * 4_Méthodes
 	 */
-	public int isExistClientDao(String mail,String password);
-	public void addClientDao(Client client);
-	public void updateClientDao(Client client);
-	public void deleteClientDao(int id_client);
-	public List<Client> getAllClientDao();
-	public Client getClientByIdDao(int id_client);
+	public void addClientService(Client client);
+	public void updateClientService(Client client);
+	public void deleteClientService(int id_client);
+	public List<Client> getAllClientService();
+	public Client getClientByIdService(int id_client);
+	public int isExistClientService(String mail,String password);
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
 }

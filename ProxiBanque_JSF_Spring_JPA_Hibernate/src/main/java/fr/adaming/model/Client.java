@@ -2,11 +2,15 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +35,11 @@ public class Client implements Serializable{
 	private byte[] photo;
 	private String role;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Gestionnaire gestionnaire;
+	
+	@OneToMany(mappedBy="client",fetch=FetchType.EAGER)
+	private List<Compte> listeCompte;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	
 	/**
