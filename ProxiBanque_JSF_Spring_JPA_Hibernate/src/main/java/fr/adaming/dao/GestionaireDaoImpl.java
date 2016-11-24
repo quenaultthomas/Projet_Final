@@ -30,7 +30,7 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 		 * 1_Les propriétés (champs, attributs)
 		 */
 	
-	@Autowired
+	@PersistenceContext
 	EntityManager em;
 	//----------------------------------------------------------------------------------------------------------------
 	//---------------------------------2_Les constructeurs------------------------------------------------------------	
