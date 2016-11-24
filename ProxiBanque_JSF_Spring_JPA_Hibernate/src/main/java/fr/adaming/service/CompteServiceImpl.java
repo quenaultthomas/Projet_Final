@@ -62,5 +62,10 @@ public class CompteServiceImpl implements ICompteService {
 		
 	}
 
+	@Override
+	public List<Compte> getCompteByIdCLient(int id_client) {
+		return compteDao.getCompteByIdCLient(id_client);
+	}
+
 	
 }
