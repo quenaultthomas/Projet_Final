@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Operation;
@@ -13,7 +14,7 @@ import fr.adaming.model.Operation;
 @Repository
 public class OperationDaoImpl implements IOperationDao {
 
-	@PersistenceContext(unitName = "ProxyBanque")
+	@Autowired
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")
