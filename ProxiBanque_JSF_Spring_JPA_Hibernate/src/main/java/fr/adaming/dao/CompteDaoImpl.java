@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Compte;
-import fr.adaming.service.ExceptionMontant;
 
 @Repository
 public class CompteDaoImpl implements ICompteDao {
