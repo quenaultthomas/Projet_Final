@@ -1,3 +1,4 @@
+package fr.adaming.structure;
 /**
  * 
  * @author CLAIN Fabien
