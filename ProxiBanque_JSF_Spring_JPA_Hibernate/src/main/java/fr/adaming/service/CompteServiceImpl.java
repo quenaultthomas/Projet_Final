@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.ICompteDao;
 import fr.adaming.model.Compte;
 
-@Service
+@Service("compteService")
 @Transactional
 public class CompteServiceImpl implements ICompteService {
 
