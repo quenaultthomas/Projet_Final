@@ -5,6 +5,7 @@ package fr.adaming.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IGestionnaireDao;
 
@@ -13,6 +14,7 @@ import fr.adaming.dao.IGestionnaireDao;
  *
  */
 @Service
+@Transactional
 public class GestionnaireServiceImpl implements IGestionnaireService {
 
 	// ----------------------------------------------------------------------------------------------------------------
