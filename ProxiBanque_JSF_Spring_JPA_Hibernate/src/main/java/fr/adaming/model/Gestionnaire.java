@@ -2,6 +2,7 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,8 +37,8 @@ public class Gestionnaire implements Serializable{
 	@Lob
 	private byte[] photo;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Client client;
+	@OneToMany(mappedBy="gestionnaire", fetch=FetchType.EAGER)
+	private List<Client> client;
 	
 	
 		//----------------------------------------------------------------------------------------------------------------
