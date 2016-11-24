@@ -3,8 +3,10 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,14 +48,14 @@ public class Compte implements Serializable {
 	@Column
 	private float tauxRemuneration;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "id_client")
 	private Client client;
 
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<Carte> carte;
 
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<Operation> operation;
 
 	// ----------------------------------------------------------------------------------------------------------------
