@@ -7,9 +7,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,13 +26,16 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table
-public class Operation  implements Serializable{
-	
+@NamedQueries({
+	@NamedQuery(name="getOperationsByIdCompte", query="SELECT o FROM Operation as o WHERE o.compte.id_compte =:id_compte"),
+	})
+public class Operation implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------1_Les propriétés (champs,
 	// attributs)-------------------------------------------
@@ -41,6 +50,10 @@ public class Operation  implements Serializable{
 	private float montant;
 	@Temporal(TemporalType.DATE)
 	private Date date;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_compte")
+	private Compte compte;
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------2_Les
@@ -151,6 +164,22 @@ public class Operation  implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	/**
+	 * @return the compte
+	 */
+	public Compte getCompte() {
+		return compte;
+	}
+
+	/**
+	 * @param compte
+	 *            the compte to set
+	 */
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
