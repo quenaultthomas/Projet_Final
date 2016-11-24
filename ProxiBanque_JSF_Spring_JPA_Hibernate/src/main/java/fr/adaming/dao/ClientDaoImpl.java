@@ -16,6 +16,7 @@ import javax.persistence.Query;
 
 import fr.adaming.model.Client;
 
+
 public class ClientDaoImpl implements IClientDao {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
@@ -153,10 +154,31 @@ public class ClientDaoImpl implements IClientDao {
 		//fermer les flux 
 		em.close();
 		emf.close();
+		
 		return client;
+	}
+	@Override
+	public int isExistClientDao(String mail, String password) {
+		//Créer l'entityManageFactory
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxiBanque");
+		//Créer un entityManager
+		EntityManager em = emf.createEntityManager();
+		
+		String req="SELECT c FROM client c WHERE c.mail=:mail and c.password=:password";
+		
+		Query query =em.createNamedQuery(req);
+		query.setParameter("mail", mail);
+		query.setParameter("password", password);
+		
+		@SuppressWarnings("unchecked")
+		List<Client> listeClient = query.getResultList();
+				
+		return listeClient.size();
 	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+
+
 
 
 }
