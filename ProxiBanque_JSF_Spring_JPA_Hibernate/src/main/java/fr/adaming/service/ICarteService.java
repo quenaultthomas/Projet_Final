@@ -1,11 +1,10 @@
-package fr.adaming.dao;
+package fr.adaming.service;
 
 import java.util.List;
 
 import fr.adaming.model.Carte;
-import fr.adaming.model.Compte;
 
-public interface ICarteDao {
+public interface ICarteService {
 	//----------------------------------------------------------------------------------------------------------------
 	//---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
 		/**
@@ -29,14 +28,14 @@ public interface ICarteDao {
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 	
-	public void AjouterCarte(Carte carte);
+	public void AjouterCarteService(Carte carte);
 	
-	public void ModifierCarte(Carte carte);
+	public void ModifierCarteService(Carte carte);
 	
-	public void SupprimerCarte(Carte carte);
+	public void SupprimerCarteService(Carte carte);
 	
-	public Carte getCarteById(int id_carte);
+	public Carte getCarteByIdService(int id_carte);
 	
-	public List<Carte> getAllCarte();
+	public List<Carte> getAllCarteService();
 
 }

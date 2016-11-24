@@ -6,9 +6,14 @@ package fr.adaming.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +22,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table
+@NamedQueries({ @NamedQuery(name = "getAllCarte", query = "SELECT c FROM Carte as c"),
+	@NamedQuery(name = "getCarteById", query = "SELECT c FROM Carte as c WHERE c.id_carte =:id"), })
 public class Carte implements Serializable {
 	
 	
@@ -39,7 +46,9 @@ public class Carte implements Serializable {
 	private String Nomtitulaire;
 	private int Number;
 	
-	
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn(name="id_compte")
+	private Compte compte;
 	
 	//----------------------------------------------------------------------------------------------------------------
 	//---------------------------------2_Les constructeurs------------------------------------------------------------	
@@ -113,6 +122,14 @@ public class Carte implements Serializable {
 
 		public void setNumber(int number) {
 			Number = number;
+		}
+
+		public Compte getCompte() {
+			return compte;
+		}
+
+		public void setCompte(Compte compte) {
+			this.compte = compte;
 		}
 
 		public static long getSerialversionuid() {
