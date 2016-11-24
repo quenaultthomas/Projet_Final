@@ -44,14 +44,20 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 		 */
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
+
 	
 	@Override
 	public int isExistGestionnaireDao(String login, String password) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PB");
+		//Créer l'Entity Manager Factory
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxyBanque");
+		
+		//Créer un Entity Manager
 		EntityManager em = emf.createEntityManager();
 		
-		Query queryGestionnaireIsExist = em.createNamedQuery("getGestionnaire");
+		String req="Select g From gestionnaire g where g.login=:login and g.password=:password";
+		
+		Query queryGestionnaireIsExist = em.createNativeQuery(req);
 		queryGestionnaireIsExist.setParameter("login",login);
 		queryGestionnaireIsExist.setParameter("password",password);
 		
