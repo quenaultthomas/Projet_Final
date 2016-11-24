@@ -8,8 +8,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Gestionnaire;
@@ -27,6 +29,9 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 		/**
 		 * 1_Les propriétés (champs, attributs)
 		 */
+	
+	@Autowired
+	EntityManager em;
 	//----------------------------------------------------------------------------------------------------------------
 	//---------------------------------2_Les constructeurs------------------------------------------------------------	
 		/**
@@ -48,12 +53,6 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 	
 	@Override
 	public int isExistGestionnaireDao(String login, String password) {
-		
-		//Créer l'Entity Manager Factory
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProxyBanque");
-		
-		//Créer un Entity Manager
-		EntityManager em = emf.createEntityManager();
 		
 		String req="Select g From gestionnaire g where g.login=:login and g.password=:password";
 		
