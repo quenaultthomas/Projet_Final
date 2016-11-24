@@ -16,4 +16,10 @@ public interface ICompteDao {
 	
 	public List<Compte> getAllCompte();
 
+	void virement(double montant, int id_compteD, int id_compteC);
+
+	void retrait(double montant, int id_compteD);
+
+	void depot(double montant, int id_compteC);
+
 }

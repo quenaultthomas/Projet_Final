@@ -44,4 +44,23 @@ public class CompteServiceImpl implements ICompteService {
 		return compteDao.getAllCompte();
 	}
 
+	@Override
+	public void virement(double montant, int id_compteD, int id_compteC) {
+		compteDao.virement(montant, id_compteD, id_compteC);
+		
+	}
+
+	@Override
+	public void retrait(double montant, int id_compteD) {
+		compteDao.retrait(montant, id_compteD);
+		
+	}
+
+	@Override
+	public void depot(double montant, int id_compteC) {
+		compteDao.depot(montant, id_compteC);
+		
+	}
+
+	
 }

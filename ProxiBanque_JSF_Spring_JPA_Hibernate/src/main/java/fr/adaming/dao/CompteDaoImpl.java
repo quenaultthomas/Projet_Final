@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Compte;
+import fr.adaming.service.ExceptionMontant;
 
 @Repository
 public class CompteDaoImpl implements ICompteDao {
@@ -69,5 +70,56 @@ public class CompteDaoImpl implements ICompteDao {
 		return query.getResultList();
 	}	
 	
-	
+	@Override
+	public void depot(double montant, int id_compteC) {
+		Compte c = this.getCompteById(id_compteC);
+		double compteSolde=c.getSolde() ;
+		compteSolde= compteSolde+montant;
+
+		c.setSolde(compteSolde);
+		this.ModifierCompte(c);
+		
+	}
+
+	@Override
+	public void retrait(double montant, int id_compteD) {
+		
+		Compte debit = this.getCompteById(id_compteD);
+		double compteSolde=debit.getSolde() ;
+		
+		compteSolde= compteSolde-montant;
+		
+		if(compteSolde<debit.getDecouvert()){
+			//throw new ExceptionMontant("Impossible, le montant demandé est supérieur au solde disponible sur ce compte");
+		}else{
+		debit.setSolde(compteSolde);
+		this.ModifierCompte(debit);
+		
+		}
+		
+	}
+
+	@Override
+	public void virement(double montant, int id_compteD, int id_compteC)  {
+		
+		Compte debit = this.getCompteById(id_compteD);
+		double compteSolde=debit.getSolde() ;
+		
+		compteSolde= compteSolde-montant;
+		
+		if(compteSolde<debit.getDecouvert()){
+			//throw new ExceptionMontant("Impossible, le montant demandé est supérieur au solde disponible sur ce compte");
+		}else{
+		debit.setSolde(compteSolde);
+		this.ModifierCompte(debit);
+		
+		
+		Compte credit = this.getCompteById(id_compteC);
+		double compteSoldeCredit=credit.getSolde() ;
+		compteSoldeCredit= compteSoldeCredit+montant;
+
+		credit.setSolde(compteSoldeCredit);
+		this.ModifierCompte(credit);
+		}
+	}
 }

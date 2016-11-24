@@ -1,22 +1,24 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "comptes")
-@NamedQueries({
-	@NamedQuery(name="getAllCompte", query="SELECT c FROM Compte as c"),
-	@NamedQuery(name="getCompteById", query="SELECT c FROM Compte as c WHERE c.id_compte =:id"),
-	})
+@NamedQueries({ @NamedQuery(name = "getAllCompte", query = "SELECT c FROM Compte as c"),
+		@NamedQuery(name = "getCompteById", query = "SELECT c FROM Compte as c WHERE c.id_compte =:id"), })
 public class Compte implements Serializable {
 
 	/**
@@ -43,6 +45,16 @@ public class Compte implements Serializable {
 	private double decouvert;
 	@Column
 	private float tauxRemuneration;
+
+	@ManyToOne
+	@JoinColumn(name = "id_client")
+	private Client client;
+
+	@OneToMany(mappedBy = "compte")
+	private List<Carte> carte;
+
+	@OneToMany(mappedBy = "compte")
+	private List<Operation> operation;
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------2_Les
@@ -96,7 +108,6 @@ public class Compte implements Serializable {
 		this.decouvert = decouvert;
 		this.tauxRemuneration = tauxRemuneration;
 	}
-	
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------3_Les Getters et
@@ -157,6 +168,29 @@ public class Compte implements Serializable {
 		this.solde = solde;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public List<Carte> getCarte() {
+		return carte;
+	}
+
+	public void setCarte(List<Carte> carte) {
+		this.carte = carte;
+	}
+
+	public List<Operation> getOperation() {
+		return operation;
+	}
+
+	public void setOperation(List<Operation> operation) {
+		this.operation = operation;
+	}
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
