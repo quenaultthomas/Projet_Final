@@ -49,14 +49,14 @@ public class Compte implements Serializable {
 	@Column
 	private float tauxRemuneration;
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client client;
 
-	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
 	private List<Carte> carte;
 
-	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
 	private List<Operation> operation;
 
 	// ----------------------------------------------------------------------------------------------------------------

@@ -51,7 +51,7 @@ public class Operation implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "id_compte")
 	private Compte compte;
 

@@ -37,7 +37,7 @@ public class Gestionnaire implements Serializable{
 	@Lob
 	private byte[] photo;
 	
-	@OneToMany(mappedBy="gestionnaire", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="gestionnaire")
 	private List<Client> client;
 	
 	

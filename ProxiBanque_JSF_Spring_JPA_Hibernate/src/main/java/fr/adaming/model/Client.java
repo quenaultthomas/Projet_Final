@@ -35,10 +35,10 @@ public class Client implements Serializable{
 	private byte[] photo;
 	private String role;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	private Gestionnaire gestionnaire;
 	
-	@OneToMany(mappedBy="client",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="client")
 	private List<Compte> listeCompte;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	

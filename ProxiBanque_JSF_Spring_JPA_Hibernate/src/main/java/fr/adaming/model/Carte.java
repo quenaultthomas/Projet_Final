@@ -46,7 +46,7 @@ public class Carte implements Serializable {
 	private String Nomtitulaire;
 	private int plafond;
 	
-	@ManyToOne (fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="id_compte")
 	private Compte compte;
 	
