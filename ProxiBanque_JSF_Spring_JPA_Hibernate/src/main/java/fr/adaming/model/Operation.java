@@ -3,6 +3,7 @@
  */
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -19,7 +20,13 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table
-public class Operation {
+public class Operation  implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------1_Les propriétés (champs,
 	// attributs)-------------------------------------------
