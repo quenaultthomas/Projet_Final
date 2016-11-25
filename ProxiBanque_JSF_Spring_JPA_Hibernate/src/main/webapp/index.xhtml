@@ -7,5 +7,16 @@
 <h:head></h:head> 
 <body> 
 
+<h:form>
+    <p:growl id="messages" />
+ 
+    <p:splitButton value="Connexion" update="messages" icon="ui-icon-disk">
+        <p:menuitem value="Client" actionListener="#{ClientMB.connexion}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
+        <p:separator />
+        <p:menuitem value="Gestionnaire" actionListener="#{GestionMB.connexion}" ajax="false" icon="ui-icon-close" />
+    </p:splitButton>
+</h:form>
+
+
 </body> 
 </html>

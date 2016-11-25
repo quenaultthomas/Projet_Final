@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"> 
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h:form>
+
+		<h:panelGrid columns="2">
+
+			<!-- Validation automatique et implicite -->
+
+Nom : 
+<h:inputText id="nomId" value="#{ClientMB.client.nom}" label="Nom" required="true" maxlength="20"></h:inputText>
+<h:message for="nomId" style="color:red"/>
+
+Password:
+<h:inputText id="passwordId" value="#{ClientMB.client.password}" required="true"/>
+<h:message for="passwordId" style="color:red"/>
+
+			<h:commandButton value="Valider" action="#{ClientMB.IsExist}"></h:commandButton>
+
+		</h:panelGrid>
+
+	</h:form>
+
+</body>
+</html>
