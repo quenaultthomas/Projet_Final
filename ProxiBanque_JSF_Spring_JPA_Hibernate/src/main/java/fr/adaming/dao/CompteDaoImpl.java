@@ -16,7 +16,6 @@ public class CompteDaoImpl implements ICompteDao {
 
 
 	@PersistenceContext(name="ProxyBanque")
-
 	EntityManager em;
 	
 	@Override
