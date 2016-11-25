@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -209,8 +210,10 @@ public class GestionnaireManagedBean implements Serializable{
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-
 		gestionnaire = (Gestionnaire) session.getAttribute("gestionnaire");
+		
+		List<Client> listClient = new ArrayList<>();
+		listClient = clientService.getAllClientService();
 	}
 	
 	
@@ -231,12 +234,61 @@ public class GestionnaireManagedBean implements Serializable{
 		return "accueil.xhtml";
 	}
 	
-	public void retrait(){
+	public String retrait(){
 		compteService.retrait(montant, cpt.getId_compte());
+		return null;
 	}
 	
-	public void rechercheCompteByIdClient(){
+	public String rechercheCompteByIdClient(){
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		return null;
+	}
+	public String addCpt() {
+		compteService.AjouterCompte(cpt);;
+		return null;
+	}
+
+	public String upCpt() {
+		compteService.ModifierCompte(cpt);
+		return null;
+	}
+
+	public String deleteCpt() {
+		
+		compteService.SupprimerCompte(cpt);
+		return null;
+	}
+	
+	public String addCarte() {
+		carteService.AjouterCarteService(carte);
+		return null;
+	}
+
+	public String upCarte() {
+		carteService.ModifierCarteService(carte);
+		return null;
+	}
+
+	public String deleteCarte() {
+		
+		carteService.SupprimerCarteService(carte);
+		return null;
+	}
+	
+	public String addClient() {
+		clientService.addClientService(client);
+		return null;
+	}
+
+	public String upClient() {
+		clientService.updateClientService(client);
+		return null;
+	}
+
+	public String deleteClient() {
+		
+		clientService.deleteClientService(id);
+		return null;
 	}
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
