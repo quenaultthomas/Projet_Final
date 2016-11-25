@@ -105,8 +105,16 @@ public class ClientDaoImpl implements IClientDao {
 		
 		return query.getResultList();
 	}
+	
+	@Override
+	public Client getClientByIdentifiantDao(String mail, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+
+
 
 
 
