@@ -163,7 +163,9 @@ public class ClientManagedBean implements Serializable {
 		
 		if (verif==1){
 					
-			//GetClient By Mail et Password
+			client = clientService.getClientByIdentifiantService(client.getMail(), client.getPassword());
+			
+			System.out.println(client);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
 			listCompte = compteService.getCompteByIdCLient(client.getId_client());
