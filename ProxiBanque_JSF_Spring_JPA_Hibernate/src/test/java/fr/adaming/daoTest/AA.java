@@ -15,7 +15,7 @@ public class AA {
 		ApplicationContext cxt = new FileSystemXmlApplicationContext(configLocation);
 
 		
-		 IClientService clientService = (IClientService) cxt.getBean("ClientServiceBean");
+		 IClientService clientService = (IClientService) cxt.getBean("clientService");
 		
 //		Client client = new Client("toto", "a", "a", "a", 0, "a", "a@a", "a", new byte[0], "a");
 //		System.out.println(client);
@@ -32,5 +32,6 @@ public class AA {
 //		 Client client2 = clientService.getClientByIdService(1);
 //		 System.out.println(client2);
 //		 clientService.deleteClientService(1);
+		 System.out.println(clientService.getClientByIdentifiantService("a@a", "a"));
 	}
 }
