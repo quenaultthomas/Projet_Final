@@ -110,6 +110,14 @@ public class ClientManagedBean implements Serializable {
 		this.compteService = compteService;
 	}
 
+	public IClientService getClientService() {
+		return clientService;
+	}
+
+	public void setClientService(IClientService clientService) {
+		this.clientService = clientService;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
