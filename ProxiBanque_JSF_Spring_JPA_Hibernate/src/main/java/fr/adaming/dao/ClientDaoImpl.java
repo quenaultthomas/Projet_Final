@@ -73,8 +73,8 @@ public class ClientDaoImpl implements IClientDao {
 	@Override
 	public List<Client> getAllClientDao() {
 
-		String req = "SELECT c FROM Client c";
-		Query query1 = em.createNamedQuery("req");
+		String req = "SELECT * FROM Client c";
+		Query query1 = em.createNativeQuery("req");
 		List<Client> liste = query1.getResultList();
 		
 		return liste;
@@ -90,9 +90,9 @@ public class ClientDaoImpl implements IClientDao {
 	
 	@Override
 	public int isExistClientDao(String mail, String password) {
-		String req="SELECT c FROM client c WHERE c.mail=:mail and c.password=:password";
+		String req="SELECT * FROM client c WHERE c.mail=:mail and c.password=:password";
 		
-		Query query =em.createNamedQuery(req);
+		Query query =em.createNativeQuery(req);
 		query.setParameter("mail", mail);
 		query.setParameter("password", password);
 		
@@ -103,9 +103,9 @@ public class ClientDaoImpl implements IClientDao {
 	}
 	
 	public List<Client> getClientsByIdGestionnaireDao(int id_gest){
-		String req="SELECT c FROM client c WHERE c.id_gestionnaire=:id_gest";
+		String req="SELECT * FROM client c WHERE c.id_gestionnaire=:id_gest";
 		
-		Query query =em.createNamedQuery(req);
+		Query query =em.createNativeQuery(req);
 		query.setParameter("id_gest", id_gest);
 		
 		return query.getResultList();
