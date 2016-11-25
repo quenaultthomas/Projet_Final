@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
+import fr.adaming.model.Operation;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
+import fr.adaming.service.IOperationService;
 
 @ManagedBean(name = "ClientMB")
 @SessionScoped
@@ -28,21 +31,24 @@ public class ClientManagedBean implements Serializable {
 
 	private Client client;
 	private Compte compte;
-	private Compte debit;
-	private Compte credit;
+	private int id_compte;
+	private int id_debit;
+
 	private double montant;
 	private List<Compte> listCompte;
+	private List<Operation> listOperation;
 
 	@ManagedProperty(value = "#{clientService}")
 	IClientService clientService;
-	
+
 	@ManagedProperty(value = "#{compteService}")
 	ICompteService compteService;
-	
-	
-	
+
+	@ManagedProperty(value = "#{operationService}")
+	IOperationService operationService;
+
 	HttpSession session;
-	
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------2_Les
 	// constructeurs------------------------------------------------------------
@@ -52,8 +58,6 @@ public class ClientManagedBean implements Serializable {
 
 	public ClientManagedBean() {
 		this.compte = new Compte();
-		this.debit = new Compte();
-		this.credit = new Compte();
 		this.client = new Client();
 	}
 
@@ -63,8 +67,7 @@ public class ClientManagedBean implements Serializable {
 	/**
 	 * 3_Les Getters et Setters
 	 */
-	
-	
+
 	public Compte getCompte() {
 		return compte;
 	}
@@ -87,22 +90,6 @@ public class ClientManagedBean implements Serializable {
 
 	public void setCompte(Compte compte) {
 		this.compte = compte;
-	}
-
-	public Compte getDebit() {
-		return debit;
-	}
-
-	public void setDebit(Compte debit) {
-		this.debit = debit;
-	}
-
-	public Compte getCredit() {
-		return credit;
-	}
-
-	public void setCredit(Compte credit) {
-		this.credit = credit;
 	}
 
 	public double getMontant() {
@@ -141,76 +128,178 @@ public class ClientManagedBean implements Serializable {
 		return serialVersionUID;
 	}
 
+	public List<Operation> getListOperation() {
+		return listOperation;
+	}
+
+	public void setListOperation(List<Operation> listOperation) {
+		this.listOperation = listOperation;
+	}
+
+	public IOperationService getOperationService() {
+		return operationService;
+	}
+
+	public void setOperationService(IOperationService operationService) {
+		this.operationService = operationService;
+	}
+
+	public int getId_compte() {
+		return id_compte;
+	}
+
+	public void setId_compte(int id_compte) {
+		this.id_compte = id_compte;
+	}
+
+	public int getId_debit() {
+		return id_debit;
+	}
+
+	public void setId_debit(int id_debit) {
+		this.id_debit = id_debit;
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
 	 * 4_Méthodes
 	 */
-	
+
 	@PostConstruct
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-		
+
 		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
 	}
-	
-	public String Connexion(){
+
+	public String Connexion() {
 		return "connexionClient.xhtml";
 	}
-	
-	public String IsExist(){
-		int verif  = clientService.isExistClientService(client.getMail(), client.getPassword());
-		
-		if (verif==1){
-					
+
+	public String IsExist() {
+		int verif = clientService.isExistClientService(client.getMail(), client.getPassword());
+
+		if (verif == 1) {
+
 			client = clientService.getClientByIdentifiantService(client.getMail(), client.getPassword());
-			
+
 			System.out.println(client);
-			
+
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
 			this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
-			
+
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
-			
+
 			return "infosClient.xhtml";
-		}else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le login ou le mot de passe est incorrect !!"));
-			
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Le login ou le mot de passe est incorrect !!"));
+
 			return "connexionClient.xhtml";
 		}
 	}
-	
-	public void rechercherDebiteur(){
-		debit = compteService.getCompteById(debit.getId_compte());
+
+	public String virement() {
+		
+		 	compteService.virement(montant, id_debit, id_compte);
+
+			Calendar c = Calendar.getInstance();
+			
+			Compte depot = compteService.getCompteById(id_compte);
+			
+			Compte retrait = compteService.getCompteById(id_debit);
+
+			Operation opeDepot = new Operation("Virement du Compte Numero : " + retrait.getNumero(), (float) montant, c.getTime());
+			
+			Operation opeRetrait = new Operation("Virement vers Compte Numero : " + depot.getNumero(), (float) -montant, c.getTime());
+
+			opeDepot.setCompte(depot);
+			
+			opeRetrait.setCompte(retrait);
+
+			operationService.ajouterOperationService(opeDepot);
+			
+			operationService.ajouterOperationService(opeRetrait);
+
+			this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+
+			return "infosClient.xhtml";
 	}
-	public void rechercherCrediteur(){
-		credit = compteService.getCompteById(credit.getId_compte());
+
+	public String depot() {
+
+		compteService.depot(montant, id_compte);
+
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("depot", (float) montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id_compte));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+
+		return "infosClient.xhtml";
 	}
-	
-	public String virement(){
-		compteService.virement(montant, debit.getId_compte(), credit.getId_compte());
-		return "accueil.xhtml";
+
+	public String retrait() {
+		
+		compteService.retrait(montant, id_compte);
+
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("retrait", (float) -montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id_compte));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+
+		return "infosClient.xhtml";
+
 	}
-	
-	public String depot(){
-		compteService.depot(montant, credit.getId_compte());
-		return "accueil.xhtml";
-	}
-	
-	public void retrait(){
-		compteService.retrait(montant, debit.getId_compte());
-	}
-	
-	public void rechercheCompteByIdClient(){
+
+	public void rechercheCompteByIdClient() {
 		listCompte = compteService.getCompteByIdCLient(client.getId_client());
 	}
-	
-	public String getCompteById(){
+
+	public String getCompteById() {
 		compte = compteService.getCompteById(compte.getId_compte());
-		
+
+		listOperation = operationService.getOperationsByIdCompteService(compte.getId_compte());
+
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("compte", compte);
-		
+
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listOperation", listOperation);
+
 		return "infosCompte.xhtml";
 	}
+
+	public String GotoInfoClient() {
+		return "infosClient.xhtml";
+	}
+
+	public String GotoRetrait() {
+		return "retrait.xhtml";
+	}
+
+	public String GotoDepot() {
+		return "depot.xhtml";
+	}
+
+	public String GotoVirement() {
+		return "virement.xhtml";
+	}
+	
+	public String GotoModifier() {
+		return "modifierClient.xhtml";
+	}
+
 }

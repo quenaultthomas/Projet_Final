@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"> 
+<h:head>
+<title>Insert title here</title>
+</h:head>
+<h:body>
+
+<h:form>
+	<h:outputText value="Id"/>
+	<h:inputText value="#{ClientMB.id_compte}"/>
+	<h:outputText value="Montant"/>
+	<h:inputText value="#{ClientMB.montant}"/>
+	<p:commandButton action="#{ClientMB.depot()}" value="Déposer"></p:commandButton>
+</h:form>
+</h:body>
+</html>
