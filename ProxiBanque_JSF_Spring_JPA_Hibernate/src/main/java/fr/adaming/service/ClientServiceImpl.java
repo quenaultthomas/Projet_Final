@@ -15,11 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
 
-<<<<<<< HEAD
-@Service("clientService")
-=======
+
 @Service("ClientServiceBean")
->>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 @Transactional
 public class ClientServiceImpl implements IClientService {
 //----------------------------------------------------------------------------------------------------------------
