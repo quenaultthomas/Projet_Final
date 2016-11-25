@@ -13,12 +13,12 @@
     <p:growl id="messages" showDetail="false"/>
     <p:menu>
         <p:submenu label="Vos Comptes">
-            <p:menuitem value="Save" actionListener="#{ClientMB.GotoInfoClient()}" update="messages" icon="ui-icon-disk" />
+            <p:menuitem value="Save" action="#{ClientMB.GotoInfoClient()}" update="messages" icon="ui-icon-disk" />
         </p:submenu>
         <p:submenu label="Operations">
-            <p:menuitem value="Retrait" actionListener="#{ClientMB.GotoRetrait()}" update="messages"  icon="ui-icon-close"/>
-            <p:menuitem value="Depot" actionListener="#{ClientMB.GotoDepot()}" update="messages"  icon="ui-icon-close"/>
-            <p:menuitem value="Virement" actionListener="#{ClientMB.GotoVirement()}" update="messages"  icon="ui-icon-close"/>
+            <p:menuitem value="Retrait" action="#{ClientMB.GotoRetrait()}" update="messages"  icon="ui-icon-close"/>
+            <p:menuitem value="Depot" action="#{ClientMB.GotoDepot()}" update="messages"  icon="ui-icon-close"/>
+            <p:menuitem value="Virement" action="#{ClientMB.GotoVirement()}" update="messages"  icon="ui-icon-close"/>
         </p:submenu>
         <p:submenu label="Navigations">
         </p:submenu>
