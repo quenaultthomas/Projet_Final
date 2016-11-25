@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import fr.adaming.service.IGestionnaireService;
 import fr.adaming.service.IOperationService;
 
 @ManagedBean(name="GestMB")
+@SessionScoped
 public class GestionnaireManagedBean implements Serializable{
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -74,6 +76,7 @@ public class GestionnaireManagedBean implements Serializable{
 		this.cpt = new Compte();
 		this.client= new Client();
 		this.carte= new Carte();
+		this.gestionnaire = new Gestionnaire();
 	}
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -244,7 +247,7 @@ public class GestionnaireManagedBean implements Serializable{
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		
 		
-		listClient = clientService.getClientsByIdGestionnaireService(id_gestionnaire);
+//		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
 	
 	
@@ -334,9 +337,13 @@ public class GestionnaireManagedBean implements Serializable{
 					
 			gestionnaire = gestionnaireService.getGestByIdentificationService(gestionnaire.getLogin(), gestionnaire.getPassword());
 			
-			System.out.println(client);
 			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire); 
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire);
+			
+			System.out.println(gestionnaire.getId_gestionnaire());
+			
+			listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listClient", listClient);
 			
 			return "accueilGestionnaire.xhtml";
