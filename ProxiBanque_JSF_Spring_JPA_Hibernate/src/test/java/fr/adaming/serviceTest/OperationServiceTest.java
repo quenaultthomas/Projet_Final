@@ -14,23 +14,23 @@ import fr.adaming.model.Compte;
 import fr.adaming.model.Operation;
 import fr.adaming.service.IOperationService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/application-context.xml")
-public class OperationServiceTest {
-
-	@Autowired
-	IOperationService operationService;
-	
-	@Test
-	public void testAjouterOperation(){
-		Calendar c = Calendar.getInstance();
-		
-		System.out.println("je suis dans la methode testAjouterOperation");
-		Operation operation = new Operation("Virement", 1200, c.getTime());
-		Compte compte = new Compte();
-		compte.setId_compte(1);
-		operation.setCompte(compte);
-		operationService.ajouterOperationService(operation);
-		assertEquals(1, operationService.getOperationsByIdCompteService(1).size());
-	}
-}
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/application-context.xml")
+//public class OperationServiceTest {
+//
+//	@Autowired
+//	IOperationService operationService;
+//	
+//	@Test
+//	public void testAjouterOperation(){
+//		Calendar c = Calendar.getInstance();
+//		
+//		System.out.println("je suis dans la methode testAjouterOperation");
+//		Operation operation = new Operation("Virement", 1200, c.getTime());
+//		Compte compte = new Compte();
+//		compte.setId_compte(1);
+//		operation.setCompte(compte);
+//		operationService.ajouterOperationService(operation);
+//		assertEquals(1, operationService.getOperationsByIdCompteService(1).size());
+//	}
+//}
