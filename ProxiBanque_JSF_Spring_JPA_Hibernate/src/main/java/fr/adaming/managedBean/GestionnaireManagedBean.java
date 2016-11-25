@@ -251,11 +251,13 @@ public class GestionnaireManagedBean implements Serializable{
 	public void rechercherDebiteur(){
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
+	
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
-	
 
+	
+	
 	
 	public String virement(){
 		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
@@ -277,6 +279,7 @@ public class GestionnaireManagedBean implements Serializable{
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
 		return null;
 	}
+	
 	public String addCpt() {
 		compteService.AjouterCompte(cpt);;
 		return null;
