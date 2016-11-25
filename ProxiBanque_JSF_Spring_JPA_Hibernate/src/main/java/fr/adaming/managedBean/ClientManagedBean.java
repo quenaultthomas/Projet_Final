@@ -32,11 +32,13 @@ public class ClientManagedBean implements Serializable {
 	private double montant;
 	private List<Compte> listCompte;
 
+	@ManagedProperty(value = "#{clientService}")
+	IClientService clientService;
+	
 	@ManagedProperty(value = "#{compteService}")
 	ICompteService compteService;
 	
-	@ManagedProperty(value = "#{clientService}")
-	IClientService clientService;
+	
 	
 	HttpSession session;
 	
@@ -51,6 +53,7 @@ public class ClientManagedBean implements Serializable {
 		this.compte = new Compte();
 		this.debit = new Compte();
 		this.credit = new Compte();
+		this.client = new Client();
 	}
 
 	// ----------------------------------------------------------------------------------------------------------------
