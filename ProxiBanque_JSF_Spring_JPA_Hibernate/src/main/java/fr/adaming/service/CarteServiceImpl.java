@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.dao.ICarteDao;
 import fr.adaming.model.Carte;
 
-@Service
+@Service("carteService")
 @Transactional
 public class CarteServiceImpl implements ICarteService {
 
