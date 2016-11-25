@@ -14,7 +14,7 @@ import fr.adaming.model.Compte;
 @Repository
 public class CompteDaoImpl implements ICompteDao {
 
-	@Autowired
+	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 	
 	@Override

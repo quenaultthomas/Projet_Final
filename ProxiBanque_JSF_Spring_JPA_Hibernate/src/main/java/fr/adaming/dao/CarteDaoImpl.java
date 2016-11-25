@@ -15,7 +15,7 @@ import fr.adaming.model.Compte;
 @Repository
 public class CarteDaoImpl implements ICarteDao {
 
-	@PersistenceContext
+	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 	
 	@Override

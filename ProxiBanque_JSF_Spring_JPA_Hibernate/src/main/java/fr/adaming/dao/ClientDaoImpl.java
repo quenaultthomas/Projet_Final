@@ -27,7 +27,7 @@ public class ClientDaoImpl implements IClientDao {
 	/**
 	 * 1_Les propriétés (champs, attributs)
 	 */
-	@PersistenceContext
+	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	

@@ -14,7 +14,7 @@ import fr.adaming.model.Operation;
 @Repository
 public class OperationDaoImpl implements IOperationDao {
 
-	@Autowired
+	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")
