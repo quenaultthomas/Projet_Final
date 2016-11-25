@@ -108,8 +108,14 @@ public class ClientDaoImpl implements IClientDao {
 	
 	@Override
 	public Client getClientByIdentifiantDao(String mail, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		String req="SELECT c FROM Client c WHERE c.mail=:mail and c.password=:password";
+		
+		Query query =em.createQuery(req);
+		query.setParameter("mail", mail);
+		query.setParameter("password", password);
+		
+		Client client = (Client) query.getSingleResult();
+		return client;
 	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
