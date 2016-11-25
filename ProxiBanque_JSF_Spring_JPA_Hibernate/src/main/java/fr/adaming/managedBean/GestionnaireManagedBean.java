@@ -210,6 +210,10 @@ public class GestionnaireManagedBean implements Serializable{
 		this.operationService = operationService;
 	}
 
+	public void setGestionnaireService(IGestionnaireService gestionnaireService) {
+		this.gestionnaireService = gestionnaireService;
+	}
+
 	public void setListCpt(List<Compte> listCpt) {
 		this.listCpt = listCpt;
 	}
