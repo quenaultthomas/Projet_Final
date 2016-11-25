@@ -14,7 +14,7 @@ import fr.adaming.model.Compte;
 @Repository
 public class CompteDaoImpl implements ICompteDao {
 
-	@Autowired
+	@PersistenceContext
 	EntityManager em;
 	
 	@Override
@@ -127,7 +127,7 @@ public class CompteDaoImpl implements ICompteDao {
 	@Override
 	public List<Compte> getCompteByIdCLient(int id_client) {
 		
-		Query query = em.createNamedQuery("getAllCompte");
+		Query query = em.createNamedQuery("getCompteByIdClient");
 		query.setParameter("id",id_client);
 		
 		return query.getResultList();
