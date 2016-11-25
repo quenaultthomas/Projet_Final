@@ -38,7 +38,7 @@
 
 				<p:column headerText="Opérations">
 					<div align="center">
-						<p:commandButton action="formVersement"
+						<p:commandButton action="#{GestMB.rechercheCompteByIdClient()}"
 							value="Afficher les comptes">
 							<f:setPropertyActionListener value="#{client}"
 								target="#{GestMB.client}" />
