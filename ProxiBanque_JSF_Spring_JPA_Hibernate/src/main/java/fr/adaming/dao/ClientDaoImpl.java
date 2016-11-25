@@ -9,13 +9,9 @@ package fr.adaming.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Client;
@@ -49,7 +45,6 @@ public class ClientDaoImpl implements IClientDao {
 
 		//Instanciation d'un objet utilisation
 		em.persist(client);
-		
 
 	}
 
@@ -73,8 +68,8 @@ public class ClientDaoImpl implements IClientDao {
 	@Override
 	public List<Client> getAllClientDao() {
 
-		String req = "SELECT * FROM Client c";
-		Query query1 = em.createNativeQuery("req");
+		String req = "SELECT c FROM Client c";
+		Query query1 = em.createQuery(req);
 		List<Client> liste = query1.getResultList();
 		
 		return liste;

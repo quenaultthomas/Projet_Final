@@ -21,8 +21,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/application-context.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/application-context.xml")
 public class ClientServiceTest {
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
@@ -70,21 +70,21 @@ public class ClientServiceTest {
 //		Client client = clientDao.getClientByIdDao(id_client);
 //		assertEquals(1, client.getId_client());
 //	}
-//	
-//	@Test
-//	public void testAddClient(){
-//		System.out.println("Test de la méthode AddClient");
-//		List<Client> listeClient = clientDao.getAllClientDao();
-//		int i = listeClient.size();
-//		
-//		Client client = new Client("TOTO", null, null, null, 0, null, null, null, null, null);
-//		clientDao.addClientDao(client);
-//		
-//		listeClient = clientDao.getAllClientDao();
-//		
-//		assertEquals(i+1, listeClient.size());
-//	}
-//	
+	
+	@Test
+	public void testAddClient(){
+		System.out.println("Test de la méthode AddClient");
+		List<Client> listeClient = clientDao.getAllClientDao();
+		int i = listeClient.size();
+		
+		Client client = new Client("toto", "a", "a", "a", 0, "a", "a@a", "a", new byte[0], "a");
+		clientDao.addClientDao(client);
+		
+		listeClient = clientDao.getAllClientDao();
+		
+		assertEquals(i+1, listeClient.size());
+	}
+	
 //	@Test
 //	public void testUpdateClient(){
 //		System.out.println("Test de la méthode updateClient");
@@ -113,14 +113,14 @@ public class ClientServiceTest {
 //		
 //		assertEquals(i-1, listeClient.size());
 //	}
-//	
-//	@Test
-//	public void testIsExistClient(){
-//		System.out.println("Test de la méthode isExistClient");
-//		
-//		assertEquals(1, clientDao.isExistClientDao("a@a", "a"));
-//	}
-//	
+	
+	@Test
+	public void testIsExistClient(){
+		System.out.println("Test de la méthode isExistClient");
+		
+		assertEquals(1, clientDao.isExistClientDao("a@a", "a"));
+	}
+	
 
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
