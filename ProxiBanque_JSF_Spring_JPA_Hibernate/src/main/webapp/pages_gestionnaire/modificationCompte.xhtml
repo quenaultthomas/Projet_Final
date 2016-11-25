@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="ISO-8859-1" />
+	<title>Ajouter un compte</title>
+</h:head>
+<h:body>
+
+	<div align="center">
+
+		<h1 style="font-family: cursive; font-style: italic;">Connexion</h1>
+		<br /> <br /> <br /> <br />
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel for="login">Numero : </p:outputLabel>
+				<p:inputText id="login" value="#{GestMB.cpt.numero}"
+					required="true"></p:inputText>
+
+				<p:outputLabel for="password">Compte : </p:outputLabel>
+				<p:inputText id="password" value="#{GestMB.cpt.typeCompte}"
+					required="true"></p:inputText>
+					
+					<p:outputLabel for="password">Taux de remuneration (1.7% pour les CCP & 0.8% pour les EP): </p:outputLabel>
+				<p:inputText id="password" value="#{GestMB.cpt.tauxRemuneration}"
+					required="true"></p:inputText>
+					
+					<p:outputLabel for="password">Decouvert : </p:outputLabel>
+				<p:inputText id="password" value="#{GestMB.cpt.decouvert}"
+					required="true"></p:inputText>
+					
+					<p:outputLabel for="password">Solde : </p:outputLabel>
+				<p:inputText id="password" value="#{GestMB.cpt.solde}"
+					required="true"></p:inputText>
+			</h:panelGrid>
+			<br/>
+			<p:commandButton value="Valider" action="#{GestMB.addCpt()}">
+			</p:commandButton>
+		</h:form>
+	</div>
+
+</h:body>
+</html>
