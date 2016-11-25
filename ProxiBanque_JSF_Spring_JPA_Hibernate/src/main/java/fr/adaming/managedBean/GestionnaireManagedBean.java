@@ -29,6 +29,7 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	private int id_gestionnaire;
 	private Compte cpt;
 	private Compte cpt2;
 	private int id;
@@ -231,8 +232,9 @@ public class GestionnaireManagedBean implements Serializable{
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-		gestionnaire = (Gestionnaire) session.getAttribute("gestionnaire");
-		listClient = clientService.getAllClientService();
+		gestionnaire = (Gestionnaire) session.getAttribute("gest");
+		
+		listClient = clientService.getClientsByIdGestionnaireService(id_gestionnaire);
 	}
 	
 	
@@ -242,6 +244,8 @@ public class GestionnaireManagedBean implements Serializable{
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
+	
+
 	
 	public String virement(){
 		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
