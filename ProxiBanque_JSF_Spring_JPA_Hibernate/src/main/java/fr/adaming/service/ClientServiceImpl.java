@@ -85,8 +85,14 @@ public class ClientServiceImpl implements IClientService {
 	public List<Client> getClientsByIdGestionnaireService(int id_client) {
 		return clientDao.getClientsByIdGestionnaireDao(id_client);
 	}
+	
+	@Override
+	public Client getClientByIdentifiantService(String mail, String password) {
+		return clientDao.getClientByIdentifiantDao(mail, password);
+	}
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+
 
 
 
