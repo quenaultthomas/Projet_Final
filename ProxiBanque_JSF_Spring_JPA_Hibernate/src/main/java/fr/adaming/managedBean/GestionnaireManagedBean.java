@@ -3,13 +3,16 @@ package fr.adaming.managedBean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
+import fr.adaming.model.Gestionnaire;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
@@ -17,9 +20,12 @@ import fr.adaming.service.ICompteService;
 @ManagedBean(name="GestMB")
 public class GestionnaireManagedBean implements Serializable{
 
-	/**
-	 * 
-	 */
+	//----------------------------------------------------------------------------------------------------------------
+	//---------------------------------1_Les propriétés (champs, attributs)-------------------------------------------
+		/**
+		 * 1_Les propriétés (champs, attributs)
+		 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Compte cpt;
@@ -29,8 +35,9 @@ public class GestionnaireManagedBean implements Serializable{
 	private double montant;
 	private Client client;
 	private Carte carte;
-	
+	private Gestionnaire gestionnaire;
 
+	
 	private List<Client> listClient;
 	
 	private List<Compte> listCpt;
@@ -46,12 +53,23 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	HttpSession session;
 
+	//----------------------------------------------------------------------------------------------------------------
+	//---------------------------------2_Les constructeurs------------------------------------------------------------	
+		/**
+		 * 2_Les constructeurs
+		 */
+	
 	public GestionnaireManagedBean() {
 		this.cpt = new Compte();
 		this.client= new Client();
+		this.carte= new Carte();
 	}
 
-
+	//----------------------------------------------------------------------------------------------------------------
+	//---------------------------------3_Les Getters et Setters-------------------------------------------------------
+		/**
+		 * 3_Les Getters et Setters
+		 */
 
 	public Compte getCpt() {
 		return cpt;
@@ -113,6 +131,14 @@ public class GestionnaireManagedBean implements Serializable{
 
 
 
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
+	}
+
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
+	}
+
 	public Client getClient() {
 		return client;
 	}
@@ -165,6 +191,11 @@ public class GestionnaireManagedBean implements Serializable{
 		return serialVersionUID;
 	}
 
+	//----------------------------------------------------------------------------------------------------------------
+	//---------------------------------4_Méthodes---------------------------------------------------------------------
+		/**
+		 * 4_Méthodes
+		 */
 
 
 	@Override
@@ -173,6 +204,41 @@ public class GestionnaireManagedBean implements Serializable{
 				+ montant + ", client=" + client + ", carte=" + carte + ", listClient=" + listClient + ", listCpt="
 				+ listCpt + "]";
 	}
+	
+	@PostConstruct
+	private void init() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		session = (HttpSession) facesContext.getExternalContext().getSession(false);
 
+		gestionnaire = (Gestionnaire) session.getAttribute("gestionnaire");
+	}
+	
+	
+	public void rechercherDebiteur(){
+		cpt = compteService.getCompteById(cpt.getId_compte());
+	}
+	public void rechercherCrediteur(){
+		cpt2 = compteService.getCompteById(cpt2.getId_compte());
+	}
+	
+	public String virement(){
+		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
+		return "accueil.xhtml";
+	}
+	
+	public String depot(){
+		compteService.depot(montant, cpt.getId_compte());
+		return "accueil.xhtml";
+	}
+	
+	public void retrait(){
+		compteService.retrait(montant, cpt.getId_compte());
+	}
+	
+	public void rechercheCompteByIdClient(){
+		listCpt = compteService.getCompteByIdCLient(client.getId_client());
+	}
+	//----------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------
 	
 }
