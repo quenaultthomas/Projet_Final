@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +22,7 @@ import fr.adaming.service.IGestionnaireService;
 import fr.adaming.service.IOperationService;
 
 @ManagedBean(name="GestMB")
+@SessionScoped
 public class GestionnaireManagedBean implements Serializable{
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -74,6 +76,7 @@ public class GestionnaireManagedBean implements Serializable{
 		this.cpt = new Compte();
 		this.client= new Client();
 		this.carte= new Carte();
+		this.gestionnaire = new Gestionnaire();
 	}
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -244,18 +247,20 @@ public class GestionnaireManagedBean implements Serializable{
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		
 		
-		listClient = clientService.getClientsByIdGestionnaireService(id_gestionnaire);
+//		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
 	
 	
 	public void rechercherDebiteur(){
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
+	
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
-	
 
+	
+	
 	
 	public String virement(){
 		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
@@ -275,8 +280,9 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	public String rechercheCompteByIdClient(){
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
-		return null;
+		return "listeCompte.xhtml";
 	}
+	
 	public String addCpt() {
 		compteService.AjouterCompte(cpt);;
 		return null;
@@ -310,7 +316,11 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String addClient() {
+		
+		client.setRole("client");
+		client.setGestionnaire(gestionnaire);
 		clientService.addClientService(client);
+		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return null;
 	}
 
@@ -331,9 +341,13 @@ public class GestionnaireManagedBean implements Serializable{
 					
 			gestionnaire = gestionnaireService.getGestByIdentificationService(gestionnaire.getLogin(), gestionnaire.getPassword());
 			
-			System.out.println(client);
 			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire); 
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire);
+			
+			System.out.println(gestionnaire.getId_gestionnaire());
+			
+			listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listClient", listClient);
 			
 			return "accueilGestionnaire.xhtml";

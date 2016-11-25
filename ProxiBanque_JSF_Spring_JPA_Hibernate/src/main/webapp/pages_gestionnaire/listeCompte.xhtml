@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Compte</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="Template/menu_compte.xhtml"></ui:include>
+	</ui:insert>
+
+	<div align="center">
+		
+
+		<h1 style="font-family: cursive; font-style: italic;">Comptes</h1>
+
+		<h:form>
+			<p:dataTable var="compte" value="#{GestMB.listCpt}"
+				paginator="true" rows="5" rowsPerPageTemplate="5,10,15" >
+				<p:column headerText="ID" >
+					<h:outputText value="#{compte.id_compte}" />
+				</p:column>
+
+				<p:column headerText="Numero">
+					<h:outputText value="#{compte.numero}" />
+				</p:column>
+
+				<p:column headerText="Type">
+					<h:outputText value="#{compte.typeCompte}" />
+				</p:column>
+				
+				<p:column headerText="Solde">
+					<h:outputText value="#{compte.solde} €"  minFractionDigits="2" maxFractionDigits="2"  />
+				</p:column>
+
+					
+				
+			</p:dataTable>
+		</h:form>
+
+
+	</div>
+
+
+
+</h:body>
+
+</html>

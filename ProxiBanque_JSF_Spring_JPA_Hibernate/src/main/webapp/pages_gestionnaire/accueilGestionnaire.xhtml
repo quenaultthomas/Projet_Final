@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Accueil</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="Template/menu_client.xhtml"></ui:include>
+	</ui:insert>
+
+	<div align="center">
+		<h1 style="font-family: cursive; font-style: italic;">Clients</h1>
+
+		<h:form>
+			<p:dataTable var="client" value="#{GestMB.listClient}"
+				paginator="true" rows="5" rowsPerPageTemplate="5,10,15">
+				<p:column headerText="ID">
+					<h:outputText value="#{client.id_client}" />
+				</p:column>
+
+				<p:column headerText="Nom">
+					<h:outputText value="#{client.nom}" />
+				</p:column>
+
+				<p:column headerText="Prénom">
+					<h:outputText value="#{client.prenom}" />
+				</p:column>
+
+				<p:column headerText="Opérations">
+					<div align="center">
+						<p:commandButton action="#{GestMB.rechercheCompteByIdClient()}"
+							value="Afficher les comptes">
+							<f:setPropertyActionListener value="#{client}"
+								target="#{GestMB.client}" />
+						</p:commandButton>
+					</div>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+
+	</div>
+
+
+
+</h:body>
+
+</html>
