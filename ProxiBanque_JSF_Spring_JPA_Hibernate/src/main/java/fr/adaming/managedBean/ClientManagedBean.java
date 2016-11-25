@@ -281,6 +281,16 @@ public class ClientManagedBean implements Serializable {
 
 		return "infosCompte.xhtml";
 	}
+	
+	public String modifier(){
+		clientService.updateClientService(client);
+		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
+		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+		
+		return "infosClient.xhtml";
+	}
 
 	public String GotoInfoClient() {
 		return "infosClient.xhtml";

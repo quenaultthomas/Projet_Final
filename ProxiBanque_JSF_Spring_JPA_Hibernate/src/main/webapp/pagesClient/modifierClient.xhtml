@@ -5,16 +5,41 @@
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"> 
 <h:head>
-<title>Insert title here</title>
+<title>ModifierClient</title>
 </h:head>
 <h:body>
 
-<h:form>
-	<h:outputText value="Id"/>
-	<h:inputText value="#{ClientMB.id_compte}"/>
-	<h:outputText value="Montant"/>
-	<h:inputText value="#{ClientMB.montant}"/>
-	<p:commandButton action="#{ClientMB.depot()}" value="Déposer"></p:commandButton>
-</h:form>
+	<h:form>
+		<h:inputHidden id="id_mod" value="#{ClientMB.client.id_client}" />
+		<br />
+		
+		<h:outputText value="Nom : " />
+		<p:inputText id="nom_mod" value="#{ClientMB.client.nom}" />
+		<br />
+		<h:outputText value="Prenom : " />
+		<h:inputText id="prenom_mod" value="#{ClientMB.client.prenom}" />
+		<br />
+		<h:outputText value="Mail : " />
+		<h:inputText id="mail_mod" value="#{ClientMB.client.mail}" />
+		<br />
+		<h:outputText value="PassWord : " />
+		<h:inputText id="passWord_mod" value="#{ClientMB.client.password}" required="true"/>
+		<br />
+		<h:outputText value="Telephone : " />
+		<h:inputText id="Telephone_mod" value="#{ClientMB.client.tel}" />
+		<br />
+		<h:outputText value="Adresse : " />
+		<h:inputText id="adresse_mod" value="#{ClientMB.client.adresse}" />
+		<br />
+		<h:outputText value="Code Postal : " />
+		<h:inputText id="CP_mod" value="#{ClientMB.client.codePostal}" />
+		<br />
+		<h:outputText value="Ville : " />
+		<h:inputText id="ville_mod" value="#{ClientMB.client.ville}" />
+		<br />
+
+		<h:commandButton action="#{ClientMB.modifier()}" value="Modifier" />
+	</h:form>
+
 </h:body>
 </html>
