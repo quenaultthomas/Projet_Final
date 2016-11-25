@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -16,6 +17,7 @@ import fr.adaming.model.Gestionnaire;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
+import fr.adaming.service.IGestionnaireService;
 import fr.adaming.service.IOperationService;
 
 @ManagedBean(name="GestMB")
@@ -55,6 +57,10 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	@ManagedProperty(value = "#{operationService}")
 	IOperationService operationService;
+	
+	@ManagedProperty(value = "#{gestionService}")
+	IGestionnaireService gestionnaireService;
+	
 	
 	HttpSession session;
 
@@ -232,7 +238,7 @@ public class GestionnaireManagedBean implements Serializable{
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-		gestionnaire = (Gestionnaire) session.getAttribute("gest");
+		
 		
 		listClient = clientService.getClientsByIdGestionnaireService(id_gestionnaire);
 	}
@@ -313,6 +319,27 @@ public class GestionnaireManagedBean implements Serializable{
 		
 		clientService.deleteClientService(id);
 		return null;
+	}
+	public String IsExist(){
+		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
+		
+		if (verif==1){
+					
+			gestionnaire = gestionnaireService.getGestByIdentificationService(gestionnaire.getLogin(), gestionnaire.getPassword());
+			
+			System.out.println(client);
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire); 
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listClient", listClient);
+			
+			return "accueilGestionnaire.xhtml";
+			
+		}else{
+			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le login ou le mot de passe est incorrect !!"));
+			
+			return "connexionGestionnaire.xhtml";
+		}
 	}
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
