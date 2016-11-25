@@ -13,7 +13,7 @@ import fr.adaming.dao.IGestionnaireDao;
  * @author inti0304
  *
  */
-@Service
+@Service("gestionService")
 @Transactional
 public class GestionnaireServiceImpl implements IGestionnaireService {
 
