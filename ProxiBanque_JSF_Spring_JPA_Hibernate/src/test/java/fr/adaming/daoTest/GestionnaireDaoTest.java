@@ -16,7 +16,7 @@
 //	
 //	@Autowired
 //	IGestionnaireDao gestionDao;
-//	
+////	
 //	@Before
 //	public void beforeClassTest() {
 //
@@ -31,9 +31,9 @@
 	
 //	@Test
 //	public void testIsExist(){
-//		
-//		assertEquals(1, gestionDao.isExistGestionnaireDao("a", "a"));
 //		System.out.println("Je suis dans la méthode isExist");
+//		assertEquals(1, gestionDao.isExistGestionnaireDao("a", "a"));
+//		
 //	}
 //
 //}
