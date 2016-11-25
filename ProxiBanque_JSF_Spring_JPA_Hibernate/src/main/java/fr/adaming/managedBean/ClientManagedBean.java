@@ -62,8 +62,26 @@ public class ClientManagedBean implements Serializable {
 	/**
 	 * 3_Les Getters et Setters
 	 */
+	
+	
 	public Compte getCompte() {
 		return compte;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+	public void setSession(HttpSession session) {
+		this.session = session;
 	}
 
 	public void setCompte(Compte compte) {
