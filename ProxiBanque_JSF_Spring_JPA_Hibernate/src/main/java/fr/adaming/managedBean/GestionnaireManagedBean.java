@@ -1,7 +1,6 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +16,7 @@ import fr.adaming.model.Gestionnaire;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
+import fr.adaming.service.IOperationService;
 
 @ManagedBean(name="GestMB")
 public class GestionnaireManagedBean implements Serializable{
@@ -52,6 +52,9 @@ public class GestionnaireManagedBean implements Serializable{
 	@ManagedProperty(value = "#{carteService}")
 	ICarteService carteService;
 	
+	@ManagedProperty(value = "#{operationService}")
+	IOperationService operationService;
+	
 	HttpSession session;
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -72,6 +75,8 @@ public class GestionnaireManagedBean implements Serializable{
 		 * 3_Les Getters et Setters
 		 */
 
+	
+	
 	public Compte getCpt() {
 		return cpt;
 	}
@@ -182,6 +187,22 @@ public class GestionnaireManagedBean implements Serializable{
 
 
 
+	public void setCompteService(ICompteService compteService) {
+		this.compteService = compteService;
+	}
+
+	public void setClientService(IClientService clientService) {
+		this.clientService = clientService;
+	}
+
+	public void setCarteService(ICarteService carteService) {
+		this.carteService = carteService;
+	}
+
+	public void setOperationService(IOperationService operationService) {
+		this.operationService = operationService;
+	}
+
 	public void setListCpt(List<Compte> listCpt) {
 		this.listCpt = listCpt;
 	}
@@ -211,8 +232,6 @@ public class GestionnaireManagedBean implements Serializable{
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		gestionnaire = (Gestionnaire) session.getAttribute("gestionnaire");
-		
-		List<Client> listClient = new ArrayList<>();
 		listClient = clientService.getAllClientService();
 	}
 	
@@ -226,6 +245,7 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	public String virement(){
 		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
+		
 		return "accueil.xhtml";
 	}
 	
