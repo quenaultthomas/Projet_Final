@@ -1,7 +1,6 @@
 package fr.adaming.serviceTest;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class CompteServiceTest {
 	@Test
 	public void testGetAllCompte(){
 		System.out.println("je suis dans la methode testGetAllCompte");
-		assertEquals(8, compteService.getAllCompte().size());
+		assertEquals(11, compteService.getAllCompte().size());
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -31,6 +30,13 @@ public class CompteServiceTest {
 		System.out.println("je suis dans la methode testGetCompteById");
 		
 		assertEquals("1", compteService.getCompteById(1).getNumero());
-	
 	}	
+	
+	@Test
+	public void testAjouterCompte(){
+		System.out.println("je suis dans la methode testGetAjouterCompte");
+		 Compte cmpt = new Compte("1", "ccc", 100, -100, 1);
+		compteService.AjouterCompte(cmpt);
+		assertEquals(11, compteService.getAllCompte().size());
+	}
 }
