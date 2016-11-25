@@ -16,7 +16,7 @@ import fr.adaming.dao.IClientDao;
 import fr.adaming.model.Client;
 
 
-@Service("ClientServiceBean")
+@Service("clientService")
 @Transactional
 public class ClientServiceImpl implements IClientService {
 //----------------------------------------------------------------------------------------------------------------
