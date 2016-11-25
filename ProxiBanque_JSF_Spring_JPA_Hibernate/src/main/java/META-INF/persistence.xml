@@ -11,7 +11,6 @@
 		<class>fr.adaming.model.Operation</class>
 		<class>fr.adaming.model.Carte</class>
 		<class>fr.adaming.model.Compte</class>
-		<class>fr.adaming.model.Client</class>
 		<class>fr.adaming.model.Gestionnaire</class>
 
 		<!-- specifier les infos de la connexion -->

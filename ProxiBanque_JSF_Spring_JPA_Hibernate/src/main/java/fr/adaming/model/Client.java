@@ -37,7 +37,7 @@ public class Client implements Serializable{
 	private String role;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_gestionnaire")
+	@JoinColumn(name="id_gestionnaire")
 	private Gestionnaire gestionnaire;
 	
 	@OneToMany(mappedBy="client")
@@ -48,12 +48,13 @@ public class Client implements Serializable{
 	 * 2_Les constructeurs
 	 */
 	/**
-	 * 
+	 * Constructeur vide
 	 */
 	public Client() {
 		super();
 	}
 	/**
+	 * Constructeur avec paramètre sans ID
 	 * @param nom
 	 * @param prenom
 	 * @param password
@@ -80,6 +81,7 @@ public class Client implements Serializable{
 		this.role = role;
 	}
 	/**
+	 * Constructeur avec paramètres et avec ID 
 	 * @param id_client
 	 * @param nom
 	 * @param prenom
