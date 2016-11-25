@@ -283,23 +283,23 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	public String GotoInfoClient() {
-
 		return "infosClient.xhtml";
 	}
 
 	public String GotoRetrait() {
-
 		return "retrait.xhtml";
 	}
 
 	public String GotoDepot() {
-
 		return "depot.xhtml";
 	}
 
 	public String GotoVirement() {
-
 		return "virement.xhtml";
+	}
+	
+	public String GotoModifier() {
+		return "modifierClient.xhtml";
 	}
 
 }
