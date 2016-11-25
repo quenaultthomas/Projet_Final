@@ -249,7 +249,31 @@ public class Client implements Serializable{
 	public void setRole(String role) {
 		this.role = role;
 	}
-//----------------------------------------------------------------------------------------------------------------
+/**
+	 * @return the gestionnaire
+	 */
+	public Gestionnaire getGestionnaire() {
+		return gestionnaire;
+	}
+	/**
+	 * @param gestionnaire the gestionnaire to set
+	 */
+	public void setGestionnaire(Gestionnaire gestionnaire) {
+		this.gestionnaire = gestionnaire;
+	}
+	/**
+	 * @return the listeCompte
+	 */
+	public List<Compte> getListeCompte() {
+		return listeCompte;
+	}
+	/**
+	 * @param listeCompte the listeCompte to set
+	 */
+	public void setListeCompte(List<Compte> listeCompte) {
+		this.listeCompte = listeCompte;
+	}
+	//----------------------------------------------------------------------------------------------------------------
 //---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
 	 * 4_Méthodes

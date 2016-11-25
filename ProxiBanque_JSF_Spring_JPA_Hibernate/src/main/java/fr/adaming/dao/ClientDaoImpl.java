@@ -98,9 +98,9 @@ public class ClientDaoImpl implements IClientDao {
 	}
 	
 	public List<Client> getClientsByIdGestionnaireDao(int id_gest){
-		String req="SELECT * FROM client c WHERE c.id_gestionnaire=:id_gest";
+		String req="SELECT c FROM Client c WHERE c.gestionnaire.id_gestionnaire=:id_gest";
 		
-		Query query =em.createNativeQuery(req);
+		Query query =em.createQuery(req);
 		query.setParameter("id_gest", id_gest);
 		
 		return query.getResultList();

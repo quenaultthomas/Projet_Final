@@ -4,12 +4,21 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"> 
-<h:head></h:head> 
-<body> 
+<h:head>
 
-<a href="pagesClient/connexionClient.xhtml">Client</a>
+</h:head> 
+<h:body> 
+<h2 align="center">Page d'acceuil de notre Site ProxyBanque</h2>
+<div align="center">
+
+<img src="images/labanquepostale-logo.png" alt="LaBP" width="400"/>
 <br/>
-<a href="pages_gestionnaire/connexionGestionnaire.xhtml">Gestionnaire</a>
+<h:form>
+<p:commandButton action="pagesClient/connexionClient" value="Client" />
+<br/><br/>
+<p:commandButton action="pages_gestionnaire/connexionGestionnaire" value="Gestionnaire"/>
+</h:form>
+</div>
 
-</body> 
+</h:body> 
 </html>
