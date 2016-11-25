@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
+import fr.adaming.model.Operation;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
+import fr.adaming.service.IOperationService;
 
 @ManagedBean(name = "ClientMB")
 @SessionScoped
@@ -32,6 +34,7 @@ public class ClientManagedBean implements Serializable {
 	private Compte credit;
 	private double montant;
 	private List<Compte> listCompte;
+	private List<Operation> listOperation;
 
 	@ManagedProperty(value = "#{clientService}")
 	IClientService clientService;
@@ -39,7 +42,8 @@ public class ClientManagedBean implements Serializable {
 	@ManagedProperty(value = "#{compteService}")
 	ICompteService compteService;
 	
-	
+	@ManagedProperty(value ="#{operationService}")
+	IOperationService operationService;
 	
 	HttpSession session;
 	
@@ -141,6 +145,22 @@ public class ClientManagedBean implements Serializable {
 		return serialVersionUID;
 	}
 
+	public List<Operation> getListOperation() {
+		return listOperation;
+	}
+
+	public void setListOperation(List<Operation> listOperation) {
+		this.listOperation = listOperation;
+	}
+
+	public IOperationService getOperationService() {
+		return operationService;
+	}
+
+	public void setOperationService(IOperationService operationService) {
+		this.operationService = operationService;
+	}
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
@@ -209,7 +229,11 @@ public class ClientManagedBean implements Serializable {
 	public String getCompteById(){
 		compte = compteService.getCompteById(compte.getId_compte());
 		
+		listOperation = operationService.getOperationsByIdCompteService(compte.getId_compte());
+		
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("compte", compte);
+		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listOperation", listOperation);
 		
 		return "infosCompte.xhtml";
 	}

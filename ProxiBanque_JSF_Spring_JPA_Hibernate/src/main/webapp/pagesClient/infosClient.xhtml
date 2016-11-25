@@ -9,15 +9,18 @@
 </h:head>
 <h:body>
 
+<div class="container">
+<div class="col-lg-4">
+<ui:include src="template.xhtml"></ui:include>
+</div>
+<div class="col-lg-8">
 <h1 align="center">Bonjour Monsieur #{client.nom} #{client.prenom}, Bienvenue sur votre Espace Client</h1>
 
-<h:commandButton action="#{ClientMB.rechercheCompteByIdClient()}"></h:commandButton>
+
 
 	<h:form id="formAccueil">
 		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.listCompte}"
-			style="text-align:center"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-			paginator="true" rows="5">
+			style="text-align:center">
 			<p:column headerText="Id">
 				<h:outputText value="#{compte.id_compte}" />
 			</p:column>
@@ -36,8 +39,7 @@
 		</p:dataTable>
 	</h:form>
 	
-	
-	
-
+</div>	
+</div>
 </h:body>
 </html>
