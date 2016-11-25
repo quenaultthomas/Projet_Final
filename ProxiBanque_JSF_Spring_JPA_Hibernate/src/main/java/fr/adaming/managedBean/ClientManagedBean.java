@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
 
 @ManagedBean(name = "ClientMB")
-@ViewScoped
+@SessionScoped
 public class ClientManagedBean implements Serializable {
 
 	/**
@@ -150,6 +151,8 @@ public class ClientManagedBean implements Serializable {
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
+		
+		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
 	}
 	
 	public String Connexion(){
@@ -166,7 +169,8 @@ public class ClientManagedBean implements Serializable {
 			System.out.println(client);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
-			listCompte = compteService.getCompteByIdCLient(client.getId_client());
+			this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
 			
 			return "infosClient.xhtml";
@@ -200,5 +204,13 @@ public class ClientManagedBean implements Serializable {
 	
 	public void rechercheCompteByIdClient(){
 		listCompte = compteService.getCompteByIdCLient(client.getId_client());
+	}
+	
+	public String getCompteById(){
+		compte = compteService.getCompteById(compte.getId_compte());
+		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("compte", compte);
+		
+		return "infosCompte.xhtml";
 	}
 }

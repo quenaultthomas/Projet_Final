@@ -9,12 +9,10 @@
 </h:head>
 <h:body>
 
-<h1 align="center">Bonjour Monsieur #{client.nom} #{client.prenom}, Bienvenue sur votre Espace Client</h1>
+<h1 align="center">Informations du compte #{compte.id_compte}</h1>
 
-<h:commandButton action="#{ClientMB.rechercheCompteByIdClient()}"></h:commandButton>
-
-	<h:form id="formAccueil">
-		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.listCompte}"
+<h:form id="formAccueil">
+		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.compte}"
 			style="text-align:center"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 			paginator="true" rows="5">
@@ -28,16 +26,13 @@
 				<h:outputText value="#{compte.solde}">
 				</h:outputText>
 			</p:column>
-			<p:column headerText="Action">
-				<p:commandButton update="@all" title="Détails" action="#{ClientMB.getCompteById()}">
-				<f:setPropertyActionListener value="#{compte}" target="#{ClientMB.compte}"/> </p:commandButton>			
-			
+			<p:column headerText="Id">
+				<h:outputText value="#{compte.id_compte}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	
-	
-	
+
+
 
 </h:body>
 </html>
