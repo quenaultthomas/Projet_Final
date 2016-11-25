@@ -316,7 +316,11 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String addClient() {
+		
+		client.setRole("client");
+		client.setGestionnaire(gestionnaire);
 		clientService.addClientService(client);
+		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return null;
 	}
 
