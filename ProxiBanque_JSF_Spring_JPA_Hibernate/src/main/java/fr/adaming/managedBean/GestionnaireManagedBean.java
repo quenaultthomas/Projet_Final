@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-
+import javax.faces.bean.ManagedProperty;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
+import fr.adaming.service.ICarteService;
+import fr.adaming.service.IClientService;
+import fr.adaming.service.ICompteService;
 
 @ManagedBean(name="GestMB")
 public class GestionnaireManagedBean implements Serializable{
@@ -31,7 +35,16 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	private List<Compte> listCpt;
 
+	@ManagedProperty(value = "#{compteService}")
+	ICompteService compteService;
 	
+	@ManagedProperty(value = "#{clientService}")
+	IClientService clientService;
+	
+	@ManagedProperty(value = "#{carteService}")
+	ICarteService carteService;
+	
+	HttpSession session;
 
 	public GestionnaireManagedBean() {
 		this.cpt = new Compte();
