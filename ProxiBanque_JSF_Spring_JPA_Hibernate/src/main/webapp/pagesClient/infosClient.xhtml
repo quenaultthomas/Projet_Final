@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"> 
 <head>
-<meta charset="ISO-8859-1"/>
 <title>Insert title here</title>
 </head>
 <body>
 
-<h1>Les Infos</h1>
+<h1 align="center">Bonjour Monsieur #{client.nom} #{client.prenom}, Bienvenue sur votre Espace Client</h1>
+
+	<h:form id="formAccueil">
+		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.listCompte}"
+			style="text-align:center"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			paginator="true" rows="5">
+			<p:column headerText="Id">
+				<h:outputText value="#{compte.id_compte}" />
+			</p:column>
+			<p:column headerText="Numero">
+				<h:outputText value="#{compte.numero}" />
+			</p:column>
+			<p:column headerText="Solde">
+				<h:outputText value="#{compte.solde}">
+				</h:outputText>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
 
 </body>
 </html>
