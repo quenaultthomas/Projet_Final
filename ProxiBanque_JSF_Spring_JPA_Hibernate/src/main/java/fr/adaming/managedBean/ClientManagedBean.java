@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -124,6 +125,28 @@ public class ClientManagedBean implements Serializable {
 		client = (Client) session.getAttribute("client");
 	}
 	
+	public String Connexion(){
+		return "connexionClient.xhtml";
+	}
+	
+	public String IsExist(){
+		int verif  = clientService.isExistClientService(client.getMail(), client.getPassword());
+		
+		if (verif==1){
+					
+			//GetClient By Mail et Password
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
+			listCompte = compteService.getCompteByIdCLient(client.getId_client());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+			
+			return "infosClient.xhtml";
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le login ou le mot de passe est incorrect !!"));
+			
+			return "connexionClient.xhtml";
+		}
+	}
 	
 	public void rechercherDebiteur(){
 		debit = compteService.getCompteById(debit.getId_compte());
