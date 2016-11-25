@@ -12,23 +12,21 @@
 
 <h:form>
 
-		<h:panelGrid columns="3">
+<h:panelGrid columns="3">
 
-			<!-- Validation automatique et implicite -->
-
-Nom : 
-<h:inputText id="nomId" value="#{ClientMB.client.nom}" label="Nom" required="true" maxlength="20"></h:inputText>
-<h:message for="nomId" style="color:red"/>
+Mail : 
+<h:inputText id="mailId" value="#{ClientMB.client.mail}" label="Mail" required="true" maxlength="20"></h:inputText>
+<h:message for="mailId" style="color:red"/>
 
 Password:
 <h:inputText id="passwordId" value="#{ClientMB.client.password}" required="true"/>
 <h:message for="passwordId" style="color:red"/>
 
-			<h:commandButton value="Valider" action="#{ClientMB.IsExist}"></h:commandButton>
+			<h:commandButton value="Valider" action="#{ClientMB.IsExist()}"></h:commandButton>
 
 		</h:panelGrid>
 		
-		</h:form>
+</h:form>
 	
 
 </body>

@@ -150,8 +150,6 @@ public class ClientManagedBean implements Serializable {
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-
-		client = (Client) session.getAttribute("client");
 	}
 	
 	public String Connexion(){
