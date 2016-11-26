@@ -320,19 +320,19 @@ public class GestionnaireManagedBean implements Serializable{
 		client.setRole("client");
 		client.setGestionnaire(gestionnaire);
 		clientService.addClientService(client);
-		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
-		return null;
+		return "ajoutClient.xhtml";
 	}
 
 	public String upClient() {
 		clientService.updateClientService(client);
-		return null;
+		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+		return "accueilGestionnaire.xhtml";
 	}
 
-	public String deleteClient() {
-		
-		clientService.deleteClientService(id);
-		return null;
+	public String deleteClient() {		
+		clientService.deleteClientService(client.getId_client());
+		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+		return "accueilGestionnaire.xhtml";
 	}
 	public String IsExist(){
 		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
@@ -358,6 +358,11 @@ public class GestionnaireManagedBean implements Serializable{
 			
 			return "connexionGestionnaire.xhtml";
 		}
+	}
+	
+	public String aiguillageAccueil(){
+		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+		return "accueilGestionnaire.xhtml";
 	}
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------

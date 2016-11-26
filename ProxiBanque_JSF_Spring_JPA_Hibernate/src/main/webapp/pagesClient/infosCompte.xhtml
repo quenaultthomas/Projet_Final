@@ -9,25 +9,46 @@
 </h:head>
 <h:body>
 
-<h1 align="center">Informations du compte #{compte.id_compte}</h1>
+<h1 align="center">Informations du compte de #{client.nom} #{client.prenom}</h1>
 
-<h:form id="formAccueil">
+<h:form id="formInfos">
 		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.compte}"
-			style="text-align:center"
-			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-			paginator="true" rows="5">
+			style="text-align:center">
 			<p:column headerText="Id">
 				<h:outputText value="#{compte.id_compte}" />
 			</p:column>
 			<p:column headerText="Numero">
 				<h:outputText value="#{compte.numero}" />
 			</p:column>
+			<p:column headerText="Type">
+				<h:outputText value="#{compte.typeCompte}" />
+			</p:column>
 			<p:column headerText="Solde">
 				<h:outputText value="#{compte.solde}">
 				</h:outputText>
 			</p:column>
+		</p:dataTable>
+	</h:form>
+	<br/>
+	<h3>Liste des Opérations</h3>
+	
+	<h:form id="formOpe">
+		<p:dataTable id="dataTableOperation" var="ope" value="#{ClientMB.listOperation}"
+			style="text-align:center"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			paginator="true" rows="5">
 			<p:column headerText="Id">
-				<h:outputText value="#{compte.id_compte}" />
+				<h:outputText value="#{ope.id_operation}" />
+			</p:column>
+			<p:column headerText="Montant">
+				<h:outputText value="#{ope.montant}" />
+			</p:column>
+			<p:column headerText="Type">
+				<h:outputText value="#{ope.typeOperation}" />
+			</p:column>
+			<p:column headerText="Date">
+				<h:outputText value="#{ope.date}">
+				</h:outputText>
 			</p:column>
 		</p:dataTable>
 	</h:form>
