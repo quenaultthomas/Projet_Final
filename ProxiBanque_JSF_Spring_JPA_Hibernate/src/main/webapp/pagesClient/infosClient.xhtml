@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Insert title here</title>
+	<title>Insert title here</title>
 </h:head>
 <h:body>
 
-<div >
-<div style="width: 30%;">
-<ui:include src="template.xhtml"></ui:include>
-</div>
-<div style="width: 50%;">
-<h1 align="center">Bonjour Monsieur #{client.nom} #{client.prenom}, Bienvenue sur votre Espace Client</h1>
+	<p:layout fullPage="true" >
 
+		<p:layoutUnit position="north" size="150" 
+			 >
+			<h1 align="center">Bonjour Monsieur #{client.nom}
+				#{client.prenom}, Bienvenue sur votre Espace Client</h1>
+		</p:layoutUnit>
 
+		<p:layoutUnit position="south" size="250" >
 
-	<h:form id="formAccueil">
-		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.listCompte}"
-			style="text-align:center">
-			<p:column headerText="Id">
-				<h:outputText value="#{compte.id_compte}" />
-			</p:column>
-			<p:column headerText="Numero">
-				<h:outputText value="#{compte.numero}" />
-			</p:column>
-			<p:column headerText="Solde">
-				<h:outputText value="#{compte.solde}">
-				</h:outputText>
-			</p:column>
-			<p:column headerText="Action">
-				<p:commandButton update="@all" title="Détails" action="#{ClientMB.getCompteById()}">
-				<f:setPropertyActionListener value="#{compte}" target="#{ClientMB.compte}"/> </p:commandButton>			
 			
-			</p:column>
-		</p:dataTable>
-	</h:form>
-	
-</div>	
-</div>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="250" header="Menu">
+			<ui:include src="template.xhtml"></ui:include>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h:form id="formAccueil">
+				<p:dataTable id="dataTableInfos" var="compte"
+					value="#{ClientMB.listCompte}" style="text-align:center">
+					<p:column headerText="Id">
+						<h:outputText value="#{compte.id_compte}" />
+					</p:column>
+					<p:column headerText="Numero">
+						<h:outputText value="#{compte.numero}" />
+					</p:column>
+					<p:column headerText="Solde">
+						<h:outputText value="#{compte.solde}">
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Action">
+						<p:commandButton update="@all" title="Détails"
+							action="#{ClientMB.getCompteById()}">
+							<f:setPropertyActionListener value="#{compte}"
+								target="#{ClientMB.compte}" />
+						</p:commandButton>
+
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
 </h:body>
 </html>

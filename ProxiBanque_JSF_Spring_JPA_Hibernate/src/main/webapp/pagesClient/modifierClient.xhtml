@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>ModifierClient</title>
+	<title>ModifierClient</title>
 </h:head>
 <h:body>
-
 	<h:form>
-		<h:inputHidden id="id_mod" value="#{ClientMB.client.id_client}" />
-		<br />
-		
-		<h:outputText value="Nom : " />
-		<p:inputText id="nom_mod" value="#{ClientMB.client.nom}" />
-		<br />
-		<h:outputText value="Prenom : " />
-		<h:inputText id="prenom_mod" value="#{ClientMB.client.prenom}" />
-		<br />
-		<h:outputText value="Mail : " />
-		<h:inputText id="mail_mod" value="#{ClientMB.client.mail}" />
-		<br />
-		<h:outputText value="PassWord : " />
-		<h:inputText id="passWord_mod" value="#{ClientMB.client.password}" required="true"/>
-		<br />
-		<h:outputText value="Telephone : " />
-		<h:inputText id="Telephone_mod" value="#{ClientMB.client.tel}" />
-		<br />
-		<h:outputText value="Adresse : " />
-		<h:inputText id="adresse_mod" value="#{ClientMB.client.adresse}" />
-		<br />
-		<h:outputText value="Code Postal : " />
-		<h:inputText id="CP_mod" value="#{ClientMB.client.codePostal}" />
-		<br />
-		<h:outputText value="Ville : " />
-		<h:inputText id="ville_mod" value="#{ClientMB.client.ville}" />
-		<br />
+		<div style="width: 100%">
+			<p:panel header="Personal Details">
+				<p:messages />
+				<h:panelGrid columns="2" columnClasses="label, value">
 
-		<h:commandButton action="#{ClientMB.modifier()}" value="Modifier" />
+					<h:outputText value="Nom *" />
+					<p:inputText value="#{ClientMB.client.nom}" required="true"
+						label="Nom" />
+
+					<h:outputText value="Prenom *" />
+					<p:inputText value="#{ClientMB.client.prenom}" required="true"
+						label="Prenom" />
+
+					<h:outputText value="Mail *" />
+					<p:inputText value="#{ClientMB.client.mail}" required="true"
+						label="Mail" />
+
+					<h:outputText value="PassWord *" />
+					<p:inputText value="#{ClientMB.client.password}" required="true"
+						label="PassWord" />
+
+					<h:outputText value="Telephone *" />
+					<p:inputText value="#{ClientMB.client.tel}" required="true"
+						label="Telephone" />
+
+					<h:outputText value="Adresse *" />
+					<p:inputText value="#{ClientMB.client.adresse}" required="true"
+						label="Adresse" />
+
+					<h:outputText value="Code Postal *" />
+					<p:inputText value="#{ClientMB.client.codePostal}" required="true"
+						label="CodePostal" />
+
+					<h:outputText value="Ville *" />
+					<p:inputText value="#{ClientMB.client.ville}" required="true"
+						label="Ville" />
+
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Valider" action="#{ClientMB.modifier()}" />
+		</div>
 	</h:form>
 
 </h:body>
