@@ -17,22 +17,22 @@
 		<h:form>
 			<h:panelGrid columns="2">
 			
-				<p:outputLabel for="login">ID : </p:outputLabel>
-				<p:inputText id="login" value="#{GestMB.cpt.id_compte}"
+				<p:outputLabel for="id">ID : </p:outputLabel>
+				<p:inputText id="id" value="#{GestMB.cpt.id_compte}"
 					required="true"></p:inputText>
 					
 					
-				<p:outputLabel for="login">Numero : </p:outputLabel>
-				<p:inputText id="login" value="#{GestMB.cpt.numero}"
+				<p:outputLabel for="numero">Numero : </p:outputLabel>
+				<p:inputText id="numero" value="#{GestMB.cpt.numero}"
 					required="true"></p:inputText>
 
-				<p:outputLabel for="password">Compte : </p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.typeCompte}"
+				<p:outputLabel for="compte">Compte : </p:outputLabel>
+				<p:inputText id="compte" value="#{GestMB.cpt.typeCompte}"
 					required="true"></p:inputText>
 					
-					<p:outputLabel for="password">Taux de remuneration (1.7% pour les CCP & 0.8% pour les EP): 
+					<p:outputLabel for="taux">Taux de remuneration: 
 					</p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.tauxRemuneration}"
+				<p:inputText id="taux" value="#{GestMB.cpt.tauxRemuneration}"
 					required="true"></p:inputText>
 					
 					<p:outputLabel for="password">Decouvert : </p:outputLabel>
