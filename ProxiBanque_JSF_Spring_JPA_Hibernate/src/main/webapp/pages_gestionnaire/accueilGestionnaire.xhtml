@@ -9,6 +9,8 @@
 
 <h:head>
 	<title>Accueil</title>
+	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"></link>
+
 </h:head>
 
 <h:body>
@@ -22,10 +24,6 @@
 		<h:form>
 			<p:dataTable var="client" value="#{GestMB.listClient}"
 				paginator="true" rows="5" rowsPerPageTemplate="5,10,15">
-				<p:column headerText="ID">
-					<h:outputText value="#{client.id_client}" />
-				</p:column>
-
 				<p:column headerText="Nom">
 					<h:outputText value="#{client.nom}" />
 				</p:column>
@@ -38,6 +36,19 @@
 					<div align="center">
 						<p:commandButton action="#{GestMB.rechercheCompteByIdClient()}"
 							value="Afficher les comptes">
+							<f:setPropertyActionListener value="#{client}"
+								target="#{GestMB.client}" />
+						</p:commandButton>
+					</div>
+				</p:column>
+
+				<p:column headerText="Edition">
+					<div align="center">
+						<p:commandButton action="formModifClient" value="Modifier" type="button">
+							<f:setPropertyActionListener value="#{client}"
+								target="#{GestMB.client}" />
+						</p:commandButton>
+						<p:commandButton action="#{GestMB.deleteClient()}" update="@all" value="Supprimer">
 							<f:setPropertyActionListener value="#{client}"
 								target="#{GestMB.client}" />
 						</p:commandButton>
