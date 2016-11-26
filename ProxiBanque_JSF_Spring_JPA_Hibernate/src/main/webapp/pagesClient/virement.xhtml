@@ -10,14 +10,29 @@
 <h:body>
 
 <h:form>
-	<h:outputText value="Id Depot"/>
-	<h:inputText value="#{ClientMB.id_compte}"/>
-	<h:outputText value="Id Debit"/>
-	<h:inputText value="#{ClientMB.id_debit}"/>
-	<h:outputText value="Montant"/>
-	<h:inputText value="#{ClientMB.montant}"/>
-	<p:commandButton action="#{ClientMB.virement()}" value="Virer"></p:commandButton>
-</h:form>
+		<div style="width: 50%">
+			<p:panel header="Effectuer un Retrait">
+				<p:messages />
+				<h:panelGrid columns="2" columnClasses="label, value">
+
+					<h:outputText value="Id Compte Depot *" />
+					<p:inputText value="#{ClientMB.id_compte}" required="true"
+						label="Depot" />
+						
+					<h:outputText value="Id Compte Retrait *" />
+					<p:inputText value="#{ClientMB.id_debit}" required="true"
+						label="Retrait" />
+						
+					<h:outputText value="Montant Déposé *" />
+					<p:inputText value="#{ClientMB.montant}" required="true"
+						label="Montant" />
+					
+
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Virer" action="#{ClientMB.virement()}" />
+		</div>
+	</h:form>
 
 </h:body>
 </html>

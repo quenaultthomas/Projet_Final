@@ -49,6 +49,14 @@
 
 				<p:outputLabel for="tel" value="Téléphone : " />
 				<p:inputText id="tel" value="#{GestMB.client.tel}" required="true" />
+				
+				<p:outputLabel for="agent" value="Agent : " />
+				<p:selectOneMenu style="width: 195px;" id="agent" value="#{GestMB.client.gestionnaire.id_gestionnaire}" >
+					<c:forEach var="gestionnaire" items="#{GestMB.listeGestionnaires}">
+						<f:selectItem itemValue="#{gestionnaire.id_gestionnaire}"
+							itemLabel="#{gestionnaire.nom}"/>
+					</c:forEach>
+				</p:selectOneMenu>
 			</h:panelGrid>
 
 			<br></br>

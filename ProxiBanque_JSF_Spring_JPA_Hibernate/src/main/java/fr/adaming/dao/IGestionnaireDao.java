@@ -1,5 +1,7 @@
 package fr.adaming.dao;
 
+import java.util.List;
+
 import fr.adaming.model.Gestionnaire;
 
 public interface IGestionnaireDao {
@@ -26,6 +28,7 @@ public interface IGestionnaireDao {
 	 */
 	public int isExistGestionnaireDao(String login, String password);
 	public Gestionnaire getGestByIdentificationDao(String login, String password);
+	public List<Gestionnaire> getAllGestionnaires();
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
 	

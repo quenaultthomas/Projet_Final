@@ -9,9 +9,14 @@
 </h:head>
 <h:body>
 
-<h1 align="center">Informations du compte de #{client.nom} #{client.prenom}</h1>
 
-<h:form id="formInfos">
+	<p:layout fullPage="true" >
+
+		<p:layoutUnit position="north" size="200" 
+			 >
+		<h1 align="center">Informations du compte de #{client.nom} #{client.prenom}</h1>
+		<br/>
+		<h:form id="formInfos">
 		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.compte}"
 			style="text-align:center">
 			<p:column headerText="Id">
@@ -29,8 +34,21 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-	<br/>
-	<h3>Liste des Opérations</h3>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="south" size="200" >
+
+			
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="250" header="Menu">
+			<ui:include src="template.xhtml"></ui:include>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+<h3>Liste des Opérations</h3>
 	
 	<h:form id="formOpe">
 		<p:dataTable id="dataTableOperation" var="ope" value="#{ClientMB.listOperation}"
@@ -53,6 +71,15 @@
 		</p:dataTable>
 	</h:form>
 
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+
+	
 
 
 </h:body>

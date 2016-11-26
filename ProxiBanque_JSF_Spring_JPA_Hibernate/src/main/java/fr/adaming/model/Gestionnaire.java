@@ -38,7 +38,7 @@ public class Gestionnaire implements Serializable{
 	@Lob
 	private byte[] photo;
 	
-	@OneToMany(mappedBy="gestionnaire", cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="gestionnaire", cascade=CascadeType.ALL)
 	private List<Client> client;
 	
 	

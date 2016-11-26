@@ -23,7 +23,7 @@
 
 		<h:form>
 			<p:dataTable var="client" value="#{GestMB.listClient}"
-				paginator="true" rows="5" rowsPerPageTemplate="5,10,15">
+				paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
 				<p:column headerText="Nom">
 					<h:outputText value="#{client.nom}" />
 				</p:column>
@@ -44,7 +44,7 @@
 
 				<p:column headerText="Edition">
 					<div align="center">
-						<p:commandButton action="formModifClient" value="Modifier" type="button">
+						<p:commandButton action="#{GestMB.aiguillageFormModifClient()}" value="Modifier">
 							<f:setPropertyActionListener value="#{client}"
 								target="#{GestMB.client}" />
 						</p:commandButton>
