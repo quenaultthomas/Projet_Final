@@ -3,6 +3,8 @@
  */
 package fr.adaming.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,9 +54,13 @@ public class GestionnaireServiceImpl implements IGestionnaireService {
 	public Gestionnaire getGestByIdentificationService(String login, String password) {
 		return gestionDao.getGestByIdentificationDao(login, password);
 	}
+	
+	@Override
+	public List<Gestionnaire> getAllGestionnairesService() {
+		return gestionDao.getAllGestionnaires();
+	}
 // ----------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------
 
-
-
+	
 }

@@ -45,7 +45,7 @@ public class GestionnaireManagedBean implements Serializable{
 
 	
 	private List<Client> listClient;
-	
+	private List<Gestionnaire> listeGestionnaires;
 	private List<Compte> listCpt;
 
 	@ManagedProperty(value = "#{compteService}")
@@ -195,7 +195,19 @@ public class GestionnaireManagedBean implements Serializable{
 		return listCpt;
 	}
 
+	/**
+	 * @return the listeGestionnaires
+	 */
+	public List<Gestionnaire> getListeGestionnaires() {
+		return listeGestionnaires;
+	}
 
+	/**
+	 * @param listeGestionnaires the listeGestionnaires to set
+	 */
+	public void setListeGestionnaires(List<Gestionnaire> listeGestionnaires) {
+		this.listeGestionnaires = listeGestionnaires;
+	}
 
 	public void setCompteService(ICompteService compteService) {
 		this.compteService = compteService;
@@ -263,9 +275,9 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	
 	public String virement(){
-		compteService.virement(montant, cpt.getId_compte(), cpt2.getId_compte());
-		
-		return "accueil.xhtml";
+		compteService.virement(montant, id, id2);
+		listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
 	}
 	
 	public String depot(){
@@ -320,6 +332,7 @@ public class GestionnaireManagedBean implements Serializable{
 		client.setRole("client");
 		client.setGestionnaire(gestionnaire);
 		clientService.addClientService(client);
+		this.client = new Client();
 		return "ajoutClient.xhtml";
 	}
 
@@ -363,6 +376,11 @@ public class GestionnaireManagedBean implements Serializable{
 	public String aiguillageAccueil(){
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
+	}
+	
+	public String aiguillageFormModifClient(){
+		listeGestionnaires = gestionnaireService.getAllGestionnairesService();
+		return "formModifClient.xhtml";
 	}
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------

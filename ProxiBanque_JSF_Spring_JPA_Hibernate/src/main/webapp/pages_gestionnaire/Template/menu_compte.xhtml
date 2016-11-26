@@ -11,17 +11,22 @@
 
 	<ui:composition>
 		<h:form>
-			<p:commandButton value="Ajouter compte" action="ajoutCompte"/>
+			<p:commandButton value="Accueil"
+				action="#{GestMB.aiguillageAccueil()}" />
 
-			<p:commandButton value="Modifier compte" action="modificationCompte"/>
+			<p:commandButton value="Ajouter compte" action="ajoutCompte" />
 
-			<p:commandButton value="Supprimer compte" action="suppressionCompte"/>
-			
-			<p:commandButton style="float:right" value="Versement" action="versement"/>
-			
-			<p:commandButton style="float:right" value="Retrait" action="retrait"/>
-			
-			<p:commandButton style="float:right" value="Virement" action="virement"/>
+			<p:commandButton value="Modifier compte" action="modificationCompte" />
+
+			<p:commandButton value="Supprimer compte" action="suppressionCompte" />
+
+			<p:commandButton style="float:right" value="Versement"
+				action="versement" />
+
+			<p:commandButton style="float:right" value="Retrait" action="retrait" />
+
+			<p:commandButton style="float:right" value="Virement"
+				action="virement" />
 		</h:form>
 	</ui:composition>
 
