@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"> 
+<h:head>
+<title>Retrait</title>
+</h:head>
+<h:body>
+
+<h:form>
+<h2 style="text-align: center;">Retrait</h2>
+<br/><br/>
+		<div style="width: 50%" align="center">
+			<p:panel header="Effectuer un Retrait">
+				<p:messages />
+				<h:panelGrid columns="2" columnClasses="label, value">
+
+					<h:outputText value="Id Compte *" />
+					<p:inputText value="#{GestMB.id}" required="true"
+						label="Id Compte" />
+						
+					<h:outputText value="Montant Retiré *" />
+					<p:inputText value="#{GestMB.montant}" required="true"
+						label="Montant" />
+					
+
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Retirer" action="#{GestMB.retrait()}" />
+		</div>
+	</h:form>
+</h:body>
+</html>

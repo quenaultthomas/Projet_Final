@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
 import fr.adaming.model.Gestionnaire;
+import fr.adaming.model.Operation;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
@@ -281,13 +283,37 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String depot(){
-		compteService.depot(montant, cpt.getId_compte());
-		return "accueil.xhtml";
+		compteService.depot(montant, id);
+
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("depot", (float) montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+
+		
+		return "listeCompte.xhtml";
 	}
 	
 	public String retrait(){
-		compteService.retrait(montant, cpt.getId_compte());
-		return null;
+		compteService.retrait(montant, id2);
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("retrait", (float) -montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id2));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+		
+		return "listeCompte.xhtml";
 	}
 	
 	public String rechercheCompteByIdClient(){
@@ -296,19 +322,26 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String addCpt() {
-		compteService.AjouterCompte(cpt);;
-		return null;
+		cpt.setClient(client);
+		compteService.AjouterCompte(cpt);
+		this.cpt = new Compte();
+		return "listeCompte.xhtml";
+
 	}
 
 	public String upCpt() {
 		compteService.ModifierCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 
 	public String deleteCpt() {
 		
 		compteService.SupprimerCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 	
 	public String addCarte() {
@@ -347,6 +380,7 @@ public class GestionnaireManagedBean implements Serializable{
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
+	
 	public String IsExist(){
 		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
 		
