@@ -93,61 +93,41 @@ public class GestionnaireManagedBean implements Serializable{
 		return cpt;
 	}
 
-
-
 	public void setCpt(Compte cpt) {
 		this.cpt = cpt;
 	}
-
-
 
 	public Compte getCpt2() {
 		return cpt2;
 	}
 
-
-
 	public void setCpt2(Compte cpt2) {
 		this.cpt2 = cpt2;
 	}
-
-
 
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public int getId2() {
 		return id2;
 	}
 
-
-
 	public void setId2(int id2) {
 		this.id2 = id2;
 	}
-
-
 
 	public double getMontant() {
 		return montant;
 	}
 
-
-
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
-
-
 
 	public Gestionnaire getGestionnaire() {
 		return gestionnaire;
@@ -161,37 +141,25 @@ public class GestionnaireManagedBean implements Serializable{
 		return client;
 	}
 
-
-
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
-
 
 	public Carte getCarte() {
 		return carte;
 	}
 
-
-
 	public void setCarte(Carte carte) {
 		this.carte = carte;
 	}
-
-
 
 	public List<Client> getListClient() {
 		return listClient;
 	}
 
-
-
 	public void setListClient(List<Client> listClient) {
 		this.listClient = listClient;
 	}
-
-
 
 	public List<Compte> getListCpt() {
 		return listCpt;
@@ -235,8 +203,6 @@ public class GestionnaireManagedBean implements Serializable{
 		this.listCpt = listCpt;
 	}
 
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -264,7 +230,6 @@ public class GestionnaireManagedBean implements Serializable{
 //		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
 	
-	
 	public void rechercherDebiteur(){
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
@@ -272,9 +237,6 @@ public class GestionnaireManagedBean implements Serializable{
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
-
-	
-	
 	
 	public String virement(){
 		compteService.virement(montant, id, id2);
