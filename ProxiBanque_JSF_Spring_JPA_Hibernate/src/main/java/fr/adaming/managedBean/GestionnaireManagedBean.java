@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
 import fr.adaming.model.Gestionnaire;
+import fr.adaming.model.Operation;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
@@ -237,6 +239,17 @@ public class GestionnaireManagedBean implements Serializable {
 
 	public String virement() {
 		compteService.virement(montant, id, id2);
+		
+		Calendar c = Calendar.getInstance();
+		Compte depot = compteService.getCompteById(id2);		
+		Compte retrait = compteService.getCompteById(id);
+		Operation opeDepot = new Operation("Virement du Compte Numero : " + retrait.getNumero(), (float) montant, c.getTime());		
+		Operation opeRetrait = new Operation("Virement vers Compte Numero : " + depot.getNumero(), (float) -montant, c.getTime());
+		opeDepot.setCompte(depot);		
+		opeRetrait.setCompte(retrait);
+		operationService.ajouterOperationService(opeDepot);		
+		operationService.ajouterOperationService(opeRetrait);
+		
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
 		return "listeCompte.xhtml";
 	}
