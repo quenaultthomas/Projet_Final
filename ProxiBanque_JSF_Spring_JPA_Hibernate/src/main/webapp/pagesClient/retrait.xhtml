@@ -10,12 +10,24 @@
 <h:body>
 
 <h:form>
-	<h:outputText value="Id"/>
-	<h:inputText value="#{ClientMB.id_compte}"/>
-	<h:outputText value="Montant"/>
-	<h:inputText value="#{ClientMB.montant}"/>
-	<p:commandButton action="#{ClientMB.retrait()}" value="Retirer"></p:commandButton>
-</h:form>
+		<div style="width: 50%">
+			<p:panel header="Effectuer un Retrait">
+				<p:messages />
+				<h:panelGrid columns="2" columnClasses="label, value">
 
+					<h:outputText value="Id Compte *" />
+					<p:inputText value="#{ClientMB.id_compte}" required="true"
+						label="Id Compte" />
+						
+					<h:outputText value="Montant Retiré *" />
+					<p:inputText value="#{ClientMB.montant}" required="true"
+						label="Montant" />
+					
+
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Retirer" action="#{ClientMB.retrait()}" />
+		</div>
+	</h:form>
 </h:body>
 </html>

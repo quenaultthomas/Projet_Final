@@ -4,30 +4,30 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:p="http://primefaces.org/ui"> 
-<head>
-<meta charset="ISO-8859-1"/>
+<h:head>
 <title>Insert title here</title>
-</head>
+</h:head>
 <body>
 
-<h:form>
+	<div align="center">
 
-<h:panelGrid columns="3">
+		<h1 style="font-family: cursive; font-style: italic;">Connexion</h1>
+		<br /> <br /> <br /> <br />
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel for="login">Login : </p:outputLabel>
+				<p:inputText id="login" value="#{ClientMB.client.mail}"
+					required="true"></p:inputText>
 
-Mail : 
-<h:inputText id="mailId" value="#{ClientMB.client.mail}" label="Mail" required="true" maxlength="20"></h:inputText>
-<h:message for="mailId" style="color:red"/>
-
-Password:
-<h:inputText id="passwordId" value="#{ClientMB.client.password}" required="true"/>
-<h:message for="passwordId" style="color:red"/>
-
-			<h:commandButton value="Valider" action="#{ClientMB.IsExist()}"></h:commandButton>
-
-		</h:panelGrid>
-		
-</h:form>
-	
+				<p:outputLabel for="password">Password : </p:outputLabel>
+				<p:inputText id="password" value="#{ClientMB.client.password}"
+					required="true"></p:inputText>
+			</h:panelGrid>
+			<br/>
+			<p:commandButton value="Valider" action="#{ClientMB.IsExist()}">
+			</p:commandButton>
+		</h:form>
+	</div>
 
 </body>
 </html>

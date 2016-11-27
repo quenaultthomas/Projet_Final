@@ -12,28 +12,28 @@
 
 	<div align="center">
 
-		<h1 style="font-family: cursive; font-style: italic;">Connexion</h1>
+		<h1 style="font-family: cursive; font-style: italic;">Ajout Compte</h1>
 		<br /> <br /> <br /> <br />
 		<h:form>
 			<h:panelGrid columns="2">
-				<p:outputLabel for="login">Numero : </p:outputLabel>
-				<p:inputText id="login" value="#{GestMB.cpt.numero}"
+				<p:outputLabel for="numero">Numero : </p:outputLabel>
+				<p:inputText id="numero" value="#{GestMB.cpt.numero}"
 					required="true"></p:inputText>
 
-				<p:outputLabel for="password">Compte : </p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.typeCompte}"
+				<p:outputLabel for="compte">Compte : </p:outputLabel>
+				<p:inputText id="compte" value="#{GestMB.cpt.typeCompte}"
 					required="true"></p:inputText>
 					
-					<p:outputLabel for="password">Taux de remuneration (1.7% pour les CCP & 0.8% pour les EP): </p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.tauxRemuneration}"
+					<p:outputLabel for="taux">Taux de remuneration: </p:outputLabel>
+				<p:inputText id="taux" value="#{GestMB.cpt.tauxRemuneration}"
 					required="true"></p:inputText>
 					
-					<p:outputLabel for="password">Decouvert : </p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.decouvert}"
+					<p:outputLabel for="decouvert">Decouvert : </p:outputLabel>
+				<p:inputText id="decouvert" value="#{GestMB.cpt.decouvert}"
 					required="true"></p:inputText>
 					
-					<p:outputLabel for="password">Solde : </p:outputLabel>
-				<p:inputText id="password" value="#{GestMB.cpt.solde}"
+					<p:outputLabel for="solde">Solde : </p:outputLabel>
+				<p:inputText id="solde" value="#{GestMB.cpt.solde}"
 					required="true"></p:inputText>
 			</h:panelGrid>
 			<br/>

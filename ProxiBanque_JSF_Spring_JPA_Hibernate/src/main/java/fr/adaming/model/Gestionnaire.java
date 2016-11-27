@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Gestionnaire implements Serializable{
 	@Lob
 	private byte[] photo;
 	
-	@OneToMany(mappedBy="gestionnaire")
+	@OneToMany(mappedBy="gestionnaire", cascade=CascadeType.ALL)
 	private List<Client> client;
 	
 	

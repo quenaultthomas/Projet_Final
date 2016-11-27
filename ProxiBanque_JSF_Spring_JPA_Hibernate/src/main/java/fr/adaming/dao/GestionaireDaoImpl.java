@@ -75,8 +75,19 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 		Gestionnaire gestionnaire =  (Gestionnaire) query.getSingleResult();
 		return gestionnaire;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Gestionnaire> getAllGestionnaires() {
+		String req="SELECT g FROM Gestionnaire g";
+		Query query =em.createQuery(req);		
+		return query.getResultList();
+	}
+	
+	
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
+	
 
 	
 

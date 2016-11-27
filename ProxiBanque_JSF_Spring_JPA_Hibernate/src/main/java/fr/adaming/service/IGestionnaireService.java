@@ -1,5 +1,7 @@
 package fr.adaming.service;
 
+import java.util.List;
+
 import fr.adaming.model.Gestionnaire;
 
 public interface IGestionnaireService {
@@ -26,6 +28,7 @@ public interface IGestionnaireService {
 	 */
 	public int isExistGestionnaireService(String login, String password);
 	public Gestionnaire getGestByIdentificationService(String login, String password);
+	public List<Gestionnaire> getAllGestionnairesService();
 // ----------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------
 

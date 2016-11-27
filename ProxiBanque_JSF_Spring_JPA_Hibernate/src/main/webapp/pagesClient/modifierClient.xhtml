@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Insert title here</title>
+	<title>ModifierClient</title>
 </h:head>
 <h:body>
+	<h:form>
+		<div style="width: 100%">
+			<p:panel header="Personal Details">
+				<p:messages />
+				<h:panelGrid columns="2" columnClasses="label, value">
 
-<h:form>
-	<h:outputText value="Id"/>
-	<h:inputText value="#{ClientMB.id_compte}"/>
-	<h:outputText value="Montant"/>
-	<h:inputText value="#{ClientMB.montant}"/>
-	<p:commandButton action="#{ClientMB.depot()}" value="Déposer"></p:commandButton>
-</h:form>
+					<h:outputText value="Nom *" />
+					<p:inputText value="#{ClientMB.client.nom}" required="true"
+						label="Nom" />
+
+					<h:outputText value="Prenom *" />
+					<p:inputText value="#{ClientMB.client.prenom}" required="true"
+						label="Prenom" />
+
+					<h:outputText value="Mail *" />
+					<p:inputText value="#{ClientMB.client.mail}" required="true"
+						label="Mail" />
+
+					<h:outputText value="PassWord *" />
+					<p:inputText value="#{ClientMB.client.password}" required="true"
+						label="PassWord" />
+
+					<h:outputText value="Telephone *" />
+					<p:inputText value="#{ClientMB.client.tel}" required="true"
+						label="Telephone" />
+
+					<h:outputText value="Adresse *" />
+					<p:inputText value="#{ClientMB.client.adresse}" required="true"
+						label="Adresse" />
+
+					<h:outputText value="Code Postal *" />
+					<p:inputText value="#{ClientMB.client.codePostal}" required="true"
+						label="CodePostal" />
+
+					<h:outputText value="Ville *" />
+					<p:inputText value="#{ClientMB.client.ville}" required="true"
+						label="Ville" />
+
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton value="Valider" action="#{ClientMB.modifier()}" />
+		</div>
+	</h:form>
+
 </h:body>
 </html>

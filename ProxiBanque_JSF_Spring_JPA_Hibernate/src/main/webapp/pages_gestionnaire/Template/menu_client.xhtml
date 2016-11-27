@@ -11,16 +11,12 @@
 
 	<ui:composition>
 		<h:form>
-			<p:commandButton value="Accueil" action="accueilGestionnaire"
-				update="@all" />
+			<p:commandButton value="Accueil"
+				action="#{GestMB.aiguillageAccueil()}"/>
 
-			<p:commandButton value="Ajouter Client" action="ajoutClient"/>
+			<p:commandButton value="Ajouter Client" action="ajoutClient" />
 
-			<p:commandButton value="Modifier Client"
-				action="modifCategorie" update="@all" />
-			
-			<p:commandButton value="Supprimer Client" action="suppressionClient"
-				update="@all" />
+			<p:commandButton style="float:right" value="Déconnexion" action="connexionGestionnaire"/>
 
 		</h:form>
 	</ui:composition>
