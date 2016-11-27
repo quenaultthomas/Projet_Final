@@ -12,7 +12,7 @@
 <h:form>
 <h2 style="text-align: center;">Depot</h2>
 <br/><br/>
-		<div style="width: 50%" align="center"">
+		<div style="width: 50%" align="center">
 			<p:panel header="Effectuer un depot">
 				<p:messages />
 				<h:panelGrid columns="2" columnClasses="label, value">
@@ -28,7 +28,9 @@
 
 				</h:panelGrid>
 			</p:panel>
+			<br/><br/>
 			<p:commandButton value="Déposer" action="#{GesttMB.depot()}" />
+			<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
 		</div>
 	</h:form>
 	

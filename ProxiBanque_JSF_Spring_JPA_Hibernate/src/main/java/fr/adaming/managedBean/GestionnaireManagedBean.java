@@ -35,7 +35,6 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id_gestionnaire;
 	private Compte cpt;
 	private Compte cpt2;
 	private int id;
