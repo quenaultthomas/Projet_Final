@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -169,11 +170,11 @@ public class AuditController {
 		
 		Audit audit = new Audit();
 		
-		int nbC = nombreClient();
-		audit.setNbClient(nbC);
-		
 		int nbG = nombreGestion();
 		audit.setNbGestion(nbG);
+		
+		int nbC = nombreClient();
+		audit.setNbClient(nbC);
 		
 		double pourcentDecouvert = (double)nombreCompteDecouvert()/nombreCompte();
 		audit.setTauxDecouvert(pourcentDecouvert);
@@ -184,8 +185,6 @@ public class AuditController {
 		List<Compte> listeDecouvert = getAllCompteDecouvert();
 		audit.setListCompteDecouvert(listeDecouvert);
 		
-		System.out.println(pourcentDecouvert);
-		System.out.println(pourcentSousDecouvert);
 		return audit;
 		
 	}

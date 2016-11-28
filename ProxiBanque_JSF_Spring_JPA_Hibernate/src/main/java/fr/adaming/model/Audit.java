@@ -9,10 +9,9 @@ public class Audit {
 		/**
 		 * 1_Les propriétés (champs, attributs)
 		 */
+	private int nbGestion;
 	
 	private int nbClient;
-	
-	private int nbGestion;
 	
 	private double tauxDecouvert;
 	
