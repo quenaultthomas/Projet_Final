@@ -46,7 +46,7 @@ public class GestionnaireManagedBean implements Serializable{
 	private Carte carte;
 	private Gestionnaire gestionnaire;
 
-	 private UploadedFile file;
+	private UploadedFile file;
 	 
 	
 	private List<Client> listClient;
@@ -491,7 +491,8 @@ public class GestionnaireManagedBean implements Serializable{
 	        if(file != null) {
 	            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
 	            FacesContext.getCurrentInstance().addMessage(null, message);
-	            client.setPhoto(file.getContents());
+//	            client.setPhoto(file.getContentType());
+	            System.out.println(file.getContentType());
 	        }
 	 }
 	//----------------------------------------------------------------------------------------------------------------
