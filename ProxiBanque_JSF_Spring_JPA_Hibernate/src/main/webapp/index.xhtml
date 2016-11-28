@@ -8,17 +8,18 @@
 
 </h:head> 
 <h:body> 
-<h2 align="center">Page d'accueil de notre Site ProxyBanque</h2>
-<div align="center">
-
-<img src="images/labanquepostale-logo.png" alt="LaBP" width="350"/>
-<br/>
-<h:form>
-<p:commandButton action="pagesClient/connexionClient" value="Client" />
-<br/><br/>
-<p:commandButton action="pages_gestionnaire/connexionGestionnaire" value="Gestionnaire"/>
-</h:form>
-</div>
-
-</h:body> 
+	<h2 align="center">Page d'accueil de notre Site ProxyBanque</h2>
+	<div align="center">
+	
+		<img src="images/labanquepostale-logo.png" alt="LaBP" width="350"/>
+		<br/>
+		<h:form>
+			<p:commandButton action="pagesClient/connexionClient" value="Client" />
+			<br/>
+			<br/>
+			<p:commandButton action="pages_gestionnaire/connexionGestionnaire" value="Gestionnaire"/>
+		</h:form>
+		</div>
+		<p:commandButton action="#{SoapMBean.createBarModels()}" value="bourse"/>
+	</h:body> 
 </html>
