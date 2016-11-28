@@ -38,15 +38,27 @@
 					<h:outputText value="#{compte.solde} €" minFractionDigits="2"
 						maxFractionDigits="2" />
 				</p:column>
-
-
+				<p:column headerText="Edition">
+					<div align="center">
+						<p:commandButton action="#{GestMB.aiguillageFormModifCmtp()}"
+							value="Modifier">
+							<f:setPropertyActionListener value="#{client}"
+								target="#{GestMB.client}" />
+						</p:commandButton>
+						<p:commandButton action="#{GestMB.deleteCpt()}" update="@all"
+							value="Supprimer">
+							<f:setPropertyActionListener value="#{compte}"
+								target="#{GestMB.cpt}" />
+						</p:commandButton>
+					</div>
+				</p:column>
 
 			</p:dataTable>
 		</h:form>
 
 
 	</div>
-	
+
 
 </h:body>
 

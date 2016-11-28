@@ -381,6 +381,12 @@ public class GestionnaireManagedBean implements Serializable{
 		listeGestionnaires = gestionnaireService.getAllGestionnairesService();
 		return "formModifClient.xhtml";
 	}
+	public String aiguillageFormModifCmtp(){
+		listClient = clientService.getAllClientService();
+		return "modificationCompte.xhtml";
+		
+		
+	}
 	
 	public String aiguillageAjoutClient() {
 		this.client = new Client();

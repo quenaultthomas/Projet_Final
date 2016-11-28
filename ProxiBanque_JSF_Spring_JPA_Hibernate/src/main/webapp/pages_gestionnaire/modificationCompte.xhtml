@@ -37,12 +37,10 @@
 					
 					<p:outputLabel for="decouvert">Decouvert : </p:outputLabel>
 				<p:inputText id="decouvert" value="#{GestMB.cpt.decouvert}"
-					required="true"></p:inputText>
-					
+					required="true"></p:inputText>	
 			</h:panelGrid>
 			<br/>
-			<p:commandButton value="Modifier" action="#{GestMB.addCpt()}">
-			</p:commandButton>
+			<p:commandButton value="Modifier" action="#{GestMB.addCpt()}" />
 			<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
 		</h:form>
 	</div>
