@@ -350,7 +350,7 @@ public class ClientManagedBean implements Serializable {
 	}
 	
 	public String GotoIndex(){
-		return "index.html";
+		return "/index.xhtml";
 	}
 
 }
