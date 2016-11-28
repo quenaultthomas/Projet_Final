@@ -262,16 +262,19 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String retrait(){
-		compteService.retrait(montant, id2);
+		
+		compteService.retrait(montant, id);
+		
 		Calendar c = Calendar.getInstance();
 
 		Operation ope = new Operation("retrait", (float) -montant, c.getTime());
 
-		ope.setCompte(compteService.getCompteById(id2));
+		ope.setCompte(compteService.getCompteById(id));
 
 		operationService.ajouterOperationService(ope);
 
 		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
 		
 		return "listeCompte.xhtml";
