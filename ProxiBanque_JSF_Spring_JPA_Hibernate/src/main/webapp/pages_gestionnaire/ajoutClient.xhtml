@@ -27,8 +27,8 @@
 				<p:outputLabel for="prenom" value="Prenom : " />
 				<p:inputText id="prenom" value="#{GestMB.client.prenom}"
 					required="true" />
-					
-					<p:outputLabel for="password" value="Password : " />
+
+				<p:outputLabel for="password" value="Password : " />
 				<p:inputText id="password" value="#{GestMB.client.password}"
 					required="true" />
 
@@ -36,24 +36,22 @@
 				<p:inputText id="adresse" value="#{GestMB.client.adresse}" />
 
 				<p:outputLabel for="code_postal" value="Code postal : " />
-				<p:inputText id="code_postal"
-					value="#{GestMB.client.codePostal}" />
+				<p:inputText id="code_postal" value="#{GestMB.client.codePostal}" />
 
 				<p:outputLabel for="ville" value="Ville : " />
 				<p:inputText id="ville" value="#{GestMB.client.ville}" />
 
 				<p:outputLabel for="mail" value="Mail : " />
-				<p:inputText id="mail"
-					value="#{GestMB.client.mail}" required="true" />
+				<p:inputText id="mail" value="#{GestMB.client.mail}" required="true" />
 
 				<p:outputLabel for="tel" value="Téléphone : " />
-				<p:inputText id="tel"
-					value="#{GestMB.client.tel}" required="true" />
+				<p:inputText id="tel" value="#{GestMB.client.tel}" required="true" />
 			</h:panelGrid>
 
 			<br></br>
-			<p:commandButton value="Valider"
-				action="#{GestMB.addClient()}" update="@all"></p:commandButton>
+			<p:commandButton value="Valider" action="#{GestMB.addClient()}"
+				update="@all"></p:commandButton>
+			<p:commandButton value="Annuler" action="accueilGestionnaire"></p:commandButton>
 		</h:form>
 	</div>
 </h:body>
