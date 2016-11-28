@@ -55,19 +55,19 @@
 			style="text-align:center"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 			paginator="true" rows="5">
-			<p:column headerText="Id">
-				<h:outputText value="#{ope.id_operation}" />
-			</p:column>
-			<p:column headerText="Montant">
-				<h:outputText value="#{ope.montant}" />
-			</p:column>
-			<p:column headerText="Type">
-				<h:outputText value="#{ope.typeOperation}" />
-			</p:column>
 			<p:column headerText="Date">
 				<h:outputText value="#{ope.date}">
 				</h:outputText>
 			</p:column>
+			
+				<p:column headerText="Type">
+				<h:outputText value="#{ope.typeOperation}" />
+			</p:column>
+			
+			<p:column headerText="Montant">
+				<h:outputText value="#{ope.montant}" />
+			</p:column>
+			
 		</p:dataTable>
 	</h:form>
 
