@@ -10,9 +10,13 @@
 </h:head>
 <h:body>
 
+<div align="center">
 <h:form>
+<br /> <br />
+		<h1>Depot</h1>
+		<br /> <br />
 		<div style="width: 50%">
-			<p:panel header="Effectuer un Retrait">
+			<p:panel header="Effectuer un Depot">
 				<p:messages />
 				<h:panelGrid columns="2" columnClasses="label, value">
 
@@ -25,7 +29,7 @@
 					</c:forEach>
 					</p:selectOneMenu>	
 						
-					<h:outputText value="Montant Déposé *" />
+					<h:outputText value="Montant Déposé *" style="width: 195px;" />
 					<p:inputText value="#{ClientMB.montant}" required="true"
 						label="Montant" />
 					
@@ -36,6 +40,6 @@
 			<p:commandButton value="Annuler" action="infosClient"></p:commandButton>
 		</div>
 	</h:form>
-	
+</div>	
 </h:body>
 </html>
