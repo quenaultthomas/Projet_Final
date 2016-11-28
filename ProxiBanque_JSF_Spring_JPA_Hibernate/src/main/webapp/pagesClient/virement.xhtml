@@ -3,36 +3,50 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	  xmlns:p="http://primefaces.org/ui"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"> 
 <h:head>
 <title>Insert title here</title>
 </h:head>
 <h:body>
 
-<h:form>
-		<div style="width: 50%">
-			<p:panel header="Effectuer un Retrait">
-				<p:messages />
-				<h:panelGrid columns="2" columnClasses="label, value">
+		<!-- Formulaire de modification d'un produit -->
+	<div align="center">
+		<br /> <br />
+		<h1>Virement compte à compte</h1>
+		<br /> <br />
 
-					<h:outputText value="Id Compte Depot *" />
-					<p:inputText value="#{ClientMB.id_compte}" required="true"
-						label="Depot" />
-						
-					<h:outputText value="Id Compte Retrait *" />
-					<p:inputText value="#{ClientMB.id_debit}" required="true"
-						label="Retrait" />
-						
-					<h:outputText value="Montant Déposé *" />
-					<p:inputText value="#{ClientMB.montant}" required="true"
-						label="Montant" />
-					
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel for="id_debite" value="Compte à débiter : " />
+				<p:selectOneMenu style="width: 195px;" id="id_debite"
+					value="#{ClientMB.id_debit}">
+					<c:forEach var="compte" items="#{ClientMB.listCompte}">
+						<f:selectItem itemValue="#{compte.id_compte}"
+							itemLabel="#{compte.typeCompte}" />
+					</c:forEach>
+				</p:selectOneMenu>
 
-				</h:panelGrid>
-			</p:panel>
-			<p:commandButton value="Virer" action="#{ClientMB.virement()}" />
-		</div>
-	</h:form>
+				<p:outputLabel for="id_credite" value="Compte à créditer : " />
+				<p:selectOneMenu style="width: 195px;" id="id_credite"
+					value="#{ClientMB.id_compte}">
+					<c:forEach var="compte" items="#{ClientMB.listCompte}">
+						<f:selectItem itemValue="#{compte.id_compte}"
+							itemLabel="#{compte.typeCompte}" />
+					</c:forEach>
+				</p:selectOneMenu>
+
+				<p:outputLabel for="montant" value="Montant : " />
+				<p:inputText id="montant" value="#{ClientMB.montant}" required="true" />
+			</h:panelGrid>
+
+			<br />
+			<br />
+			<br />
+			<p:commandButton value="Valider" action="#{ClientMB.virement()}"></p:commandButton>
+			<p:commandButton value="Annuler" action="infosClient"></p:commandButton>
+		</h:form>
+	</div>
 
 </h:body>
 </html>

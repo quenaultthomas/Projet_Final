@@ -3,7 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	  xmlns:p="http://primefaces.org/ui"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"> 
 <h:head>
 <title>Insert title here</title>
 </h:head>
@@ -16,8 +17,13 @@
 				<h:panelGrid columns="2" columnClasses="label, value">
 
 					<h:outputText value="Id Compte *" />
-					<p:inputText value="#{ClientMB.id_compte}" required="true"
-						label="Id Compte" />
+					<p:selectOneMenu style="width: 195px;" id="id_debite"
+					value="#{ClientMB.id_compte}">
+					<c:forEach var="compte" items="#{ClientMB.listCompte}">
+						<f:selectItem itemValue="#{compte.id_compte}"
+							itemLabel="#{compte.typeCompte}" />
+					</c:forEach>
+					</p:selectOneMenu>	
 						
 					<h:outputText value="Montant Déposé *" />
 					<p:inputText value="#{ClientMB.montant}" required="true"
@@ -27,6 +33,7 @@
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="Déposer" action="#{ClientMB.depot()}" />
+			<p:commandButton value="Annuler" action="infosClient"></p:commandButton>
 		</div>
 	</h:form>
 	

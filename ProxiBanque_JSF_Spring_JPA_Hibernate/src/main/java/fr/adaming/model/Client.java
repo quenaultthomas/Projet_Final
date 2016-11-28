@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class Client implements Serializable{
@@ -44,6 +46,7 @@ public class Client implements Serializable{
 	private Gestionnaire gestionnaire;
 	
 	@OneToMany(mappedBy="client")
+	@JsonIgnore
 	private List<Compte> listeCompte;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	

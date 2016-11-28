@@ -35,8 +35,12 @@ public class GestionnaireManagedBean implements Serializable {
 	 */
 
 	private static final long serialVersionUID = 1L;
+<<<<<<< HEAD
 
 	private int id_gestionnaire;
+=======
+	
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 	private Compte cpt;
 	private Compte cpt2;
 	private int id;
@@ -228,16 +232,26 @@ public class GestionnaireManagedBean implements Serializable {
 		// listClient =
 		// clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
+<<<<<<< HEAD
 
 	public void rechercherDebiteur() {
+=======
+	
+	public void rechercherDebiteur(){
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
 
 	public void rechercherCrediteur() {
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
+<<<<<<< HEAD
 
 	public String virement() {
+=======
+	
+	public String virement(){
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 		compteService.virement(montant, id, id2);
 		
 		Calendar c = Calendar.getInstance();
@@ -253,15 +267,53 @@ public class GestionnaireManagedBean implements Serializable {
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
 		return "listeCompte.xhtml";
 	}
+<<<<<<< HEAD
 
 	public String depot() {
 		compteService.depot(montant, cpt.getId_compte());
 		return "accueil.xhtml";
+=======
+	
+	public String depot(){
+		compteService.depot(montant, id);
+
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("depot", (float) montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+
+		
+		return "listeCompte.xhtml";
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 	}
+<<<<<<< HEAD
 
 	public String retrait() {
 		compteService.retrait(montant, cpt.getId_compte());
 		return null;
+=======
+	
+	public String retrait(){
+		compteService.retrait(montant, id2);
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("retrait", (float) -montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id2));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+		
+		return "listeCompte.xhtml";
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 	}
 
 	public String rechercheCompteByIdClient() {
@@ -270,20 +322,32 @@ public class GestionnaireManagedBean implements Serializable {
 	}
 
 	public String addCpt() {
+<<<<<<< HEAD
 		compteService.AjouterCompte(cpt);
 		;
 		return null;
+=======
+		cpt.setClient(client);
+		compteService.AjouterCompte(cpt);
+		this.cpt = new Compte();
+		return "listeCompte.xhtml";
+
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 	}
 
 	public String upCpt() {
 		compteService.ModifierCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 
 	public String deleteCpt() {
 
 		compteService.SupprimerCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 
 	public String addCarte() {
@@ -322,6 +386,7 @@ public class GestionnaireManagedBean implements Serializable {
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
+<<<<<<< HEAD
 
 	public String IsExist() {
 		int verif = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
@@ -331,6 +396,17 @@ public class GestionnaireManagedBean implements Serializable {
 			gestionnaire = gestionnaireService.getGestByIdentificationService(gestionnaire.getLogin(),
 					gestionnaire.getPassword());
 
+=======
+	
+	public String IsExist(){
+		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
+		
+		if (verif==1){
+					
+			gestionnaire = gestionnaireService.getGestByIdentificationService(gestionnaire.getLogin(), gestionnaire.getPassword());
+			
+			
+>>>>>>> branch 'master' of https://github.com/quenaultthomas/Projet_Final.git
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("gestionnaire", gestionnaire);
 
 			System.out.println(gestionnaire.getId_gestionnaire());
