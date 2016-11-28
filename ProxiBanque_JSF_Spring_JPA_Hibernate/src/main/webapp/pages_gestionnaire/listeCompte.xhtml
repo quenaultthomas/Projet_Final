@@ -22,8 +22,14 @@
 		<h:form>
 			<p:dataTable var="compte" value="#{GestMB.listCpt}" paginator="true"
 				rows="5" rowsPerPageTemplate="5,10,15">
-				<p:column headerText="ID">
-					<h:outputText value="#{compte.id_compte}" />
+				<p:column headerText="Action">
+					<div align="center">
+						<p:commandButton update="@all" value="Détails"
+							action="#{ClientMB.getCompteById()}">
+							<f:setPropertyActionListener value="#{compte}"
+								target="#{ClientMB.compte}" />
+						</p:commandButton>
+					</div>
 				</p:column>
 
 				<p:column headerText="Numero">
