@@ -7,6 +7,46 @@
 
 <h:head></h:head> 
 <body> 
-	<p:chart type="bar" model="#{SoapMBean.barModel}" style="height:300px"/>
+
+<!-- 	<p:chart type="bar" model="#{SoapMBean.barModel}" style="height:500px"/> -->
+	
+	<br/>
+	<br/>
+	
+	<div align="center">
+	<h:form method="POST">
+		<p:outputLabel for="stockSymbol">StockSymbol :</p:outputLabel>
+		<br/>
+		<p:inputText id="stockSymbol" value="#{SoapMBean.stockSymbol}" />
+
+		<p:commandButton action="#{SoapMBean.quotebyStockSymbol}" value="Chercher" update="@all"/>
+	</h:form>
+	</div>
+	
+	<div>
+		<p:dataTable var="societe" value="#{SoapMBean.societe}">
+		    <p:column headerText="Nom de la societe">
+		        <h:outputText value="#{societe.companyName}" />
+		    </p:column>
+		 
+		    <p:column headerText="Stock Volume">
+		        <h:outputText value="#{societe.stockVolume}" />
+		    </p:column>
+		 
+		    <p:column headerText="Earn Per Share">
+		        <h:outputText value="#{societe.earnPerShare}" />
+		    </p:column>
+		 
+		    <p:column headerText="PE">
+		        <h:outputText value="#{societe.earnPerShare}" />
+		    </p:column>
+		    
+		    <p:column headerText="ChangePercent">
+		        <h:outputText value="#{societe.changePercent}" />
+		    </p:column>	    	    
+		</p:dataTable>
+		<br/>
+		<p:commandButton action="index" value="Retour"/>
+	</div>
 </body> 
 </html>

@@ -19,15 +19,18 @@ public class ClientSoapMBean {
 	 * 1_Les propriétés (champs, attributs)
 	 */
 
-	DelayedStockQuote stub = new DelayedStockQuote();
+	private DelayedStockQuote stub = new DelayedStockQuote();
 	
-	DelayedStockQuoteSoap service = stub.getDelayedStockQuoteSoap();
+	private DelayedStockQuoteSoap service = stub.getDelayedStockQuoteSoap();
 	
-	QuoteData fordMotorCompany;
-	QuoteData agilentTech;
-	QuoteData barnesG;
-	QuoteData cityG;
+	private QuoteData fordMotorCompany;
+	private QuoteData agilentTech;
+	private QuoteData barnesG;
+	private QuoteData cityG;
+	private QuoteData societe;
 	private BarChartModel barModel;
+	
+	private String stockSymbol;
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------2_Les constructeurs------------------------------------------------------------	
 	/**
@@ -59,12 +62,44 @@ public class ClientSoapMBean {
 		this.barModel = barModel;
 	}
 	
+	/**
+	 * @return the societe
+	 */
+	public QuoteData getSociete() {
+		return societe;
+	}
+
+	/**
+	 * @param societe the societe to set
+	 */
+	public void setSociete(QuoteData societe) {
+		this.societe = societe;
+	}
+
+	/**
+	 * @return the stockSymbol
+	 */
+	public String getStockSymbol() {
+		return stockSymbol;
+	}
+
+	/**
+	 * @param stockSymbol the stockSymbol to set
+	 */
+	public void setStockSymbol(String stockSymbol) {
+		this.stockSymbol = stockSymbol;
+	}
+
 //----------------------------------------------------------------------------------------------------------------
 //---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
 	 * 4_Méthodes
 	 */
 	
+	public void quotebyStockSymbol(){
+		societe= service.getQuote(stockSymbol, "0");
+
+	}
 	
 	 private BarChartModel initBarModel() {
 	        BarChartModel model = new BarChartModel();
@@ -81,15 +116,7 @@ public class ClientSoapMBean {
 	        openAmount.set(agilentTech.getCompanyName(), agilentTech.getOpenAmount());
 	        openAmount.set(barnesG.getCompanyName(),barnesG.getOpenAmount());
 	        openAmount.set(cityG.getCompanyName(), cityG.getOpenAmount());
-	        
-	        
-//	        ChartSeries changePercent = new ChartSeries();
-//	        changePercent.setLabel("Earn Per Share");
-//	        changePercent.set(fordMotorCompany.getCompanyName(), fordMotorCompany.getChangePercent());
-//	        changePercent.set(agilentTech.getCompanyName(), agilentTech.getChangePercent());
-//	        changePercent.set(barnesG.getCompanyName(),barnesG.getChangePercent());
-//	        changePercent.set(cityG.getCompanyName(), cityG.getChangePercent());
-	        
+	             
 	        ChartSeries pE = new ChartSeries();
 	        pE.setLabel("PE");
 	        pE.set(fordMotorCompany.getCompanyName(), fordMotorCompany.getPE());
