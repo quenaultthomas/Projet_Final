@@ -133,7 +133,7 @@ public class ClientSoapMBean {
 	        pE.set(cityG.getCompanyName(), cityG.getPE());
 	        
 	        ChartSeries earnPerShare = new ChartSeries();
-	        earnPerShare.setLabel("PE");
+	        earnPerShare.setLabel("Earn Per Share");
 	        earnPerShare.set(fordMotorCompany.getCompanyName(), fordMotorCompany.getEarnPerShare());
 	        earnPerShare.set(agilentTech.getCompanyName(), agilentTech.getEarnPerShare());
 	        earnPerShare.set(barnesG.getCompanyName(),barnesG.getEarnPerShare());
