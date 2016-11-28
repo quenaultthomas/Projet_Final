@@ -96,6 +96,18 @@ public class ClientSoapMBean {
 	 * 4_Méthodes
 	 */
 	
+	public String retourIndex(){
+		return "index.xhtml";
+	}
+	
+	public String retourBourse(){
+		return "bourse.xhtml";
+	}
+	
+	public String redirectBR(){
+		return "bourse_recherche.xhtml";
+	}
+	
 	public void quotebyStockSymbol(){
 		societe= service.getQuote(stockSymbol, "0");
 
