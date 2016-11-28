@@ -15,6 +15,7 @@
     <p:menu>
         <p:submenu label="Vos Comptes">
             <p:menuitem value="Votre Compte" action="#{ClientMB.GotoInfoClient()}" update="messages" icon="ui-icon-disk" />
+            <p:menuitem value="Déconnexion" icon="ui-icon-extlink" action="#{ClientMB.GotoConnexion()}"/>
         </p:submenu>
         <p:submenu label="Operations">
             <p:menuitem value="Retrait" action="#{ClientMB.GotoRetrait()}" update="messages"  icon="ui-icon-close"/>
