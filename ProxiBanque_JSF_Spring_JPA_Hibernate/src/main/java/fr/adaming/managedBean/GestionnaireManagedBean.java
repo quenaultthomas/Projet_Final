@@ -12,6 +12,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.model.UploadedFile;
+
 import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
@@ -44,6 +46,8 @@ public class GestionnaireManagedBean implements Serializable{
 	private Carte carte;
 	private Gestionnaire gestionnaire;
 
+	 private UploadedFile file;
+	 
 	
 	private List<Client> listClient;
 	private List<Gestionnaire> listeGestionnaires;
@@ -185,6 +189,14 @@ public class GestionnaireManagedBean implements Serializable{
 	 */
 	public void setListeGestionnaires(List<Gestionnaire> listeGestionnaires) {
 		this.listeGestionnaires = listeGestionnaires;
+	}
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
 	}
 
 	public void setCompteService(ICompteService compteService) {
@@ -474,6 +486,14 @@ public class GestionnaireManagedBean implements Serializable{
 	public String gotoHome(){
 		return "listeCompte.xhtml";
 	}
+	
+	 public void upload() {
+	        if(file != null) {
+	            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+	            FacesContext.getCurrentInstance().addMessage(null, message);
+	            client.setPhoto(file.getContents());
+	        }
+	 }
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 	
