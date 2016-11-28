@@ -41,12 +41,12 @@
 				<p:column headerText="Edition">
 					<div align="center">
 						<p:commandButton action="#{GestMB.aiguillageFormModifCmtp()}"
-							value="Modifier">
-							<f:setPropertyActionListener value="#{client}"
-								target="#{GestMB.client}" />
+							icon="ui-icon-pencil">
+							<f:setPropertyActionListener value="#{compte}"
+								target="#{GestMB.cpt}" />
 						</p:commandButton>
 						<p:commandButton action="#{GestMB.deleteCpt()}" update="@all"
-							value="Supprimer">
+							icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{compte}"
 								target="#{GestMB.cpt}" />
 						</p:commandButton>
