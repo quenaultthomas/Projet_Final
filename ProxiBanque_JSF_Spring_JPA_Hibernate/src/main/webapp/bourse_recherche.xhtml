@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	
+	<div align="center">
+	<h:form method="POST">
+		<p:outputLabel for="stockSymbol">StockSymbol :</p:outputLabel>
+		<br/>
+		<p:inputText id="stockSymbol" value="#{SoapMBean.stockSymbol}" />
+
+		<p:commandButton action="#{SoapMBean.quotebyStockSymbol}" value="Chercher" update="@all"/>
+	</h:form>
+	</div>
+	
+	<div>
+		<p:dataTable var="societe" value="#{SoapMBean.societe}">
+		    <p:column headerText="Nom de la societe">
+		        <h:outputText value="#{societe.companyName}" />
+		    </p:column>
+		 
+		    <p:column headerText="Stock Volume">
+		        <h:outputText value="#{societe.stockVolume}" />
+		    </p:column>
+		 
+		    <p:column headerText="Earn Per Share">
+		        <h:outputText value="#{societe.earnPerShare}" />
+		    </p:column>
+		 
+		    <p:column headerText="PE">
+		        <h:outputText value="#{societe.earnPerShare}" />
+		    </p:column>
+		    
+		    <p:column headerText="ChangePercent">
+		        <h:outputText value="#{societe.changePercent}" />
+		    </p:column>	    	    
+		</p:dataTable>
+		<br/>
+		
+	</div>
+	<br/>
+	<p:commandButton action="#{SoapMBean.retourBourse}" value="Retour"/>
+</body> 
+</html>
