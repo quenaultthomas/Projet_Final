@@ -18,6 +18,7 @@ public class AuditController {
 	@Autowired
 	IClientService clientService;
 	
+	@Autowired
 	ICompteService compteService;
 	
 	@RequestMapping(value="/allClient", method=RequestMethod.GET, produces="application/json")

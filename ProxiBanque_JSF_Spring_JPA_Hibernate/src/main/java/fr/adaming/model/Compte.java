@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "comptes")
 @NamedQueries({ @NamedQuery(name = "getAllCompte", query = "SELECT c FROM Compte c"),
@@ -54,9 +56,11 @@ public class Compte implements Serializable {
 	private Client client;
 
 	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
+	@JsonIgnore
 	private List<Carte> carte;
 
 	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
+	@JsonIgnore
 	private List<Operation> operation;
 
 	// ----------------------------------------------------------------------------------------------------------------
