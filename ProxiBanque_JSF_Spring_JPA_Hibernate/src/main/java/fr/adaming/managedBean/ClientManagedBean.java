@@ -348,5 +348,9 @@ public class ClientManagedBean implements Serializable {
 	public String GotoModifier() {
 		return "modifierClient.xhtml";
 	}
+	
+	public String GotoConnexion() {
+		return "connexionClient.xhtml";
+	}
 
 }
