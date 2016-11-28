@@ -260,9 +260,46 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String virement(){
+		Compte compte = compteService.getCompteById(id);
+		
+		if(compte.getDecouvert()<(compte.getSolde()-montant)){
+			
 		compteService.virement(montant, id, id2);
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		Calendar c = Calendar.getInstance();
+
+		Compte depot = compteService.getCompteById(id2);
+
+		Compte retrait = compteService.getCompteById(id);
+
+		Operation opeDepot = new Operation("Virement du Compte Numero : " + retrait.getNumero(), (float) montant,
+				c.getTime());
+
+		Operation opeRetrait = new Operation("Virement vers Compte Numero : " + depot.getNumero(), (float) -montant,
+				c.getTime());
+
+		opeDepot.setCompte(depot);
+
+		opeRetrait.setCompte(retrait);
+
+		operationService.ajouterOperationService(opeDepot);
+
+		operationService.ajouterOperationService(opeRetrait);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Valide", "Le virement a été effectué"));
 		return "listeCompte.xhtml";
+		
+		}else{
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erreur", "Le montant de votre compte est insuffisant"));
+			
+			return "virement.xhtml";
+		}
 	}
 	
 	public String depot(){
@@ -285,6 +322,12 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	public String retrait(){
 		
+	
+		Compte compte = compteService.getCompteById(id);
+		
+		if(compte.getDecouvert()<(compte.getSolde()-montant)){
+			
+		
 		compteService.retrait(montant, id);
 		
 		Calendar c = Calendar.getInstance();
@@ -300,6 +343,14 @@ public class GestionnaireManagedBean implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
 		
 		return "listeCompte.xhtml";
+		
+			}else{
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erreur", "Le montant de votre compte est insuffisant"));
+			
+			return "retrait.xhtml";
+		}
 	}
 	
 	public String rechercheCompteByIdClient(){

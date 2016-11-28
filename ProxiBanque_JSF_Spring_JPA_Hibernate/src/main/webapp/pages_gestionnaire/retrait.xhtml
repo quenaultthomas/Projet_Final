@@ -18,6 +18,7 @@
 			<br />
 			<div style="width: 50%" align="center">
 				<p:panel header="Effectuer un Retrait">
+				<p:growl id="growl" showDetail="true" life="5000" />
 					<p:messages />
 					<h:panelGrid columns="2" columnClasses="label, value">
 
@@ -38,7 +39,7 @@
 					</h:panelGrid>
 				</p:panel>
 				<br /> <br />
-				<p:commandButton value="Retirer" action="#{GestMB.retrait()}" />
+				<p:commandButton value="Retirer" action="#{GestMB.retrait()}" update="@all"/>
 				<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
 			</div>
 		</h:form>
