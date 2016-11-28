@@ -14,14 +14,15 @@
 	</ui:insert>
 
 	<div align="center">
-		
+
 
 		<h1 style="font-family: cursive; font-style: italic;">Comptes</h1>
 
+
 		<h:form>
-			<p:dataTable var="compte" value="#{GestMB.listCpt}"
-				paginator="true" rows="5" rowsPerPageTemplate="5,10,15" >
-				<p:column headerText="ID" >
+			<p:dataTable var="compte" value="#{GestMB.listCpt}" paginator="true"
+				rows="5" rowsPerPageTemplate="5,10,15">
+				<p:column headerText="ID">
 					<h:outputText value="#{compte.id_compte}" />
 				</p:column>
 
@@ -32,20 +33,20 @@
 				<p:column headerText="Type">
 					<h:outputText value="#{compte.typeCompte}" />
 				</p:column>
-				
+
 				<p:column headerText="Solde">
-					<h:outputText value="#{compte.solde} €"  minFractionDigits="2" maxFractionDigits="2"  />
+					<h:outputText value="#{compte.solde} €" minFractionDigits="2"
+						maxFractionDigits="2" />
 				</p:column>
 
-					
-				
+
+
 			</p:dataTable>
 		</h:form>
 
 
 	</div>
-
-
+	
 
 </h:body>
 
