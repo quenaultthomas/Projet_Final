@@ -51,8 +51,6 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 	@Override
 	public int isExistGestionnaireDao(String login, String password) {
 	
-	System.out.println("Toto");
-	
 	String req="SELECT * FROM gestionnaire as g WHERE g.login =:login and g.password=:password";
 	
 	Query queryGestionnaireIsExist = em.createNativeQuery(req);
@@ -61,7 +59,7 @@ public class GestionaireDaoImpl implements IGestionnaireDao {
 	
 	@SuppressWarnings("unchecked")
 	List<Gestionnaire> listeGestionnaire = queryGestionnaireIsExist.getResultList();
-			System.out.println(listeGestionnaire.size());
+	
 	return listeGestionnaire.size();
 }
 	@Override
