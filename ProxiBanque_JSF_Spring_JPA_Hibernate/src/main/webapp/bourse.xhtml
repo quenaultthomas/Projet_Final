@@ -7,12 +7,14 @@
 
 <h:head></h:head> 
 <body> 
-	<p:chart type="bar" model="#{SoapMBean.barModel}" style="height:500px"/>
-	
+	<div>
+		<p:chart type="bar" model="#{SoapMBean.barModel}" style="height:500px"/>
+	</div>	
 	<br/>
 	<br/>
-	
-	<p:commandButton action="#{SoapMBean.retourIndex}" value="Retour"/>
-	<p:commandButton action="#{SoapMBean.redirectBR}" value="Rechercher une societe"/>
+	<h:form>
+		<p:commandButton action="#{SoapMBean.retourIndex}" value="Retour"/>
+		<p:commandButton action="#{SoapMBean.redirectBR}" value="Rechercher une societe"/>
+	</h:form>
 </body> 
 </html>

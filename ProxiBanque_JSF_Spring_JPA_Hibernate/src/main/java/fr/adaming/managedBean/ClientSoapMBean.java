@@ -100,10 +100,6 @@ public class ClientSoapMBean {
 		return "index.xhtml";
 	}
 	
-	public String retourBourse(){
-		return "bourse.xhtml";
-	}
-	
 	public String redirectBR(){
 		return "bourse_recherche.xhtml";
 	}
@@ -136,8 +132,16 @@ public class ClientSoapMBean {
 	        pE.set(barnesG.getCompanyName(),barnesG.getPE());
 	        pE.set(cityG.getCompanyName(), cityG.getPE());
 	        
+	        ChartSeries earnPerShare = new ChartSeries();
+	        earnPerShare.setLabel("PE");
+	        earnPerShare.set(fordMotorCompany.getCompanyName(), fordMotorCompany.getEarnPerShare());
+	        earnPerShare.set(agilentTech.getCompanyName(), agilentTech.getEarnPerShare());
+	        earnPerShare.set(barnesG.getCompanyName(),barnesG.getEarnPerShare());
+	        earnPerShare.set(cityG.getCompanyName(), cityG.getEarnPerShare());
+	        
 	        model.addSeries(openAmount);
 	        model.addSeries(pE);
+	        model.addSeries(earnPerShare);
 	        
 	        return model;
 	    }
