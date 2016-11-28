@@ -44,11 +44,11 @@
 
 				<p:column headerText="Edition">
 					<div align="center">
-						<p:commandButton action="#{GestMB.aiguillageFormModifClient()}" value="Modifier">
+						<p:commandButton action="#{GestMB.aiguillageFormModifClient()}" icon="ui-icon-pencil">
 							<f:setPropertyActionListener value="#{client}"
 								target="#{GestMB.client}" />
 						</p:commandButton>
-						<p:commandButton action="#{GestMB.deleteClient()}" update="@all" value="Supprimer">
+						<p:commandButton action="#{GestMB.deleteClient()}" update="@all" icon="ui-icon-trash">
 							<f:setPropertyActionListener value="#{client}"
 								target="#{GestMB.client}" />
 						</p:commandButton>
