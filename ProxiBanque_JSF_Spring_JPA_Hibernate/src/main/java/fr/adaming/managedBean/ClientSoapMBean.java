@@ -74,6 +74,7 @@ public class ClientSoapMBean {
 			barnesG = service.getQuote("B", "0");
 			cityG = service.getQuote("c", "0");
 			
+			
 	        ChartSeries openAmount = new ChartSeries();
 	        openAmount.setLabel("Last Trade Amount");
 	        openAmount.set(fordMotorCompany.getCompanyName(), fordMotorCompany.getOpenAmount());
