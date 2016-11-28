@@ -10,40 +10,43 @@
 </h:head>
 <h:body>
 
-<h:form>
-		<div style="width: 50%">
-			<p:panel header="Effectuer un Retrait">
-				<p:messages />
-				<h:panelGrid columns="2" columnClasses="label, value">
+		<!-- Formulaire de modification d'un produit -->
+	<div align="center">
+		<br /> <br />
+		<h1>Virement compte à compte</h1>
+		<br /> <br />
 
-					<h:outputText value="Id Compte Depot *" />
-					<p:selectOneMenu style="width: 195px;" id="id_depot"
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel for="id_debite" value="Compte à débiter : " />
+				<p:selectOneMenu style="width: 195px;" id="id_debite"
+					value="#{ClientMB.id_debit}">
+					<c:forEach var="compte" items="#{ClientMB.listCompte}">
+						<f:selectItem itemValue="#{compte.id_compte}"
+							itemLabel="#{compte.typeCompte}" />
+					</c:forEach>
+				</p:selectOneMenu>
+
+				<p:outputLabel for="id_credite" value="Compte à créditer : " />
+				<p:selectOneMenu style="width: 195px;" id="id_credite"
 					value="#{ClientMB.id_compte}">
 					<c:forEach var="compte" items="#{ClientMB.listCompte}">
 						<f:selectItem itemValue="#{compte.id_compte}"
 							itemLabel="#{compte.typeCompte}" />
 					</c:forEach>
-					</p:selectOneMenu>	
-					
-					<h:outputText value="Id Compte Retrait *" />
-					<p:selectOneMenu style="width: 195px;" id="id_retrait"
-					value="#{ClientMB.id_debit}">
-					<c:forEach var="compte" items="#{ClientMB.listCompte}">
-						<f:selectItem itemValue="#{ClientMB.id_debit}"
-							itemLabel="#{compte.typeCompte}" />
-					</c:forEach>
-					</p:selectOneMenu>	
-						
-					<h:outputText value="Montant Déposé *" />
-					<p:inputText value="#{ClientMB.montant}" required="true"
-						label="Montant" />
-					
+				</p:selectOneMenu>
 
-				</h:panelGrid>
-			</p:panel>
-			<p:commandButton value="Virer" action="#{ClientMB.virement()}" />
-		</div>
-	</h:form>
+				<p:outputLabel for="montant" value="Montant : " />
+				<p:inputText id="montant" value="#{ClientMB.montant}" required="true" />
+			</h:panelGrid>
+
+			<br />
+			<br />
+			<br />
+			<p:commandButton value="Valider" action="#{ClientMB.virement()}"></p:commandButton>
+			<p:commandButton value="Annuler" action="infosClient"></p:commandButton>
+		</h:form>
+	</div>
 
 </h:body>
 </html>
