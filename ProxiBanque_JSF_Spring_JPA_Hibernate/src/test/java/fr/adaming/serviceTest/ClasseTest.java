@@ -22,43 +22,43 @@ public class ClasseTest {
 		 ICompteService compteService = (ICompteService)
 		 cxt.getBean("compteService");
 		
-		 IClientService clientService = (IClientService) cxt.getBean("clientService");
-		 
-		 Client cl = clientService.getClientByIdService(1);
-		 
-		 
-		 
-		 Compte cmpt = new Compte("1", "ccc", 100, -100, 1);
-		 cmpt.setClient(cl);
-		 
-		 compteService.AjouterCompte(cmpt);
-		 
-		 
-		 Compte cmpt2 = new Compte(6,"sfdsf", "ccc", 100, -100, 1);
-		 //compteService.SupprimerCompte(cmpt2);
-		 compteService.ModifierCompte(cmpt2);
-		 
-		 compteService.depot(1, 1);
-		 
-		 compteService.retrait(100, 4);
-		 
-		 compteService.virement(100, 7, 8);
-		 
+//		 IClientService clientService = (IClientService) cxt.getBean("clientService");
+//		 
+//		 Client cl = clientService.getClientByIdService(1);
+//		 
+//		 
+//		 
+//		 Compte cmpt = new Compte("1", "ccc", 100, -100, 1);
+//		 cmpt.setClient(cl);
+//		 
+//		 compteService.AjouterCompte(cmpt);
+//		 
+//		 
+//		 Compte cmpt2 = new Compte(6,"sfdsf", "ccc", 100, -100, 1);
+//		 //compteService.SupprimerCompte(cmpt2);
+//		 compteService.ModifierCompte(cmpt2);
+//		 
+//		 compteService.depot(1, 1);
+//		 
+//		 compteService.retrait(100, 4);
+//		 
+//		 compteService.virement(100, 7, 8);
+//		 
 		 List<Compte> liste = compteService.getAllCompte();
 		
 		 for (Compte compte : liste) {
 		 System.out.println(compte);
 		 }
-		 
-		 Compte c = compteService.getCompteById(1);
-		 
-		 List<Compte> liste1 = compteService.getCompteByIdCLient(1);
-		System.out.println("Liste des comptes du client id=1");
-		 for (Compte compte : liste1) {
-			 System.out.println(compte);
-			 }
-
-		 compteService.depot(1, 1);
+//		 
+//		 Compte c = compteService.getCompteById(1);
+//		 
+//		 List<Compte> liste1 = compteService.getCompteByIdCLient(1);
+//		System.out.println("Liste des comptes du client id=1");
+//		 for (Compte compte : liste1) {
+//			 System.out.println(compte);
+//			 }
+//
+//		 compteService.depot(1, 1);
 		 
 	}
 
