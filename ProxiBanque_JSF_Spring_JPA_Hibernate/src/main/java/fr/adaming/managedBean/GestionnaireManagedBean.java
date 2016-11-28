@@ -48,6 +48,7 @@ public class GestionnaireManagedBean implements Serializable{
 	private List<Client> listClient;
 	private List<Gestionnaire> listeGestionnaires;
 	private List<Compte> listCpt;
+	private List<Operation> listOperation;
 
 	@ManagedProperty(value = "#{compteService}")
 	ICompteService compteService;
@@ -164,6 +165,14 @@ public class GestionnaireManagedBean implements Serializable{
 		return listCpt;
 	}
 
+	public List<Operation> getListOperation() {
+		return listOperation;
+	}
+
+	public void setListOperation(List<Operation> listOperation) {
+		this.listOperation = listOperation;
+	}
+
 	/**
 	 * @return the listeGestionnaires
 	 */
@@ -227,6 +236,19 @@ public class GestionnaireManagedBean implements Serializable{
 		
 		
 //		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
+	}
+	
+	public String getCompteById() {
+		cpt = compteService.getCompteById(cpt.getId_compte());
+
+		listOperation = operationService.getOperationsByIdCompteService(cpt.getId_compte());
+
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("compte", cpt);
+
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listOperation", listOperation);
+
+		return "infosCompte.xhtml";
+		
 	}
 	
 	public void rechercherDebiteur(){
