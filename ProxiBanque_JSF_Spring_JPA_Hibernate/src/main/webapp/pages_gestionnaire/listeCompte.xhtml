@@ -21,13 +21,13 @@
 
 		<h:form>
 			<p:dataTable var="compte" value="#{GestMB.listCpt}" paginator="true"
-				rows="5" rowsPerPageTemplate="5,10,15">
+				rows="5" rowsPerPageTemplate="5,10,15" style="text-align:center">
 				<p:column headerText="Action">
 					<div align="center">
 						<p:commandButton update="@all" value="Détails"
-							action="#{ClientMB.getCompteById()}">
+							action="#{GestMB.getCompteById()}">
 							<f:setPropertyActionListener value="#{compte}"
-								target="#{ClientMB.compte}" />
+								target="#{GestMB.cpt}" />
 						</p:commandButton>
 					</div>
 				</p:column>

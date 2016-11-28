@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Infos Comptes</title>
+	<title>Infos Compte</title>
 </h:head>
 <h:body>
-
-
-	<p:layout fullPage="true" >
-
-		<p:layoutUnit position="north" size="200" 
-			 >
-		<h1 align="center">Informations du compte de #{client.nom} #{client.prenom}</h1>
-		<br/>
-		<h:form id="formInfos">
-		<p:dataTable id="dataTableInfos" var="compte" value="#{ClientMB.compte}"
+	<ui:insert name="header">
+		<ui:include src="Template/menu_compte.xhtml"></ui:include>
+	</ui:insert>
+	<h1 align="center">Informations du compte de #{GestMB.client.nom}
+		#{GestMB.client.prenom}</h1>
+	<br />
+	<h:form id="formInfos">
+		<p:dataTable id="dataTableInfos" var="compte" value="#{GestMB.cpt}"
 			style="text-align:center">
 			<p:column headerText="Id">
 				<h:outputText value="#{compte.id_compte}" />
@@ -34,25 +32,12 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-		</p:layoutUnit>
 
+	<h3>Liste des Opérations</h3>
 
-
-		<p:layoutUnit position="south" size="200" >
-
-			
-		</p:layoutUnit>
-
-		<p:layoutUnit position="west" size="250" header="Menu">
-			<ui:include src="template.xhtml"></ui:include>
-		</p:layoutUnit>
-
-		<p:layoutUnit position="center">
-<h3>Liste des Opérations</h3>
-	
 	<h:form id="formOpe">
-		<p:dataTable id="dataTableOperation" var="ope" value="#{ClientMB.listOperation}"
-			style="text-align:center"
+		<p:dataTable id="dataTableOperation" var="ope"
+			value="#{GestMB.listOperation}" style="text-align:center"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 			paginator="true" rows="5">
 			<p:column headerText="Id">
@@ -70,11 +55,5 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
-
-		</p:layoutUnit>
-
-	</p:layout>
-
-
 </h:body>
 </html>
