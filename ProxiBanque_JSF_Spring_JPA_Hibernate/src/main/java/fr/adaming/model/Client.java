@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,6 +40,8 @@ public class Client implements Serializable{
 	private String ville;
 	private String mail;
 	private String tel;
+	
+	@Lob
 	private byte[] photo;
 	private String role;
 	
