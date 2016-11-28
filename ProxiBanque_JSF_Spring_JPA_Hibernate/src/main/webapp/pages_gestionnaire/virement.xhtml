@@ -11,14 +11,16 @@
 <h:body>
 
 	<!-- Formulaire de modification d'un produit -->
-	
-		<br /> <br />
-		<h1 style="text-align: center;">Virement compte à compte</h1>
-		<br /> <br />
-		<div style="width: 50%" align="center">
-			<p:panel header="Effectuer un Virement">
-				
-				<h:form>
+
+	<br />
+	<br />
+	<h1 style="text-align: center;">Virement compte à compte</h1>
+	<br />
+	<br />
+	<div align="center">
+		<h:form>
+			<div style="width: 50%" align="center">
+				<p:panel header="Effectuer un Virement">
 					<h:panelGrid columns="2">
 						<p:outputLabel for="id_debite" value="Compte à débiter : " />
 						<p:selectOneMenu style="width: 195px;" id="id_debite"
@@ -42,11 +44,12 @@
 						<p:inputText id="montant" value="#{GestMB.montant}"
 							required="true" />
 					</h:panelGrid>
-			</p:panel>
-			<br /> <br /> <br />
-			<p:commandButton value="Valider" action="#{GestMB.virement()}"></p:commandButton>
-			<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
-		</div>
+				</p:panel>
+				<br /> <br /> <br />
+				<p:commandButton value="Valider" action="#{GestMB.virement()}"></p:commandButton>
+				<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
+			</div>
 		</h:form>
+	</div>
 </h:body>
 </html>
