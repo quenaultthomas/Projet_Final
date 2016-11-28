@@ -397,6 +397,10 @@ public class GestionnaireManagedBean implements Serializable{
 		this.client = new Client();
 		return "ajoutClient.xhtml";
 	}
+	
+	public String gotoHome(){
+		return "listeCompte.xhtml";
+	}
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 	
