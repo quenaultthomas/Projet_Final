@@ -387,6 +387,11 @@ public class GestionnaireManagedBean implements Serializable{
 		
 		
 	}
+	public String aiguillageAjoutCompte(){
+		this.cpt=new Compte();
+		return "ajoutCompte.xhtml";
+		
+	}
 	
 	public String aiguillageAjoutClient() {
 		this.client = new Client();
