@@ -38,12 +38,12 @@
 
 
 
-		<p:layoutUnit position="south" size="200" >
+		<p:layoutUnit position="south" size="175" >
 
 			
 		</p:layoutUnit>
 
-		<p:layoutUnit position="west" size="250" header="Menu">
+		<p:layoutUnit position="west" size="260" header="Menu">
 			<ui:include src="template.xhtml"></ui:include>
 		</p:layoutUnit>
 
@@ -55,12 +55,13 @@
 			style="text-align:center"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 			paginator="true" rows="5">
-			<p:column headerText="Date">
+			
+			<p:column headerText="Date" sortBy="#{ope.date}">
 				<h:outputText value="#{ope.date}">
 				</h:outputText>
 			</p:column>
 			
-				<p:column headerText="Type">
+				<p:column headerText="Type" filterBy="#{ope.typeOperation}">
 				<h:outputText value="#{ope.typeOperation}" />
 			</p:column>
 			
