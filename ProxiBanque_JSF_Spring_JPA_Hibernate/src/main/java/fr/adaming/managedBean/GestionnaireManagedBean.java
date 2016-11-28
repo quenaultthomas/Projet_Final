@@ -286,6 +286,7 @@ public class GestionnaireManagedBean implements Serializable{
 		cpt.setClient(client);
 		compteService.AjouterCompte(cpt);
 		this.cpt = new Compte();
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
 		return "listeCompte.xhtml";
 
 	}
