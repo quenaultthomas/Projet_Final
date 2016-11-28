@@ -8,7 +8,7 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
-
+<p:growl id="growl" showDetail="true"  life="5000" />
 	<p:layout fullPage="true" >
 
 		<p:layoutUnit position="north" size="150" 
@@ -29,21 +29,27 @@
 		<p:layoutUnit position="center">
 
 			<h:form id="formAccueil">
+			<p:growl id="growl" showDetail="true" sticky="true" life="2" />
+			
 				<p:dataTable id="dataTableInfos" var="compte"
 					value="#{ClientMB.listCompte}" style="text-align:center">
-					<p:column headerText="Id">
-						<h:outputText value="#{compte.id_compte}" />
+					
+					<p:column headerText="Compte">
+						<h:outputText value="#{compte.typeCompte}" />
 					</p:column>
+					
 					<p:column headerText="Numero">
 						<h:outputText value="#{compte.numero}" />
 					</p:column>
+					
 					<p:column headerText="Solde">
 						<h:outputText value="#{compte.solde}">
 						</h:outputText>
 					</p:column>
+					
 					<p:column headerText="Action">
 						<p:commandButton update="@all" title="Détails"
-							action="#{ClientMB.getCompteById()}">
+							action="#{ClientMB.getCompteById()}" icon="ui-icon-search">
 							<f:setPropertyActionListener value="#{compte}"
 								target="#{ClientMB.compte}" />
 						</p:commandButton>

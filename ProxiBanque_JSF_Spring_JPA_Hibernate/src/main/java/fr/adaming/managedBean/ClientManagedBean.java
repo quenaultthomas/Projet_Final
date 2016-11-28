@@ -202,52 +202,78 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	public String virement() {
+
+		Compte compte = compteService.getCompteById(id_debit);
 		
-		 	compteService.virement(montant, id_debit, id_compte);
+		if(compte.getDecouvert()<(compte.getSolde()-montant)){
+		
+		compteService.virement(montant, id_debit, id_compte);
 
-			Calendar c = Calendar.getInstance();
+		Calendar c = Calendar.getInstance();
+
+		Compte depot = compteService.getCompteById(id_compte);
+
+		Compte retrait = compteService.getCompteById(id_debit);
+
+		Operation opeDepot = new Operation("Virement du Compte Numero : " + retrait.getNumero(), (float) montant,
+				c.getTime());
+
+		Operation opeRetrait = new Operation("Virement vers Compte Numero : " + depot.getNumero(), (float) -montant,
+				c.getTime());
+
+		opeDepot.setCompte(depot);
+
+		opeRetrait.setCompte(retrait);
+
+		operationService.ajouterOperationService(opeDepot);
+
+		operationService.ajouterOperationService(opeRetrait);
+
+		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
+
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Valide", "Le virement a été effectué"));
+		
+		return "infosClient.xhtml";
+		}else{
 			
-			Compte depot = compteService.getCompteById(id_compte);
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erreur", "Le montant de votre compte est insuffisant"));
 			
-			Compte retrait = compteService.getCompteById(id_debit);
-
-			Operation opeDepot = new Operation("Virement du Compte Numero : " + retrait.getNumero(), (float) montant, c.getTime());
-			
-			Operation opeRetrait = new Operation("Virement vers Compte Numero : " + depot.getNumero(), (float) -montant, c.getTime());
-
-			opeDepot.setCompte(depot);
-			
-			opeRetrait.setCompte(retrait);
-
-			operationService.ajouterOperationService(opeDepot);
-			
-			operationService.ajouterOperationService(opeRetrait);
-
-			this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
-
-			return "infosClient.xhtml";
+			return "virement.xhtml";
+		}
 	}
 
 	public String depot() {
 
+		
+		
 		compteService.depot(montant, id_compte);
 
 		Calendar c = Calendar.getInstance();
 
 		Operation ope = new Operation("depot", (float) montant, c.getTime());
 
-		ope.setCompte(compteService.getCompteById(id_compte));
+		ope.setCompte(compte);
 
 		operationService.ajouterOperationService(ope);
 
 		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
 
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Valide", "Le dépot a été effectué"));
+		
 		return "infosClient.xhtml";
-	}
+		
+		}
 
 	public String retrait() {
+		
+		Compte compte = compteService.getCompteById(id_compte);
+		
+		if(compte.getDecouvert()<(compte.getSolde()-montant)){
 		
 		compteService.retrait(montant, id_compte);
 
@@ -262,9 +288,20 @@ public class ClientManagedBean implements Serializable {
 		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
 
+		FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Valide", "Le retrait a été effectué"));
+		
 		return "infosClient.xhtml";
-
+		
+		}else{
+			
+			FacesContext context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Erreur", "Le montant de votre compte est insuffisant"));
+			
+			return "retrait.xhtml";
+		}
 	}
+
 
 	public void rechercheCompteByIdClient() {
 		listCompte = compteService.getCompteByIdCLient(client.getId_client());
@@ -281,14 +318,14 @@ public class ClientManagedBean implements Serializable {
 
 		return "infosCompte.xhtml";
 	}
-	
-	public String modifier(){
+
+	public String modifier() {
 		clientService.updateClientService(client);
-		
+
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("client", client);
 		this.listCompte = compteService.getCompteByIdCLient(client.getId_client());
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCompte);
-		
+
 		return "infosClient.xhtml";
 	}
 
@@ -307,7 +344,7 @@ public class ClientManagedBean implements Serializable {
 	public String GotoVirement() {
 		return "virement.xhtml";
 	}
-	
+
 	public String GotoModifier() {
 		return "modifierClient.xhtml";
 	}
