@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import fr.adaming.model.Carte;
 import fr.adaming.model.Client;
 import fr.adaming.model.Compte;
 import fr.adaming.model.Gestionnaire;
+import fr.adaming.model.Operation;
 import fr.adaming.service.ICarteService;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICompteService;
@@ -33,7 +35,6 @@ public class GestionnaireManagedBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int id_gestionnaire;
 	private Compte cpt;
 	private Compte cpt2;
 	private int id;
@@ -91,61 +92,41 @@ public class GestionnaireManagedBean implements Serializable{
 		return cpt;
 	}
 
-
-
 	public void setCpt(Compte cpt) {
 		this.cpt = cpt;
 	}
-
-
 
 	public Compte getCpt2() {
 		return cpt2;
 	}
 
-
-
 	public void setCpt2(Compte cpt2) {
 		this.cpt2 = cpt2;
 	}
-
-
 
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	public int getId2() {
 		return id2;
 	}
 
-
-
 	public void setId2(int id2) {
 		this.id2 = id2;
 	}
-
-
 
 	public double getMontant() {
 		return montant;
 	}
 
-
-
 	public void setMontant(double montant) {
 		this.montant = montant;
 	}
-
-
 
 	public Gestionnaire getGestionnaire() {
 		return gestionnaire;
@@ -159,37 +140,25 @@ public class GestionnaireManagedBean implements Serializable{
 		return client;
 	}
 
-
-
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
-
 
 	public Carte getCarte() {
 		return carte;
 	}
 
-
-
 	public void setCarte(Carte carte) {
 		this.carte = carte;
 	}
-
-
 
 	public List<Client> getListClient() {
 		return listClient;
 	}
 
-
-
 	public void setListClient(List<Client> listClient) {
 		this.listClient = listClient;
 	}
-
-
 
 	public List<Compte> getListCpt() {
 		return listCpt;
@@ -233,8 +202,6 @@ public class GestionnaireManagedBean implements Serializable{
 		this.listCpt = listCpt;
 	}
 
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -262,7 +229,6 @@ public class GestionnaireManagedBean implements Serializable{
 //		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
 	
-	
 	public void rechercherDebiteur(){
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
@@ -270,9 +236,6 @@ public class GestionnaireManagedBean implements Serializable{
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
-
-	
-	
 	
 	public String virement(){
 		compteService.virement(montant, id, id2);
@@ -281,13 +244,37 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String depot(){
-		compteService.depot(montant, cpt.getId_compte());
-		return "accueil.xhtml";
+		compteService.depot(montant, id);
+
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("depot", (float) montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+
+		
+		return "listeCompte.xhtml";
 	}
 	
 	public String retrait(){
-		compteService.retrait(montant, cpt.getId_compte());
-		return null;
+		compteService.retrait(montant, id2);
+		Calendar c = Calendar.getInstance();
+
+		Operation ope = new Operation("retrait", (float) -montant, c.getTime());
+
+		ope.setCompte(compteService.getCompteById(id2));
+
+		operationService.ajouterOperationService(ope);
+
+		this.listCpt = compteService.getCompteByIdCLient(client.getId_client());
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listCompte", listCpt);
+		
+		return "listeCompte.xhtml";
 	}
 	
 	public String rechercheCompteByIdClient(){
@@ -296,19 +283,26 @@ public class GestionnaireManagedBean implements Serializable{
 	}
 	
 	public String addCpt() {
-		compteService.AjouterCompte(cpt);;
-		return null;
+		cpt.setClient(client);
+		compteService.AjouterCompte(cpt);
+		this.cpt = new Compte();
+		return "listeCompte.xhtml";
+
 	}
 
 	public String upCpt() {
 		compteService.ModifierCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 
 	public String deleteCpt() {
 		
 		compteService.SupprimerCompte(cpt);
-		return null;
+		listCpt=compteService.getCompteByIdCLient(client.getId_client());
+		return "listeCompte.xhtml";
+
 	}
 	
 	public String addCarte() {
@@ -347,6 +341,7 @@ public class GestionnaireManagedBean implements Serializable{
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
+	
 	public String IsExist(){
 		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
 		
