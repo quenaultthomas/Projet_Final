@@ -10,10 +10,15 @@
 <h:body> 
 	<h2 align="center">Page d'accueil de notre Site ProxyBanque</h2>
 	<div align="center">
-	 <p:graphicImage url="images/index.png" />
-		
+	 <p:graphicImage url="images/index.png" />	
 		<br/>
+		<div align="center">
+		<h1 style="font-family: cursive; font-style: italic;">Connexion</h1>
+		<br /> <br /> <br /> <br />
 		<h:form>
+			<br/>
+			<p:commandButton value="Valider" action="#{loginMB.login()}"></p:commandButton>
+			<br/>
 			<p:commandButton action="pagesClient/connexionClient" value="Client" />
 			<br/>
 			<br/>
@@ -23,6 +28,6 @@
 			<p:commandButton action="#{SoapMBean.createBarModels}" value="Bourse"/>
 		</h:form>
 		</div>
-		
+		</div>
 	</h:body> 
 </html>

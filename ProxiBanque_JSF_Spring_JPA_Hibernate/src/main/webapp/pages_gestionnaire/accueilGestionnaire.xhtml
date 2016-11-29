@@ -19,13 +19,13 @@
 	</ui:insert>
 
 	<div align="center">
-		<h1 style="font-family: cursive; font-style: italic;">Clients</h1>
+		<h1 style="font-family: cursive; font-style: italic;">Clients du Gestionnaire #{GestMB.gestionnaire.nom}</h1>
 
 		<h:form>
 			<p:dataTable var="client" value="#{GestMB.listClient}"
 				paginator="true" rows="10" rowsPerPageTemplate="5,10,15" style="text-align:center">
 				<p:column headerText="Photo ID " >
-					<p:graphicImage library="images" name="#{GestMB.byteToImage(client.photo)}" />
+<!-- 					<p:graphicImage library="images" name="#{GestMB.byteToImage(client.photo)}" /> -->
 				</p:column>
 				<p:column headerText="Nom" filterBy="#{client.nom}">
 					<h:outputText value="#{client.nom}" />
