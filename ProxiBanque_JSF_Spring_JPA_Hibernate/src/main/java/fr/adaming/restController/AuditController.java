@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -189,6 +190,22 @@ public class AuditController {
 		
 	}
 	
+	
+	@RequestMapping(value="/allClientGest/{id_gest}", method=RequestMethod.GET, produces="application/json")
+	public List<Client> getAllClientByGest(@PathVariable("id_gest") int id_gest){
+				
+		List<Client> listeClient = clientService.getClientsByIdGestionnaireService(id_gest);
+		
+		return listeClient;
+	}
+	
+	@RequestMapping(value="/nombreClientGest/{id_gest}", method=RequestMethod.GET, produces="application/json")
+	public int nombreClientByGest(@PathVariable("id_gest") int id_gest){
+				
+		List<Client> listeClient = clientService.getClientsByIdGestionnaireService(id_gest);
+		
+		return listeClient.size();
+	}
 	
 	
 //----------------------------------------------------------------------------------------------------------------
