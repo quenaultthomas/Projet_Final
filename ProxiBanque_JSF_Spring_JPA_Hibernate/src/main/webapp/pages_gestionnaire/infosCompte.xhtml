@@ -40,7 +40,7 @@
 			value="#{GestMB.listOperation}" style="text-align:center"
 			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 			paginator="true" rows="5">
-			<p:column headerText="Date">
+			<p:column headerText="Date" sortBy="#{ope.date}">
 				<h:outputText value="#{ope.date}">
 				</h:outputText>
 			</p:column>
