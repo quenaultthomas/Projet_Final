@@ -233,7 +233,9 @@ public class GestionnaireManagedBean implements Serializable{
 		 * 4_Méthodes
 		 */
 
-
+	/**
+	 * Methode TOString retourne un string
+	 */
 	@Override
 	public String toString() {
 		return "GestionnaireManagedBean [cpt=" + cpt + ", cpt2=" + cpt2 + ", id=" + id + ", id2=" + id2 + ", montant="
@@ -241,14 +243,21 @@ public class GestionnaireManagedBean implements Serializable{
 				+ listCpt + "]";
 	}
 	
+	/**
+	 * Methode init pour initilaiser la liste  
+	 * Retourne un void
+	 */
 	@PostConstruct
 	private void init() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
 		
-		
-//		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 	}
+	
+	/**
+	 * Methode getCompteById pour recuperer un compte par son ID 
+	 * Retourne une page de redirection
+	 */
 	
 	public String getCompteById() {
 		cpt = compteService.getCompteById(cpt.getId_compte());
@@ -263,13 +272,28 @@ public class GestionnaireManagedBean implements Serializable{
 		
 	}
 	
+	/**
+	 * Methode  pour rechercher un debiteur par son ID
+	 * Retourne un void
+	 */
+	
 	public void rechercherDebiteur(){
 		cpt = compteService.getCompteById(cpt.getId_compte());
 	}
 	
+	/**
+	 * Methode pour recherhcer un crediteur par son ID
+	 * Retourne un void
+	 */
+	
 	public void rechercherCrediteur(){
 		cpt2 = compteService.getCompteById(cpt2.getId_compte());
 	}
+	
+	/**
+	 * Methode virement 
+	 * Retourne une page de redirection
+	 */
 	
 	public String virement(){
 		Compte compte = compteService.getCompteById(id);
@@ -314,6 +338,11 @@ public class GestionnaireManagedBean implements Serializable{
 		}
 	}
 	
+	/**
+	 * Methode depot pour depot de l'argent sur un compte  
+	 * Retourne une page de redirection
+	 */
+	
 	public String depot(){
 		compteService.depot(montant, id);
 
@@ -331,6 +360,11 @@ public class GestionnaireManagedBean implements Serializable{
 		
 		return "listeCompte.xhtml";
 	}
+	
+	/**
+	 * Methode retrait pour retirer de l'argent sur un compte  
+	 * Retourne une page de redirection
+	 */
 	
 	public String retrait(){
 		
@@ -365,10 +399,20 @@ public class GestionnaireManagedBean implements Serializable{
 		}
 	}
 	
+	/**
+	 * Methode rechercheCompteByIdClient pour recuperer un compte par l'ID du client
+	 * Retourne une page de redirection
+	 */
+	
 	public String rechercheCompteByIdClient(){
 		listCpt = compteService.getCompteByIdCLient(client.getId_client());
 		return "listeCompte.xhtml";
 	}
+	
+	/**
+	 * Methode ajouter un compte 
+	 * Retourne une page de redirection
+	 */
 	
 	public String addCpt() {
 		cpt.setClient(client);
@@ -379,6 +423,11 @@ public class GestionnaireManagedBean implements Serializable{
 
 	}
 
+	/**
+	 * Methode pour modifier un compte
+	 * Retourne une page de redirection
+	 */
+	
 	public String upCpt() {
 		compteService.ModifierCompte(cpt);
 		listCpt=compteService.getCompteByIdCLient(client.getId_client());
@@ -386,6 +435,11 @@ public class GestionnaireManagedBean implements Serializable{
 
 	}
 
+	/**
+	 * Methode supprimer un compte 
+	 * Retourne une page de redirection
+	 */
+	
 	public String deleteCpt() {
 		
 		compteService.SupprimerCompte(cpt);
@@ -394,21 +448,41 @@ public class GestionnaireManagedBean implements Serializable{
 
 	}
 	
+	/**
+	 * Methode pour ajouter 
+	 * Retourne une page de redirection
+	 */
+	
 	public String addCarte() {
 		carteService.AjouterCarteService(carte);
 		return null;
 	}
 
+	/**
+	 * Methode pour modifier la carte 
+	 * Retourne une page de redirection
+	 */
+	
 	public String upCarte() {
 		carteService.ModifierCarteService(carte);
 		return null;
 	}
 
+	/**
+	 * Methode pour supprimer une carte 
+	 * Retourne une page de redirection
+	 */
+	
 	public String deleteCarte() {
 		
 		carteService.SupprimerCarteService(carte);
 		return null;
 	}
+	
+	/**
+	 * Methode pour ajouter
+	 * Retourne une page de redirection
+	 */
 	
 	public String addClient() {
 		
@@ -419,17 +493,32 @@ public class GestionnaireManagedBean implements Serializable{
 		return "ajoutClient.xhtml";
 	}
 
+	/**
+	 * Methode pour modifier un client 
+	 * Retourne une page de redirection
+	 */
+	
 	public String upClient() {
 		clientService.updateClientService(client);
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
 
+	/**
+	 * Methode pour supprimer un client
+	 * Retourne une page de redirection
+	 */
+	
 	public String deleteClient() {		
 		clientService.deleteClientService(client.getId_client());
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
+	
+	/**
+	 * Methode pour la securite 
+	 * Retourne une page de redirection
+	 */
 	
 	public String IsExist(){
 		int verif  = gestionnaireService.isExistGestionnaireService(gestionnaire.getLogin(), gestionnaire.getPassword());
@@ -457,42 +546,77 @@ public class GestionnaireManagedBean implements Serializable{
 		}
 	}
 	
+	/**
+	 * Methode  pour rediriger vers le formulaire d'accueil du gestionnaire 
+	 * Retourne une page de redirection
+	 */
+	
 	public String aiguillageAccueil(){
 		listClient = clientService.getClientsByIdGestionnaireService(gestionnaire.getId_gestionnaire());
 		return "accueilGestionnaire.xhtml";
 	}
 	
+	/**
+	 * Methode  pour rediriger vers le formulaire de modif d'un client 
+	 * Retourne une page de redirection
+	 */
+	
 	public String aiguillageFormModifClient(){
 		listeGestionnaires = gestionnaireService.getAllGestionnairesService();
 		return "formModifClient.xhtml";
 	}
+	/**
+	 * Methode  pour rediriger vers le formulaire de modification d'un compte
+	 * Retourne une page de redirection
+	 */
+	
 	public String aiguillageFormModifCmtp(){
 		listClient = clientService.getAllClientService();
 		return "modificationCompte.xhtml";
 		
 		
 	}
+	/**
+	 * Methode pour rediriger vers le formulaire d'ajout d'un compte
+	 * Retourne une page de redirection
+	 */
+	
 	public String aiguillageAjoutCompte(){
 		this.cpt=new Compte();
 		return "ajoutCompte.xhtml";
 		
 	}
 	
+	/**
+	 * Methode pour rediriger vers le formulaire d'ajout d'un client
+	 * Retourne une page de redirection
+	 */
+	
 	public String aiguillageAjoutClient() {
 		this.client = new Client();
 		return "ajoutClient.xhtml";
 	}
 	
+	/**
+	 * Methode pour rediriger vers l'accueil des comptes
+	 * Retourne une page de redirection
+	 */
+	
 	public String gotoHome(){
 		return "listeCompte.xhtml";
 	}
+	
+	/**
+	 * Methode upload pour recuperer une image
+	 * Retourne une page de redirection
+	 */
 	
 	 public void upload() {
 	        if(file != null) {
 	            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
 	            FacesContext.getCurrentInstance().addMessage(null, message);
-//	            client.setPhoto(file.getContentType());
-	            System.out.println(file.getContentType());
+	            client.setPhoto(file.getContents());
+	            System.out.println(client.getPhoto());
 	        }
 	 }
 	//----------------------------------------------------------------------------------------------------------------
