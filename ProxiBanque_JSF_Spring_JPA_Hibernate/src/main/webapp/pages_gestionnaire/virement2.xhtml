@@ -19,24 +19,7 @@
 	<br />
 	<br />
 	<div align="center">
-		<h:form>
-			<div style="width: 50%" align="center">
-				<p:panel header="Effectuer un Virement">
-					<p:messages />
-					<p:growl id="growl" showDetail="true" life="5000" />
-					<h:panelGrid columns="2">
-						<p:outputLabel for="id_debite" value="Compte à débiter : " />
-						<p:selectOneMenu style="width: 195px;" id="id_debite"
-							value="#{GestMB.id}">
-							<c:forEach var="compte" items="#{GestMB.listCpt}">
-								<f:selectItem itemValue="#{compte.id_compte}"
-									itemLabel="#{compte.typeCompte}" />
-							</c:forEach>
-						</p:selectOneMenu>
-					</h:panelGrid>
-				</p:panel>
-			</div>
-		</h:form>
+		
 
 		<h:form>
 			<h:panelGrid columns="2">
@@ -49,13 +32,25 @@
 					required="true"></p:inputText>
 			</h:panelGrid>
 			<br />
-			<p:commandButton value="Valider" action="#{GestMB.rechercheClient2()}">
+			<p:commandButton value="Valider" action="#{GestMB.rechercheClient2()}" update="@all">
 			</p:commandButton>
 		</h:form>
 
-		<h:form>
+		<h:form id="select">
 				<p:panel>
 				<h:panelGrid>
+				
+						<p:outputLabel for="id_debite" value="Compte à débiter : " />
+						<p:selectOneMenu style="width: 195px;" id="id_debite"
+							value="#{GestMB.id}">
+							<c:forEach var="compte" items="#{GestMB.listCpt}">
+								<f:selectItem itemValue="#{compte.id_compte}"
+									itemLabel="#{compte.typeCompte}" />
+							</c:forEach>
+						</p:selectOneMenu>
+					
+				
+				
 					<p:outputLabel for="id_credite" value="Compte à créditer : " />
 					<p:selectOneMenu style="width: 195px;" id="id_credite"
 						value="#{GestMB.id2}">
@@ -64,19 +59,25 @@
 								itemLabel="#{compte.typeCompte}" />
 						</c:forEach>
 					</p:selectOneMenu>
+			
+
 
 					<p:outputLabel for="montant" value="Montant : " />
 					<p:inputText id="montant" value="#{GestMB.montant}" required="true" />
-			</h:panelGrid>
-			</p:panel>
+			
 			<br />
 			<br />
 			<br />
 			<p:commandButton value="Valider" action="#{GestMB.virement()}"
 				update="@all"></p:commandButton>
+		
 			<p:commandButton value="Annuler" action="listeCompte"></p:commandButton>
-	</div>
+			
+				</h:panelGrid>
+			</p:panel>
 	</h:form>
+	</div>
+	
 
 </h:body>
 </html>
