@@ -44,17 +44,30 @@ public class GestionnaireServiceImpl implements IGestionnaireService {
 	/**
 	 * 4_Méthodes
 	 */
+	
+	/**
+	 * Méthodes isExist 
+	 * Retourne un int 
+	 */
 	@Override
 	public int isExistGestionnaireService(String login, String password) {
 		
 		return gestionDao.isExistGestionnaireDao(login, password);
 	}
 
+	/**
+	 * Méthodes qui recupere le gestionniare par son id  
+	 * Retourne un gestionnaire
+	 */
 	@Override
 	public Gestionnaire getGestByIdentificationService(String login, String password) {
 		return gestionDao.getGestByIdentificationDao(login, password);
 	}
 	
+	/**
+	 * Méthodes qui reucpere les gestionnaires 
+	 * Retourne une liste de gestionnaire 
+	 */
 	@Override
 	public List<Gestionnaire> getAllGestionnairesService() {
 		return gestionDao.getAllGestionnaires();
