@@ -25,6 +25,9 @@ public class AuditController {
 	/**
 	 * 1_Les propriétés (champs, attributs)
 	 */
+	/**
+	 * Récupération des méthodes du client, compte et gestionnaire
+	 */
 	@Autowired
 	IClientService clientService;
 	
@@ -57,10 +60,21 @@ public class AuditController {
 	public void setCompteService(ICompteService compteService) {
 		this.compteService = compteService;
 	}
-//----------------------------------------------------------------------------------------------------------------
+	
+	/**
+	 * @param gestionService the gestionService to set
+	 */
+	public void setGestionService(IGestionnaireService gestionService) {
+		this.gestionService = gestionService;
+	}
+
+	//----------------------------------------------------------------------------------------------------------------
 //---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
 	 * 4_Méthodes
+	 */
+	/**
+	 * Récupération de tous les clients en format json
 	 */
 	@RequestMapping(value="/allClient", method=RequestMethod.GET, produces="application/json")
 	public List<Client> getAllClient(){
@@ -68,23 +82,36 @@ public class AuditController {
 		return clientService.getAllClientService();
 	}
 	
+	/**
+	 * Récupération du nombre de clients
+	 */
 	@RequestMapping(value="/nombreClient", method=RequestMethod.GET, produces="application/json")
 	public int nombreClient(){
 		
 		return clientService.getAllClientService().size();
 	}
 	
+	/**
+	 * Récupération de tous les comptes en format json
+	 */
 	@RequestMapping(value="/allCompte", method=RequestMethod.GET, produces="application/json")
 	public List<Compte> getAllCompte(){
 		
 		return compteService.getAllCompte();
 	}
 	
+	/**
+	 * Récupération du nombre de comptes
+	 */
 	@RequestMapping(value="/nombreCompte", method=RequestMethod.GET, produces="application/json")
 	public int nombreCompte(){
 		
 		return compteService.getAllCompte().size();
 	}
+	
+	/**
+	 * Récupération de tous les comptes en négatif en format json
+	 */
 	
 	@RequestMapping(value="/allCompteDecouvert", method=RequestMethod.GET, produces="application/json")
 	public List<Compte> getAllCompteDecouvert(){
@@ -102,11 +129,19 @@ public class AuditController {
 		return listeDecouvert;
 	}
 	
+	/**
+	 * Récupération de tous les gestionnaires
+	 */
+	
 	@RequestMapping(value="/allGestion", method=RequestMethod.GET, produces="application/json")
 	public List<Gestionnaire> getAllGestion(){
 		
 		return gestionService.getAllGestionnairesService();
 	}
+	
+	/**
+	 * Récupération du nombre de gestionnaires
+	 */
 	
 	@RequestMapping(value="/nombreGestion", method=RequestMethod.GET, produces="application/json")
 	public int nombreGestion(){
@@ -114,6 +149,9 @@ public class AuditController {
 		return gestionService.getAllGestionnairesService().size();
 	}
 	
+	/**
+	 * Récupération du nombre de comptes en négatif
+	 */
 	
 	@RequestMapping(value="/nombreDecouvert", method=RequestMethod.GET, produces="application/json")
 	public int nombreCompteDecouvert(){
@@ -131,6 +169,9 @@ public class AuditController {
 		return listeDecouvert.size();
 	}
 	
+	/**
+	 * Récupération des comptes à découvert
+	 */
 	
 	@RequestMapping(value="/allCompteTresDecouvert", method=RequestMethod.GET, produces="application/json")
 	public List<Compte> getAllCompteTresDecouvert(){
@@ -148,6 +189,9 @@ public class AuditController {
 		return listeTresDecouvert;
 	}
 	
+	/**
+	 * Récupération du nombre de comptes sous le découvert autorisé
+	 */
 	
 	@RequestMapping(value="/nombreTresDecouvert", method=RequestMethod.GET, produces="application/json")
 	public int nombreCompteTresDecouvert(){
@@ -165,6 +209,9 @@ public class AuditController {
 		return listeDecouvert.size();
 	}
 	
+	/**
+	 * Récupération du bilan pour l'audit
+	 */
 	
 	@RequestMapping(value="/bilan", method=RequestMethod.GET, produces="application/json")
 	public Audit bilan(){
@@ -190,6 +237,9 @@ public class AuditController {
 		
 	}
 	
+	/**
+	 * Récupération des clients par gestionnaire
+	 */
 	
 	@RequestMapping(value="/allClientGest/{id_gest}", method=RequestMethod.GET, produces="application/json")
 	public List<Client> getAllClientByGest(@PathVariable("id_gest") int id_gest){
@@ -198,6 +248,10 @@ public class AuditController {
 		
 		return listeClient;
 	}
+	
+	/**
+	 * Récupération du nombre de client par gestionnaire
+	 */
 	
 	@RequestMapping(value="/nombreClientGest/{id_gest}", method=RequestMethod.GET, produces="application/json")
 	public int nombreClientByGest(@PathVariable("id_gest") int id_gest){
