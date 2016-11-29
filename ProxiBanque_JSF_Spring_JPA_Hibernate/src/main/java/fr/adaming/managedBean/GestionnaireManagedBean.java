@@ -501,6 +501,10 @@ public class GestionnaireManagedBean implements Serializable{
 		return "listeCompte.xhtml";
 	}
 	
+	public String gotoVirement2(){
+		this.client2=new Client();
+		return "virement2.xhtml";
+	}
 	 public void upload(FileUploadEvent event) throws IOException {
 	        
 		UploadedFile file =event.getFile();
