@@ -39,6 +39,7 @@ public interface IClientDao {
 	public Client getClientByIdDao(int id_client);
 	public List<Client> getClientsByIdGestionnaireDao(int id_client);
 	public Client getClientByIdentifiantDao(String mail,String password);
+	public Client getClientByNomPrenom (String nom, String prenom);
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
 }
