@@ -21,13 +21,8 @@
 		<h1>Ajout d'un client</h1>
 		
 				<h:form enctype="multipart/form-data">
+					<p:fileUpload fileUploadListener="#{GestMB.upload}" />
 					<p:growl id="messages" showDetail="true" />
-
-					<p:fileUpload value="#{GestMB.file}" mode="simple"
-						skinSimple="true" />
-
-					<p:commandButton value="Submit" ajax="false"
-						actionListener="#{GestMB.upload()}" />
 				</h:form>
 				
 				<h:form>
