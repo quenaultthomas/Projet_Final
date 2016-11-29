@@ -17,6 +17,10 @@ public class OperationDaoImpl implements IOperationDao {
 	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 
+	/**
+	 * Methode pour recherhcer une operation par l'ID du compte
+	 * Retourne une liste d'operation
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Operation> getOperationsByIdCompte(int id_compte) {
@@ -24,7 +28,10 @@ public class OperationDaoImpl implements IOperationDao {
 		query.setParameter("id_compte", id_compte);
 		return query.getResultList();
 	}
-
+	/**
+	 * Methode pour ajouter une operation
+	 * Retourne un void
+	 */
 	@Override
 	public void ajouterOperation(Operation operation) {
 		em.persist(operation);

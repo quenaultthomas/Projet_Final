@@ -16,10 +16,20 @@ public class OperationServiceImpl implements IOperationService {
 	@Autowired
 	private IOperationDao operationDao;
 
+	/**
+	 * Methode pour recherhcer une operation par l'ID du compte
+	 * Retourne une liste d'operation
+	 */
+	
 	@Override
 	public List<Operation> getOperationsByIdCompteService(int id_compte) {
 		return operationDao.getOperationsByIdCompte(id_compte);
 	}
+	
+	/**
+	 * Methode pour ajouter une operation
+	 * Retourne un void
+	 */
 
 	@Override
 	public void ajouterOperationService(Operation operation) {
