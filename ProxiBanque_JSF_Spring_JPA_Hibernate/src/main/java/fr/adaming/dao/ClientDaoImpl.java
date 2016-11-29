@@ -117,12 +117,20 @@ public class ClientDaoImpl implements IClientDao {
 		Client client = (Client) query.getSingleResult();
 		return client;
 	}
-//----------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------
 
+	@Override
+	public Client getClientByNomPrenom(String nom, String prenom) {
+	String req="SELECT c FROM Client c WHERE c.nom=:nom and c.prenom=:prenom";
+		
+		Query query =em.createQuery(req);
+		query.setParameter("nom", nom);
+		query.setParameter("prenom", prenom);
+		
+		Client client = (Client) query.getSingleResult();
+		return client;
+	}
 
-
-
-
+	//----------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------
 
 }

@@ -90,12 +90,14 @@ public class ClientServiceImpl implements IClientService {
 	public Client getClientByIdentifiantService(String mail, String password) {
 		return clientDao.getClientByIdentifiantDao(mail, password);
 	}
-//----------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------
 
+	@Override
+	public Client getClientByNomPrenomService(String nom, String prenom) {
+		return clientDao.getClientByNomPrenom(nom, prenom);
+		
+	}
 
-
-
-
+	//----------------------------------------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------
 
 }

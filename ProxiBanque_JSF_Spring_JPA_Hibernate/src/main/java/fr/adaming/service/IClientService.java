@@ -39,6 +39,7 @@ public interface IClientService {
 	public int isExistClientService(String mail,String password);
 	public List<Client> getClientsByIdGestionnaireService(int id_client);
 	public Client getClientByIdentifiantService(String mail,String password);
+	public Client getClientByNomPrenomService (String nom, String prenom);
 //----------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
 }

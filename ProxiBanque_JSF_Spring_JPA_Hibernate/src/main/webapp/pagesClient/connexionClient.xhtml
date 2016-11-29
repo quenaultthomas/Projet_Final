@@ -22,8 +22,8 @@
 					required="true"></p:inputText>
 
 				<p:outputLabel for="password">Password : </p:outputLabel>
-				<p:inputText id="password" value="#{ClientMB.client.password}"
-					required="true"></p:inputText>
+				<p:password id="password" value="#{ClientMB.client.password}"
+					required="true"></p:password>
 			</h:panelGrid>
 			<br/>
 			<p:commandButton value="Valider" action="#{ClientMB.IsExist()}">
