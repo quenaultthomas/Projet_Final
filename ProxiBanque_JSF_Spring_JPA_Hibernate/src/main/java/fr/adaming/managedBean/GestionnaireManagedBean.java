@@ -50,12 +50,13 @@ public class GestionnaireManagedBean implements Serializable{
 	private Client client;
 	private Carte carte;
 	private Gestionnaire gestionnaire;
-	 
+	private Client client2;
 	
 	private List<Client> listClient;
 	private List<Gestionnaire> listeGestionnaires;
 	private List<Compte> listCpt;
 	private List<Operation> listOperation;
+	private List<Compte> listCptClient2;
 
 	@ManagedProperty(value = "#{compteService}")
 	ICompteService compteService;
@@ -86,6 +87,7 @@ public class GestionnaireManagedBean implements Serializable{
 		this.client= new Client();
 		this.carte= new Carte();
 		this.gestionnaire = new Gestionnaire();
+		this.client2 = new Client();
 	}
 
 	//----------------------------------------------------------------------------------------------------------------
@@ -194,6 +196,22 @@ public class GestionnaireManagedBean implements Serializable{
 		this.listeGestionnaires = listeGestionnaires;
 	}
 
+
+	public Client getClient2() {
+		return client2;
+	}
+
+	public void setClient2(Client client2) {
+		this.client2 = client2;
+	}
+
+	public List<Compte> getListCptClient2() {
+		return listCptClient2;
+	}
+
+	public void setListCptClient2(List<Compte> listCptClient2) {
+		this.listCptClient2 = listCptClient2;
+	}
 
 	public void setCompteService(ICompteService compteService) {
 		this.compteService = compteService;
@@ -500,6 +518,12 @@ public class GestionnaireManagedBean implements Serializable{
 		 ByteArrayInputStream img = new ByteArrayInputStream(imgBytes);
 		 return new DefaultStreamedContent(img,"image/jpg");
 		 }
+	 
+	 public void rechercheClient2(){
+		 
+		 client2 = clientService.getClientByNomPrenomService(client2.getNom(), client2.getPrenom());
+		 listCptClient2 = compteService.getCompteByIdCLient(client2.getId_client());
+	 }
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 	
