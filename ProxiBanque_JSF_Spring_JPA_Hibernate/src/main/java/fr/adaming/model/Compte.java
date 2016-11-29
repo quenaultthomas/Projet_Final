@@ -21,9 +21,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "comptes")
+/**
+ * 
+ * @author inti0292
+ *
+ *Initialisation des NamedQueries nécessaire à la dao compte
+ *
+ */
 @NamedQueries({ @NamedQuery(name = "getAllCompte", query = "SELECT c FROM Compte c"),
 		@NamedQuery(name = "getCompteById", query = "SELECT c FROM Compte as c WHERE c.id_compte =:id"),
-		@NamedQuery(name = "getCompteByIdClient", query = "SELECT c FROM Compte as c WHERE c.client.id_client =:id"),})
+		@NamedQuery(name = "getCompteByIdClient", query = "SELECT c FROM Compte as c WHERE c.client.id_client =:id"), })
 public class Compte implements Serializable {
 
 	/**
@@ -35,7 +42,7 @@ public class Compte implements Serializable {
 	// ---------------------------------1_Les propriétés (champs,
 	// attributs)-------------------------------------------
 	/**
-	 * 1_Les propriétés (champs, attributs)
+	 * Initialisation des attributs et des associations de la classe compte 
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,11 +62,11 @@ public class Compte implements Serializable {
 	@JoinColumn(name = "id_client")
 	private Client client;
 
-	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "compte", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Carte> carte;
 
-	@OneToMany(mappedBy = "compte", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "compte", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Operation> operation;
 
@@ -120,89 +127,149 @@ public class Compte implements Serializable {
 	// ---------------------------------3_Les Getters et
 	// Setters-------------------------------------------------------
 	/**
-	 * 3_Les Getters et Setters
+	 * 3_Les Getters et Setters des attributs de la classe compte.
 	 */
 
+	/**
+	 * @return the id_compte
+	 */
 	public int getId_compte() {
 		return id_compte;
 	}
 
+	/**
+	 * @param id_compte the id_compte to set
+	 */
 	public void setId_compte(int id_compte) {
 		this.id_compte = id_compte;
 	}
 
+	/**
+	 * @return the numero
+	 */
 	public String getNumero() {
 		return numero;
 	}
 
+	/**
+	 * @param numero the numero to set
+	 */
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
+	/**
+	 * @return the typeCompte
+	 */
 	public String getTypeCompte() {
 		return typeCompte;
 	}
 
+	/**
+	 * @param typeCompte the typeCompte to set
+	 */
 	public void setTypeCompte(String typeCompte) {
 		this.typeCompte = typeCompte;
 	}
 
-	public double getDecouvert() {
-		return decouvert;
-	}
-
-	public void setDecouvert(double decouvert) {
-		this.decouvert = decouvert;
-	}
-
-	public float getTauxRemuneration() {
-		return tauxRemuneration;
-	}
-
-	public void setTauxRemuneration(float tauxRemuneration) {
-		this.tauxRemuneration = tauxRemuneration;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	/**
+	 * @return the solde
+	 */
 	public double getSolde() {
 		return solde;
 	}
 
+	/**
+	 * @param solde the solde to set
+	 */
 	public void setSolde(double solde) {
 		this.solde = solde;
 	}
 
+	/**
+	 * @return the decouvert
+	 */
+	public double getDecouvert() {
+		return decouvert;
+	}
+
+	/**
+	 * @param decouvert the decouvert to set
+	 */
+	public void setDecouvert(double decouvert) {
+		this.decouvert = decouvert;
+	}
+
+	/**
+	 * @return the tauxRemuneration
+	 */
+	public float getTauxRemuneration() {
+		return tauxRemuneration;
+	}
+
+	/**
+	 * @param tauxRemuneration the tauxRemuneration to set
+	 */
+	public void setTauxRemuneration(float tauxRemuneration) {
+		this.tauxRemuneration = tauxRemuneration;
+	}
+
+	/**
+	 * @return the client
+	 */
 	public Client getClient() {
 		return client;
 	}
 
+	/**
+	 * @param client the client to set
+	 */
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
+	/**
+	 * @return the carte
+	 */
 	public List<Carte> getCarte() {
 		return carte;
 	}
 
+	/**
+	 * @param carte the carte to set
+	 */
 	public void setCarte(List<Carte> carte) {
 		this.carte = carte;
 	}
 
+	/**
+	 * @return the operation
+	 */
 	public List<Operation> getOperation() {
 		return operation;
 	}
 
+	/**
+	 * @param operation the operation to set
+	 */
 	public void setOperation(List<Operation> operation) {
 		this.operation = operation;
 	}
 
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+
 	// ----------------------------------------------------------------------------------------------------------------
 	// ---------------------------------4_Méthodes---------------------------------------------------------------------
 	/**
-	 * 4_Méthodes
+	 * 4_Méthode ToString, nécessaire à l'affichage de l'entité compte dans le projet.
+	 * 
+	 * @return id_compte, numero, typeCompte, solde, decouvert, tauxRemuneration
 	 */
 	@Override
 	public String toString() {
@@ -212,4 +279,5 @@ public class Compte implements Serializable {
 	// ----------------------------------------------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------------------------------------------
 
+	
 }

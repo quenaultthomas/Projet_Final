@@ -9,14 +9,26 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Compte;
-
+/**
+ * 
+ * @author inti0292
+ *
+ *Classe CompteDaoImpl qui implémente l'interface ICompteDao
+ */
 @Repository
 public class CompteDaoImpl implements ICompteDao {
 
-
+	/**
+	 * Injection dependance de l'entityManager
+	 */
 	@PersistenceContext(name="ProxyBanque")
 	EntityManager em;
 	
+	/**
+	 * Déclaration de la méthode ajouter Compte
+	 * 
+	 * methode permettant l'ajout d'un compte dans la base de données
+	 */
 	@Override
 	public void AjouterCompte(Compte compte) {
 		
@@ -24,6 +36,11 @@ public class CompteDaoImpl implements ICompteDao {
 	
 	}
 
+	/**
+	 * Déclaration de la méthode modifier Compte
+	 * 
+	 * methode permettant la modification d'un compte dans la base de données
+	 */
 	@Override
 	public void ModifierCompte(Compte compte) {
 		
@@ -41,6 +58,11 @@ public class CompteDaoImpl implements ICompteDao {
 		
 	}
 
+	/**
+	 * Déclaration de la méthode supprimer Compte
+	 * 
+	 * methode permettant la suppression d'un compte dans la base de données
+	 */
 	@Override
 	public void SupprimerCompte(Compte compte) {
 
@@ -53,7 +75,11 @@ public class CompteDaoImpl implements ICompteDao {
 		}
 		
 	
-
+	/**
+	 * Déclaration de la méthode getCompteById
+	 * 
+	 * methode permettant la recherche d'un compte dans la base de données par son id
+	 */
 	@Override
 	public Compte getCompteById(int id_compte) {
 				
@@ -63,6 +89,12 @@ public class CompteDaoImpl implements ICompteDao {
 		return (Compte) query.getSingleResult();
 	}
 
+
+	/**
+	 * Déclaration de la méthode getAllCompte
+	 * 
+	 * methode permettant la recherche des comptes dans la base de données 
+	 */
 	@Override
 	public List<Compte> getAllCompte() {
 		
@@ -71,6 +103,12 @@ public class CompteDaoImpl implements ICompteDao {
 		return query.getResultList();
 	}	
 	
+
+	/**
+	 * Déclaration de la méthode depot
+	 * 
+	 * methode permettant l'opération de dépose d'argent sur un compte
+	 */
 	@Override
 	public void depot(double montant, int id_compteC) {
 		Compte c = this.getCompteById(id_compteC);
@@ -82,6 +120,11 @@ public class CompteDaoImpl implements ICompteDao {
 		
 	}
 
+	/**
+	 * Déclaration de la méthode retrait
+	 * 
+	 * methode permettant l'opération de retrait d'argent sur un compte
+	 */
 	@Override
 	public void retrait(double montant, int id_compteD) {
 		
@@ -100,6 +143,11 @@ public class CompteDaoImpl implements ICompteDao {
 		
 	}
 
+	/**
+	 * Déclaration de la méthode depot
+	 * 
+	 * methode permettant l'opération de virement d'argent de compte à compte
+	 */
 	@Override
 	public void virement(double montant, int id_compteD, int id_compteC)  {
 		
@@ -124,6 +172,11 @@ public class CompteDaoImpl implements ICompteDao {
 		}
 	}
 
+	/**
+	 * Déclaration de la méthode getCompteByIdClient
+	 * 
+	 * methode permettant la recherche des comptes de chaque client par l'id de celui-ci
+	 */
 	@Override
 	public List<Compte> getCompteByIdCLient(int id_client) {
 		
