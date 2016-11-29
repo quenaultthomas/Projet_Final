@@ -1,5 +1,7 @@
 package fr.adaming.managedBean;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -12,6 +14,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Carte;
@@ -45,8 +50,6 @@ public class GestionnaireManagedBean implements Serializable{
 	private Client client;
 	private Carte carte;
 	private Gestionnaire gestionnaire;
-
-	private UploadedFile file;
 	 
 	
 	private List<Client> listClient;
@@ -191,13 +194,6 @@ public class GestionnaireManagedBean implements Serializable{
 		this.listeGestionnaires = listeGestionnaires;
 	}
 
-	public UploadedFile getFile() {
-		return file;
-	}
-
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}
 
 	public void setCompteService(ICompteService compteService) {
 		this.compteService = compteService;
@@ -487,14 +483,23 @@ public class GestionnaireManagedBean implements Serializable{
 		return "listeCompte.xhtml";
 	}
 	
-	 public void upload() {
-	        if(file != null) {
-	            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-	            FacesContext.getCurrentInstance().addMessage(null, message);
-//	            client.setPhoto(file.getContentType());
-	            System.out.println(file.getContentType());
-	        }
+	 public void upload(FileUploadEvent event) throws IOException {
+	        
+		UploadedFile file =event.getFile();
+		System.out.println(file.getFileName());
+		System.out.println(file);
+		
+		byte[] photo = IOUtils.toByteArray(file.getInputstream());
+	    System.out.println(photo);
+	    
+		client.setPhoto(photo);
+      
 	 }
+	 
+	 public DefaultStreamedContent byteToImage(byte[] imgBytes) throws IOException {
+		 ByteArrayInputStream img = new ByteArrayInputStream(imgBytes);
+		 return new DefaultStreamedContent(img,"image/jpg");
+		 }
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 	

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,8 +42,9 @@ public class Client implements Serializable{
 	private String mail;
 	private String tel;
 	
-	@Lob
+	@Column(columnDefinition="LONGBLOB")
 	private byte[] photo;
+	
 	private String role;
 	
 	@ManyToOne
