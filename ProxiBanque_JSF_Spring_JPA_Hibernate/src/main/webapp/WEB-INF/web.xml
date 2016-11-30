@@ -51,7 +51,6 @@
 
 	<servlet-mapping>
 		<servlet-name>springJPA</servlet-name>
-		
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 

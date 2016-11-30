@@ -13,9 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
+
 import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Carte;
@@ -643,6 +641,12 @@ public class GestionnaireManagedBean implements Serializable{
 		 
 		 client2 = clientService.getClientByNomPrenomService(client2.getNom(), client2.getPrenom());
 		 listCptClient2 = compteService.getCompteByIdCLient(client2.getId_client());
+	 }
+	 
+	 
+	 public String gotoVirement2(){
+		 
+		 return "virement2.xhtml";
 	 }
 	//----------------------------------------------------------------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
