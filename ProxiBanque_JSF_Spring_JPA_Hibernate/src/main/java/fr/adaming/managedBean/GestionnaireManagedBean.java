@@ -645,7 +645,7 @@ public class GestionnaireManagedBean implements Serializable{
 	 
 	 
 	 public String gotoVirement2(){
-		 
+		 this.client2 = new Client();
 		 return "virement2.xhtml";
 	 }
 	//----------------------------------------------------------------------------------------------------------------
