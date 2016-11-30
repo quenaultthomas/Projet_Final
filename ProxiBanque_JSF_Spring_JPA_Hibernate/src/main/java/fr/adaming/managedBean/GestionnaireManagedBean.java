@@ -1,7 +1,6 @@
 package fr.adaming.managedBean;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
